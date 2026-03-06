@@ -966,7 +966,7 @@ export default function CouponPage() {
         const k = shop.nameKey;
         const modalName = t[`${k}Name`];
         const modalImages = shopModalImages[openModalShopIndex] ?? [];
-        const description = t[`shopModalDescription${k.replace("shop", "")}`];
+        const description = t[`shopModalDescription${k.replace("shop", "")}` as keyof typeof t];
         const modalHours = t[`${k}Hours`];
         const modalHoliday = t[`${k}Holiday`];
         const modalAddress = t[`${k}Address`];
