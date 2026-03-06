@@ -15,35 +15,35 @@ const ParkingMap = dynamic(() => import('@/components/ParkingMap'), {
 const translations = {
   ja: {
     hotelName: '',
-    hotelTitle: 'ホテルエース盛岡',
-    heroTitle: 'ホテル館内のご案内',
-    welcomeMessage: '本日は「ホテルエース盛岡」をご利用いただき誠にありがとうございます。',
-    welcomeMessage2: 'ご不明な点がございましたらフロントスタッフまでお気軽にお尋ねください。',
-    restaurantCoupon: '飲食店クーポン',
+    hotelTitle: 'ホテル シルク・トゥリー 名古屋',
+    heroTitle: '館内のご案内',
+    welcomeMessage: '本日は「ホテル シルク・トゥリー 名古屋」をご利用いただき誠にありがとうございます。',
+    welcomeMessage2: 'ご不明な点がございましたらフロント（内線333）までお気軽にお尋ねください。',
+    restaurantCoupon: '限定クーポン',
     checkInOut: '入退館時間',
     bath: 'アメニティ',
     breakfast: '朝食',
-    dinner: '夕食・お得なクーポン',
-    service: 'サービスコーナー',
+    dinner: '限定クーポン',
+    service: '館内案内',
     wifi: 'Wi-Fi',
     lighting: '室内照明',
-    longstay: '連泊のお客様へ',
+    longstay: '連泊清掃',
     lost: 'お忘れ物について',
     quickCheckin: '快速チェックイン',
-    dinnerTab: '夕食・お得なクーポン',
-    serviceTab: 'サービスコーナー',
+    dinnerTab: '限定クーポン',
+    serviceTab: '館内案内',
     close: '閉じる',
     checkIn: 'チェックイン',
     checkOut: 'チェックアウト',
-    planNote: '※プランによって時間が異なる場合がございます。',
-    bbhMember: 'BBH会員',
+    planNote: 'ご不明な点はフロント内線333へお問い合わせください。',
+    bbhMember: 'シルク・ツリーメンバーズ',
     earlyCheckin: 'アーリーチェックイン',
     earlyCheckinFee: '1時間につき1,000円（最大14:00まで）',
     lobbyDesc1: 'ヨーロピアン・アンティークの調度品が優雅なロビー。',
     lobbyDesc2: '都会の謙遜を忘れる落ち着いた空間です。',
     lobbyDesc3: '「スターバックス コーヒー」はロビーから直接お入りいただけます。',
-    amenitiesTitle: '全部屋タイプ共通',
-    amenitiesNote: '※アメニティは1Fにご用意しております。',
+    amenitiesTitle: 'アメニティ・ナイトウェア',
+    amenitiesNote: 'アメニティとナイトウェアはロビー棚から自由にご利用いただけます。1F アメニティバイキング 14:00～25:00。',
     amenityTowel: 'タオル',
     amenityBathTowel: 'バスタオル',
     amenityDryer: 'ドライヤー',
@@ -54,14 +54,14 @@ const translations = {
     amenityToothbrush: 'ハミガキセット',
     amenityBodySoap: 'ボディーソープ',
     breakfastVenue: '朝食会場',
-    breakfastFloor: '1階レストラン',
+    breakfastFloor: '2F ALLY\'s Nagoya',
     breakfastTime: '営業時間',
-    breakfastTimeDetail: '6:30～10:00（9:30最終入店）',
-    breakfastDesc: 'バランス良く、栄養もしっかり摂れる30種類のバイキング',
-    breakfastCatchphrase: '「華麗（カレー）なる朝食」を存分に味わってください！',
-    breakfastNotice: '営業時間は予告なく変更となる場合もございます。',
+    breakfastTimeDetail: '6:30～9:30（ラストオーダー9:00）',
+    breakfastDesc: '4つのスタイルを一度に楽しむ朝ごはん。ヨーロピアン&オリエンタルスタイルビュッフェ。',
+    breakfastCatchphrase: '名古屋めし・和惣菜・パン・シリアルなど、お好みのスタイルでお楽しみください。',
+    breakfastNotice: '入店には朝食券が必要です。スリッパでの入店はご遠慮ください。',
     bathTitle: 'アメニティ',
-    bathDescription: '男女別大浴場 9F',
+    bathDescription: 'ロビー棚から自由にご利用いただけます',
     operatingHours: '営業時間:',
     bathHours: '15:00~翌10:00',
     saunaNote: '(サウナのみ1:00~5:00停止)',
@@ -70,37 +70,37 @@ const translations = {
     bathNotice2: '※女性大浴場へ入場する際は暗証番号が必要です。暗証番号はフロントにてお渡しします。',
     freeService: '無料サービス',
     bathServiceDesc: '乳酸菌飲料とアイスキャンディーを無料で提供しております。',
-    breakfastTitle: 'ご朝食のご案内',
-    breakfastPrice: '大人 1,200円（税込）／子供（小学生）800円（税込）',
-    breakfastHours: '6:15~9:30 (最終入店9:00)',
+    breakfastTitle: 'ご朝食のご案内（2F ALLY\'s Nagoya）',
+    breakfastPrice: '大人 1,650円（税込）／小学生 1,100円（税込）',
+    breakfastHours: '6:30～9:30 (ラストオーダー9:00)',
     breakfastNote1: '※満席の場合はお待ちいただくことがございます。',
     breakfastNote2: '※混雑状況により営業時間を変更させていただく場合がございます。',
     sobaTitle: '■夜鳴きそば (ハーフサイズ) / 無料',
     sobaHours: '21:30~23:00',
     sobaNote: '※営業時間は変更になる場合がございます。',
-    serviceTitle: 'サービスコーナー',
+    serviceTitle: '館内案内',
     floor1F: '■ 1F',
-    freeSpaceNote: '（毎月第2・4土曜日 8:30～16:30 は中央通まちかどマルシェ開催の為、フリースペースはご利用いただけません）',
-    freeSpace: 'フリースペース（WiFi・コンセント）',
-    freeSpaceHours: 'ご利用時間帯 6:30～22:00',
-    microwave: '電子レンジ',
-    iwateSachiko: '岩手県公認VTuber「岩手さちこ」',
-    wrappingVending: 'ラッピング自販機（初号機・4面ラッピング）',
-    souvenirVending1: 'ご当地自販機（岩手のお土産）',
-    souvenirVending2: 'ご当地自販機（お土産）',
-    floor2F: '■ 2F',
-    vendingMachine: '自動販売機（冷凍食品・ドリンク・アルコール）',
-    iceMaker: '製氷機（別館3Fにもございます）',
-    vendingMachineNote: '自動販売機は別館3F・6Fにもございます',
-    laundry: 'コインランドリー',
-    laundryHours: 'ご利用時間帯 10:00～22:00',
+    freeSpaceNote: '',
+    freeSpace: 'ウェルカムドリンクサービス（1F）',
+    freeSpaceHours: '1F',
+    microwave: 'アメニティバイキング（14:00～25:00）1F',
+    iwateSachiko: '喫煙所 1F',
+    wrappingVending: '自動販売機 1F・3F',
+    souvenirVending1: '電子レンジ 3F・4F・6F・8F・10F',
+    souvenirVending2: 'VOD券売機 3F',
+    floor2F: '■ 3F',
+    vendingMachine: 'コインランドリー 3F（洗剤は自動投入）',
+    iceMaker: '製氷機 3Fコインランドリー内',
+    vendingMachineNote: 'コミックコーナー 3F（英語の漫画もあり）',
+    laundry: 'コインランドリー 3F',
+    laundryHours: '洗剤は自動投入されます',
     alcoholNote: '(アルコール類は5・7・9F)',
-    smoking: '喫煙コーナー',
+    smoking: '喫煙所 1F',
     wifiTitle: 'Wi-Fi',
-    password: 'Password :',
-    wifiAccessPoint: 'アクセスポイントはお部屋に設置の「客室インターネットのご案内」をご覧くださいませ。',
+    password: 'SSID :',
+    wifiAccessPoint: 'SSIDは「silk-tree」です。パスワードは客室のご案内またはフロントへお問い合わせください。有線LANケーブルのご利用はできません。',
     copy: 'コピー',
-    wifiCopyNote: '※ボタンをタップするとパスワードをコピーできます',
+    wifiCopyNote: '※パスワードは客室のご案内またはフロントでお確かめください。',
     passwordCopied: 'パスワードをコピーしました！',
     lostTitle: 'お忘れ物',
     lostText1: 'お客様がチェックアウトしたあと、手荷物又は携帯品が当ホテルに保管の依頼が無く残置されていた場合、所有者が破棄したものとして当ホテルの規定に基づき処分させていただきます。',
@@ -109,11 +109,11 @@ const translations = {
     lightingTitle: '室内照明',
     lightingDesc: '入室後、入口脇の電源ソケットにお部屋のキーホルダーを差し込む事で室内照明は点灯致します。',
     lightingNote: '※キーを電源ソケットに差し込みます。',
-    longstayTitle: '連泊のお客様へ',
-    cleaningHours: '清掃時間は11:00～15:00までとなっております。',
-    cleaningRequest: 'ご清掃をご希望の場合は、ドンデスカードの「清掃して下さい」を11:00までに外側ドアノブへ掛けて頂きますようお願いいたします。',
-    sheetExchange: '清掃をご希望の方は緑のマグネット「清掃してください」を明朝9時までに入口ドア廊下側へ貼付してください。',
-    noCleaning: '清掃不要の方は青のマグネット「起こさないでください」を入口ドア廊下側へ貼付してください。マグネットが貼られていない場合は清掃を行わず、タオル類のみドア前にご用意いたします。衛生面の観点から清掃は3日に1回（2泊目まではタオル類のみ交換、3泊目は清掃、4泊目以降は繰り返し）となります。',
+    longstayTitle: '連泊清掃のご案内',
+    cleaningHours: 'SDGsの観点から連泊時の清掃は基本的に中止です。衛生管理のため、7日毎に無料清掃を実施します。',
+    cleaningRequest: 'タオル交換が必要な場合：朝10時までにドア裏の赤い札（「Change towels and Collect garbage」）をドア表面（廊下側）に貼ってください。バスマットはフロントでご用意します。',
+    sheetExchange: 'アメニティとナイトウェアはロビー棚から自由にご利用いただけます。',
+    noCleaning: '衛生清掃以外の追加清掃は有料です。朝10時までにフロントへお申し付けください。プレミアルーム 2,640円（税込）/1回、その他の客室 1,100円（税込）/1回。',
     parking: '提携駐車場のご案内',
     parkingAllPrice: 'P1～P5は全て1泊900円（延長30分100円）',
     parkingMidExit: '※途中出庫の際は課金額が発生します。',
@@ -151,35 +151,35 @@ const translations = {
   },
   en: {
     hotelName: '',
-    hotelTitle: 'Hotel Ace Morioka',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Hotel Guide',
-    welcomeMessage: 'Thank you very much for staying with us at Hotel Ace Morioka today.',
-    welcomeMessage2: 'If you have any questions, please feel free to ask our front desk staff.',
-    restaurantCoupon: 'Restaurant Coupon',
+    welcomeMessage: 'Thank you very much for staying with us at Hotel Silk Tree Nagoya today.',
+    welcomeMessage2: 'If you have any questions, please contact the front desk (extension 333).',
+    restaurantCoupon: 'Coupon',
     checkInOut: 'Check-in/Check-out',
-    bath: 'Public Bath',
+    bath: 'Amenities',
     breakfast: 'Breakfast',
-    dinner: 'Dinner & Coupons',
-    service: 'Service Corner',
+    dinner: 'Coupon',
+    service: 'Floor Information',
     wifi: 'Wi-Fi',
     lighting: 'Room Lighting',
-    longstay: 'For Long-term Guests',
+    longstay: 'Cleaning (Consecutive nights)',
     lost: 'Lost & Found',
     quickCheckin: 'Quick Check-in',
-    dinnerTab: 'Dinner & Coupons',
-    serviceTab: 'Service Corner',
+    dinnerTab: 'Coupon',
+    serviceTab: 'Floor Information',
     close: 'Close',
     checkIn: 'Check-in',
     checkOut: 'Check-out',
-    planNote: '*Times may vary depending on the plan.',
-    bbhMember: 'BBH Member',
+    planNote: 'For inquiries, please contact the front desk (extension 333).',
+    bbhMember: 'Silk Tree Members',
     earlyCheckin: 'Early Check-in',
     earlyCheckinFee: '1,000 yen per hour (until 14:00)',
     lobbyDesc1: 'An elegant lobby with European antique furnishings.',
     lobbyDesc2: 'A calm space where you can forget the hustle and bustle of the city.',
     lobbyDesc3: 'You can enter "Starbucks Coffee" directly from the lobby.',
-    amenitiesTitle: 'Common to all room types',
-    amenitiesNote: '※Amenities are available on the 1st floor.',
+    amenitiesTitle: 'Amenities & Nightwear',
+    amenitiesNote: 'Amenities and nightwear are available at the lobby shelf. 1F Amenity buffet 14:00–25:00.',
     amenityTowel: 'Towel',
     amenityBathTowel: 'Bath towel',
     amenityDryer: 'Hair dryer',
@@ -190,14 +190,14 @@ const translations = {
     amenityToothbrush: 'Toothbrush set',
     amenityBodySoap: 'Body soap',
     breakfastVenue: 'Breakfast Venue',
-    breakfastFloor: '1st Floor Restaurant',
+    breakfastFloor: '2F ALLY\'s Nagoya',
     breakfastTime: 'Operating Hours',
-    breakfastTimeDetail: '6:30-10:00 (Last entry 9:30)',
-    breakfastDesc: 'Enjoy a well-balanced buffet with 30 varieties for proper nutrition',
-    breakfastCatchphrase: 'Experience our "Gorgeous Curry Breakfast" to the fullest!',
-    breakfastNotice: 'Operating hours are subject to change without notice.',
-    bathTitle: 'Public Bath',
-    bathDescription: 'Separate men\'s and women\'s public bath 9F',
+    breakfastTimeDetail: '6:30–9:30 (Last order 9:00)',
+    breakfastDesc: 'Four styles in one breakfast. European & Oriental style buffet.',
+    breakfastCatchphrase: 'Enjoy Nagoya dishes, Japanese sides, bread, cereal, and more in your preferred style.',
+    breakfastNotice: 'A breakfast ticket is required for entry. No entry in slippers.',
+    bathTitle: 'Amenities',
+    bathDescription: 'Available at the lobby shelf',
     operatingHours: 'Operating Hours:',
     bathHours: '15:00~Next day 10:00',
     saunaNote: '(Sauna only: 1:00~5:00 closed)',
@@ -206,35 +206,35 @@ const translations = {
     bathNotice2: '*A passcode is required to enter the women\'s public bath. The passcode will be provided at the front desk.',
     freeService: 'Free Service',
     bathServiceDesc: 'We provide free lactic acid drinks and ice candy.',
-    breakfastTitle: 'Breakfast (1F Restaurant)',
-    breakfastPrice: '/ $2,300',
-    breakfastHours: '6:15~9:30 (Last entry 9:00)',
+    breakfastTitle: 'Breakfast (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Adult ¥1,650 (tax incl.) / Child (elementary) ¥1,100 (tax incl.)',
+    breakfastHours: '6:30–9:30 (Last order 9:00)',
     breakfastNote1: '*You may be asked to wait if the restaurant is full.',
     breakfastNote2: '*Operating hours may change depending on congestion.',
-    serviceTitle: 'Service Corner',
+    serviceTitle: 'Floor Information',
     floor1F: '■ 1F',
-    freeSpaceNote: '(Free space is unavailable on the 2nd and 4th Saturdays of every month from 8:30 to 16:30 due to the Chuo-dori Machikado Marche event)',
-    freeSpace: 'Free Space (WiFi & Power outlets)',
-    freeSpaceHours: 'Available hours: 6:30～22:00',
-    microwave: 'Microwave',
-    iwateSachiko: 'Iwate Prefecture Official VTuber "Iwate Sachiko"',
-    wrappingVending: 'Wrapped vending machine (First unit, 4-sided wrap)',
-    souvenirVending1: 'Local vending machine (Iwate souvenirs)',
-    souvenirVending2: 'Local vending machine (Souvenirs)',
-    floor2F: '■ 2F',
-    vendingMachine: 'Vending machines (Frozen food, drinks, alcohol)',
-    iceMaker: 'Ice maker (Also available on Annex 3F)',
-    vendingMachineNote: 'Vending machines are also available on Annex 3F and 6F',
-    laundry: 'Coin laundry',
-    laundryHours: 'Available hours: 10:00～22:00',
+    freeSpaceNote: '',
+    freeSpace: 'Welcome drink service (1F)',
+    freeSpaceHours: '1F',
+    microwave: 'Amenity buffet (14:00–25:00) 1F',
+    iwateSachiko: 'Smoking corner (1F)',
+    wrappingVending: 'Vending machines (1F, 3F)',
+    souvenirVending1: 'Microwave (3F, 4F, 6F, 8F, 10F)',
+    souvenirVending2: 'VOD ticket machine (3F)',
+    floor2F: '■ 3F',
+    vendingMachine: 'Coin laundry (3F, detergent auto-dispensed)',
+    iceMaker: 'Ice machine (3F, inside coin laundry)',
+    vendingMachineNote: 'Comic corner (3F, English comics available)',
+    laundry: 'Coin laundry (3F)',
+    laundryHours: 'Detergent is auto-dispensed',
     alcoholNote: '(Alcoholic beverages: 5F, 9F)',
-    smoking: 'Smoking Area',
+    smoking: 'Smoking corner (1F)',
     wifiTitle: 'Wi-Fi',
-    password: 'Password:',
-    wifiAccessPoint: 'Please check the "Guest Room Internet Guide" installed in your room for the access point.',
+    password: 'SSID:',
+    wifiAccessPoint: 'SSID is "silk-tree". Please ask at the front desk or check the in-room guide for the password. Wired LAN is not available.',
     copy: 'Copy',
-    wifiCopyNote: '※You can copy the password by tapping the button',
-    passwordCopied: 'Password copied!',
+    wifiCopyNote: '*Please check the in-room guide or front desk for the password.',
+    passwordCopied: 'Copied!',
     lostTitle: 'Lost & Found',
     lostText1: 'If luggage or personal belongings are left behind at our hotel without a request for storage after checkout, they will be disposed of in accordance with hotel regulations, assuming the owner has discarded them.',
     lostText2: '',
@@ -242,11 +242,11 @@ const translations = {
     lightingTitle: 'Room Lighting',
     lightingDesc: 'After entering the room, insert your room key holder into the power socket next to the entrance to turn on the room lighting.',
     lightingNote: '*Insert the key into the power socket.',
-    longstayTitle: 'For Long-term Guests',
-    cleaningHours: 'Cleaning hours are from 11:00 to 15:00.',
-    cleaningRequest: 'If you wish for cleaning, please hang the Dondes card \"Please clean\" on the outside doorknob by 11:00.',
-    sheetExchange: 'Guests who wish to exchange sheets, futon covers, and pillowcases, please display the \"WECO Card\" on the bed. We will not exchange them if the card is not displayed. (We will exchange towels and room wear.)',
-    noCleaning: 'Guests who do not need cleaning, please display the green \"WECO\" card on the corridor side, which is located on the inside of the entrance door. In that case, we will not clean or enter the room.',
+    longstayTitle: 'Cleaning (Consecutive nights)',
+    cleaningHours: 'From an SDGs perspective, room cleaning during consecutive stays is generally suspended. Free cleaning is provided every 7 days for hygiene.',
+    cleaningRequest: 'For towel exchange: Please place the red card ("Change towels and Collect garbage") on the corridor side of the door by 10:00. Bath mats are available at the front desk.',
+    sheetExchange: 'Amenities and nightwear are available at the lobby shelf.',
+    noCleaning: 'Additional cleaning (other than sanitary) is charged. Please request at the front desk by 10:00. Premium room ¥2,640 (tax incl.)/time; other rooms ¥1,100 (tax incl.)/time.',
     parking: 'Partner Parking Information',
     parkingAllPrice: 'P1～P5: All 900 yen per night (Extension: 100 yen per 30 minutes)',
     parkingMidExit: '※Charges will apply if you exit mid-stay.',
@@ -2580,9 +2580,9 @@ return (
               </div>
             </Link>
 
-            {/* グリーンハウスボタン */}
+            {/* 公式サイトボタン */}
             <a
-              href="https://share.google/07ahmvGKgGyn44mSQ"
+              href="https://www.silk-tree.jp/"
               target="_blank"
               rel="noopener noreferrer"
               className="relative rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(62,134,104,0.6)] transition-all duration-300 min-h-[144px] sm:min-h-[144px] hover:scale-[1.02] active:scale-[0.98] overflow-hidden group"
@@ -2619,7 +2619,7 @@ return (
                 <div className="relative w-80 sm:w-96 h-24 sm:h-24">
                   <Image
                     src="/main-page/icon-matome/logo.svg"
-                    alt="GREENHOUSE"
+                    alt="ホテル シルク・トゥリー 名古屋"
                     fill
                     className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
                     sizes="(max-width: 640px) 320px, 384px"
@@ -2629,7 +2629,7 @@ return (
                 
                 {/* テキスト */}
                 <div className="text-white text-[10px] sm:text-xs md:text-sm font-extrabold text-center drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)] tracking-widest uppercase leading-tight" style={{ fontFamily: '"Arial Black", "Helvetica", "Hiragino Kaku Gothic ProN", sans-serif', letterSpacing: '0.15em', textShadow: '2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(255,255,255,0.1)' }}>
-                  チェックアウトの後は<br />大自然へチェックイン
+                  今すぐ公式サイトをチェック！<br />会員大募集
                 </div>
               </div>
             </a>
@@ -2878,12 +2878,14 @@ return (
                   </ul>
                   
                   {/* 注意書き */}
-                  <div className="bg-yellow-50 rounded-lg p-4 mt-4 border border-yellow-200">
-                    <p className="text-sm text-gray-700 leading-relaxed">{t.freeSpaceNote}</p>
-                  </div>
+                  {t.freeSpaceNote && (
+                    <div className="bg-yellow-50 rounded-lg p-4 mt-4 border border-yellow-200">
+                      <p className="text-sm text-gray-700 leading-relaxed">{t.freeSpaceNote}</p>
+                    </div>
+                  )}
                 </div>
 
-                {/* 2F */}
+                {/* 3F */}
                 <div className="mb-6">
                   <h4 className="font-bold text-lg text-gray-900 mb-3">{t.floor2F}</h4>
                   
@@ -2944,11 +2946,11 @@ return (
                     <div className="rounded-lg bg-[#E8F5F0] border border-[#3E8668] px-4 py-3 flex items-center justify-between">
                       <div className="flex items-center">
                     <span className="font-bold text-gray-900">{t.password}</span>
-                        <span className="font-bold text-[#3E8668] ml-2">0196543811</span>
+                        <span className="font-bold text-[#3E8668] ml-2">silk-tree</span>
                       </div>
                       <button
                         onClick={() => {
-                          navigator.clipboard.writeText('0196543811');
+                          navigator.clipboard.writeText('silk-tree');
                           alert(t.passwordCopied);
                         }}
                         className="ml-4 bg-[#3E8668] hover:bg-[#2D6550] text-white px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-1 shrink-0 shadow-lg hover:shadow-[0_0_20px_rgba(62,134,104,0.6)] hover:scale-105 active:scale-95"

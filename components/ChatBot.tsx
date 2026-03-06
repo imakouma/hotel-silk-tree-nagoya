@@ -29,7 +29,7 @@ const chatTranslations: Record<
 > = {
   ja: {
     welcome:
-      "こんにちは。ホテルグランテラス仙台国分町の館内案内です。チェックイン・朝食・Wi-Fi・飲食店クーポンなど、ご不明な点がございましたらお気軽にどうぞ。",
+      "こんにちは。ホテル シルク・トゥリー 名古屋の館内案内です。チェックイン・朝食・Wi-Fi・館内設備など、ご不明な点がございましたらお気軽にどうぞ。",
     headerTitle: "館内案内チャット",
     placeholder: "メッセージを入力...",
     placeholderSending: "送信中...",
@@ -44,7 +44,7 @@ const chatTranslations: Record<
   },
   en: {
     welcome:
-      "Hello. This is the in-house guide. Feel free to ask about check-in, breakfast, Wi-Fi, restaurant coupons, and more.",
+      "Hello. This is the in-house guide for Hotel Silk Tree Nagoya. Feel free to ask about check-in, breakfast, Wi-Fi, and facilities.",
     headerTitle: "Hotel Guide Chat",
     placeholder: "Type a message...",
     placeholderSending: "Sending...",

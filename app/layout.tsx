@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ホテルエース盛岡 - ホテル館内のご案内",
-  description: "ホテルエース盛岡の館内案内サイトです。盛岡駅から徒歩約10分、繁華街へ徒歩1分の好立地。",
+  title: "ホテル シルク・トゥリー 名古屋 - 館内のご案内",
+  description: "ホテル シルク・トゥリー 名古屋の館内案内サイトです。名古屋市中区錦、チェックイン・朝食・Wi-Fi・館内設備のご案内。",
 };
 
 export const viewport: Viewport = {
@@ -38,47 +38,37 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Hotel",
-    "name": "ホテルエース盛岡",
+    "name": "ホテル シルク・トゥリー 名古屋",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "JP",
-      "addressRegion": "岩手県",
-      "addressLocality": "盛岡市",
-      "streetAddress": "中央通２丁目１１−３５",
-      "postalCode": "020-0021"
+      "addressRegion": "愛知県",
+      "addressLocality": "名古屋市中区",
+      "streetAddress": "錦2丁目20-5",
+      "postalCode": "460-0003"
     },
-    "telephone": "019-654-3811",
-    "url": "https://www.hotel-ace.co.jp/",
+    "telephone": "052-222-1113",
+    "url": "https://www.silk-tree.jp/",
     "amenityFeature": [
       {
         "@type": "LocationFeatureSpecification",
         "name": "朝食",
-        "description": "ご朝食 (1F レストラン) 大人 1,200円（税込）／子供（小学生）800円（税込）。営業時間 6:45～9:00（最終入場8:45）。和洋の朝食バイキング。地元岩手の食材を活かした、栄養満点の朝食をお召し上がりいただけます。"
+        "description": "2F ALLY's Nagoya。大人 1,650円（税込）／小学生 1,100円（税込）。OPEN 6:30～CLOSE 9:30（ラストオーダー9:00）。ヨーロピアン&オリエンタルスタイルビュッフェ。"
       },
       {
         "@type": "LocationFeatureSpecification",
         "name": "チェックイン・チェックアウト",
-        "description": "チェックイン 15:00／チェックアウト 11:00。自動チェックイン機をご利用いただけます。"
+        "description": "チェックイン 15:00／チェックアウト 11:00。ご不明な点はフロント内線333へ。"
       },
       {
         "@type": "LocationFeatureSpecification",
         "name": "Wi-Fi",
-        "description": "館内全域で無料Wi-Fiをご利用いただけます。"
-      },
-      {
-        "@type": "LocationFeatureSpecification",
-        "name": "まんがライブラリィ",
-        "description": "約2,900冊の漫画が読み放題（15:00～22:00）。ご宿泊の方はお部屋へお持ちいただけます。"
-      },
-      {
-        "@type": "LocationFeatureSpecification",
-        "name": "宿泊者限定サービス",
-        "description": "フリードリンクコーナー（15:00～22:00）、おにぎりサービス（平日18:00～、先着約50名様）"
+        "description": "無料Wi-Fi。SSID: silk-tree。有線LANはご利用いただけません。"
       },
       {
         "@type": "LocationFeatureSpecification",
         "name": "館内設備",
-        "description": "自動販売機、電子レンジ、製氷機、コインランドリー（洗濯機/1回200円 乾燥機/10分100円、洗剤はフロントにて無料配布）"
+        "description": "ウェルカムドリンク・アメニティバイキング(14:00～25:00) 1F、喫煙所1F、自動販売機1F・3F、電子レンジ3F・4F・6F・8F・10F、VOD券売機・コインランドリー・製氷機・コミックコーナー 3F"
       }
     ]
   };
