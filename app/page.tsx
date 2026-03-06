@@ -1707,14 +1707,12 @@ export default function Home(props: PageProps) {
   ];
 
   const breakfastImages = [
-    '/main-page/10-topic-picture/morning-picture/breakfast005.jpg',
-    '/main-page/10-topic-picture/morning-picture/breakfast008.jpg',
-    '/main-page/10-topic-picture/morning-picture/breakfast012.jpg',
-    '/main-page/10-topic-picture/morning-picture/breakfast013.jpg',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-02-08 2.32.54.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-02-08 2.33.05.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-02-08 2.33.11.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-02-08 2.33.21.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.06.49.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.06.59.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.06.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.13.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.27.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.32.png',
   ];
 
   const t = getTranslations(selectedLanguage);
@@ -1958,7 +1956,7 @@ return (
               <div className="relative h-10 w-24 shrink-0 sm:h-12 sm:w-28 md:h-14 md:w-32">
                 {headerLogoMounted && (
                   <Image
-                    src={encodeURI('/main-page/スクリーンショット 2026-03-06 11.00.52.png')}
+                    src="/main-page/icon-hotelnagoya.png"
                     alt=""
                     fill
                     className="object-contain object-left"
@@ -2319,14 +2317,21 @@ return (
                   {/* 朝食の画像 */}
                   <div className="mb-4 rounded-lg overflow-hidden">
                     <div className="relative w-full h-64">
-                      <Image
-                        src={breakfastImages[breakfastImageIndex]}
-                        alt={selectedLanguage === 'ja' ? '朝食' : selectedLanguage === 'en' ? 'Breakfast' : selectedLanguage === 'zh' ? '早餐' : selectedLanguage === 'ko' ? '조식' : 'Breakfast'}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 672px"
-                        unoptimized
-                      />
+                      {(() => {
+                        const safeIndex = breakfastImages.length > 0 ? breakfastImageIndex % breakfastImages.length : 0;
+                        const breakfastSrc = breakfastImages[safeIndex] || breakfastImages[0];
+                        if (!breakfastSrc) return <div className="w-full h-64 bg-gray-200 animate-pulse rounded-lg" />;
+                        return (
+                          <Image
+                            src={breakfastSrc}
+                            alt={selectedLanguage === 'ja' ? '朝食' : selectedLanguage === 'en' ? 'Breakfast' : selectedLanguage === 'zh' ? '早餐' : selectedLanguage === 'ko' ? '조식' : 'Breakfast'}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 672px"
+                            unoptimized
+                          />
+                        );
+                      })()}
 
                       <button
                         type="button"
@@ -2664,7 +2669,7 @@ return (
                 >
                   <div className="relative w-32 h-14 sm:w-40 sm:h-16">
                     <Image
-                      src={encodeURI('/main-page/スクリーンショット 2026-03-06 11.00.52.png')}
+                      src="/main-page/icon-hotelnagoya.png"
                       alt={t.officialHP}
                       fill
                       className="object-contain"

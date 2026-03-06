@@ -21,6 +21,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ホテル シルク・トゥリー 名古屋 - 館内のご案内",
   description: "ホテル シルク・トゥリー 名古屋の館内案内サイトです。名古屋市中区錦、チェックイン・朝食・Wi-Fi・館内設備のご案内。",
+  icons: {
+    icon: "/main-page/icon-hotelnagoya.png",
+  },
 };
 
 export const viewport: Viewport = {

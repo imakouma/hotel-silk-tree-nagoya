@@ -24,11 +24,11 @@ const shopImages = [
   `${COUPON_SITE}/LINE_NOTE_260306_3.jpg`, // 大衆ホルモン・煙力 伏見店
 ];
 
-/** モーダル用の店舗詳細画像（MAP押下時に表示） */
+/** モーダル用の店舗詳細画像（MAP押下時に表示）※表示順に合わせて並べ替え */
 const shopModalImages: string[][] = [
-  [`${COUPON_SITE}/LINE_NOTE_260306_1.jpg`],
-  [`${COUPON_SITE}/LINE_NOTE_260306_2.jpg`],
-  [`${COUPON_SITE}/LINE_NOTE_260306_3.jpg`],
+  [`${COUPON_SITE}/LINE_NOTE_260306_3.jpg`], // 1番目: 大衆ホルモン・煙力 伏見店
+  [`${COUPON_SITE}/LINE_NOTE_260306_1.jpg`], // 2番目: 栄の串せぶん
+  [`${COUPON_SITE}/LINE_NOTE_260306_2.jpg`], // 3番目: 大衆すし酒場 魚喜
 ];
 
 
@@ -91,7 +91,7 @@ const couponTranslations: Record<
     shop1Hours: "11:30～14:00（L.O.13:30）／17:00～23:00（L.O.22:30）",
     shop1Holiday: "日曜・祝日",
     shop1Address: "〒460-0003 名古屋市中区錦2-20-15 広小路クロスタワー1F",
-    shop2Name: "大衆すし酒場 魚喜",
+    shop2Name: "大衆すし酒場　魚喜",
     shop2Hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
     shop2Holiday: "日曜・祝日",
     shop2Address: "〒460-0003 愛知県名古屋市中区錦3丁目20-12 第八錦ビル 1F",
@@ -155,7 +155,7 @@ const couponTranslations: Record<
     shop1Hours: "11:30～14:00（最后点餐13:30）／17:00～23:00（最后点餐22:30）",
     shop1Holiday: "周日・节假日休息",
     shop1Address: "〒460-0003 名古屋市中区锦2-20-15 广小路克罗斯塔1F",
-    shop2Name: "大众寿司酒场 鱼喜",
+    shop2Name: "大众寿司酒场　鱼喜",
     shop2Hours: "17:00～24:00（餐点最后点餐23:00／饮料23:30）",
     shop2Holiday: "周日・节假日休息",
     shop2Address: "〒460-0003 爱知县名古屋市中区锦3丁目20-12 第八锦大厦 1F",
@@ -187,7 +187,7 @@ const couponTranslations: Record<
     shop1Hours: "11:30～14:00（最後點餐13:30）／17:00～23:00（最後點餐22:30）",
     shop1Holiday: "週日・節假日休息",
     shop1Address: "〒460-0003 名古屋市中區錦2-20-15 廣小路克羅斯塔 1F",
-    shop2Name: "大眾壽司酒場 魚喜",
+    shop2Name: "大眾壽司酒場　魚喜",
     shop2Hours: "17:00～24:00（餐點最後點餐23:00／飲料23:30）",
     shop2Holiday: "週日・節假日休息",
     shop2Address: "〒460-0003 愛知縣名古屋市中區錦3丁目20-12 第八錦大廈 1F",
@@ -375,14 +375,14 @@ const couponTranslations: Record<
     shopModalDescription1: "นำคูปองมาหรือแสดงหน้าจอนี้ รับบะหมี่เย็นโมริโอกะ (ครึ่งส่วน) หรือเนื้อเมะซาวะ 60g ฟรี!!",
     shopModalDescription2: "แสดงให้พนักงานเมื่อสั่งอาหารเพื่อรับเครื่องดื่มแรกหรือซาชิมิ 3 ชิ้น ฟรีต่อคน",
     shopModalDescription3: "นำคูปองมาหรือแสดงหน้าจอนี้ รับเครื่องดื่มแรกหรือซาชิมิ 3 ชิ้น ฟรีต่อคน!",
-    shop1Name: "โมริโอกะ ซุมิบิ อิซากายะ เก็งกะ อิชิบะ",
-    shop1Hours: "11:30～14:00 (สั่งสุดท้าย 13:30) / 17:00～23:00 (สั่งสุดท้าย 22:30)",
+    shop1Name: "ซากาเอะ โนะ คูชิเซบุง",
+    shop1Hours: "17:00～24:00 (สั่งสุดท้าย อาหาร 23:00 / เครื่องดื่ม 23:30)",
     shop1Holiday: "ปิดวันอาทิตย์และวันหยุดนักขัตฤกษ์",
-    shop1Address: "〒460-0003 2-20-15 นิชิกิ นากะ-คุ นาโงยะ ฮิโระโกจิ ครอส ทาวเวอร์ 1F",
+    shop1Address: "〒460-0003 3-20-12 นิชิกิ นากะ-คุ นาโงยะ อาคารไดฮาจิ นิชิกิ 1F",
     shop2Name: "ซากานะ โดโคโระ อิชิยะ โอโดริ",
-    shop2Hours: "จ-ส: 18:00～26:00 (สั่งสุดท้าย 25:00)\nอา: 18:00～24:00",
-    shop2Holiday: "ปิดทุกวันพฤหัสบดี",
-    shop2Address: "〒020-0022 2-3-14 โอโดริ โมริโอกะ จังหวัดอิวาเตะ 1F",
+    shop2Hours: "11:30～14:00 (สั่งสุดท้าย 13:30) / 17:00～23:00 (สั่งสุดท้าย 22:30)",
+    shop2Holiday: "ปิดวันอาทิตย์และวันหยุดนักขัตฤกษ์",
+    shop2Address: "〒460-0003 2-20-15 นิชิกิ นากะ-คุ นาโงยะ ฮิโระโกจิ ครอส ทาวเวอร์ 1F",
     shop3Name: "ยามิตสึกิ โฮรุมง ริคิว โอโดริ",
     shop3Hours: "16:00～23:00 (สั่งสุดท้าย 22:30)",
     shop3Holiday: "เปิดทุกวัน (ปิด 31 ธ.ค. - 2 ม.ค.)",
@@ -408,13 +408,13 @@ const couponTranslations: Record<
     shopModalDescription2: "Hiển thị cho nhân viên khi đặt hàng để nhận đồ uống đầu tiên hoặc đĩa sashimi (3 miếng) miễn phí mỗi người.",
     shopModalDescription3: "Mang theo phiếu hoặc hiển thị màn hình này để nhận đồ uống đầu tiên hoặc đĩa sashimi (3 miếng) miễn phí mỗi người!",
     shop1Name: "Sakaenokushi Seven",
-    shop1Hours: "11:30～14:00 (Đặt món cuối 13:30) / 17:00～23:00 (Đặt món cuối 22:30)",
+    shop1Hours: "17:00～24:00 (Đồ ăn 23:00 / Đồ uống 23:30)",
     shop1Holiday: "Đóng CN và ngày lễ",
-    shop1Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
+    shop1Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Tòa nhà Daihachi Nishiki 1F",
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
-    shop2Hours: "17:00～24:00 (Đồ ăn 23:00 / Đồ uống 23:30)",
+    shop2Hours: "11:30～14:00 (Đặt món cuối 13:30) / 17:00～23:00 (Đặt món cuối 22:30)",
     shop2Holiday: "Đóng CN và ngày lễ",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Tòa nhà Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Đặt món cuối 22:30)",
     shop3Holiday: "Mở quanh năm (Đóng 31/12 - 2/1)",
@@ -440,13 +440,13 @@ const couponTranslations: Record<
     shopModalDescription2: "Tunjukkan kepada staf saat memesan untuk mendapatkan minuman pertama atau piring sashimi (3 potong) gratis per orang.",
     shopModalDescription3: "Dengan kupon Anda atau dengan menampilkan layar ini, dapatkan minuman pertama atau piring sashimi (3 potong) gratis per orang!",
     shop1Name: "Sakaenokushi Seven",
-    shop1Hours: "16:00～23:00 (Pesanan terakhir 22:30) / Akhir pekan & hari libur: 15:00～23:00",
-    shop1Holiday: "Buka sepanjang tahun (Tutup 31 Des - 1 Jan)",
-    shop1Address: "〒020-0022 2-7-19 Odori, Morioka, Prefektur Iwate, Shirasaki Niban-kan 2F",
+    shop1Hours: "17:00～24:00 (Makanan 23:00 / Minuman 23:30)",
+    shop1Holiday: "Tutup Ahad & cuti",
+    shop1Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bangunan Daihachi Nishiki 1F",
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
-    shop2Hours: "Sen-Sab: 18:00～26:00 (Pesanan terakhir 25:00)\nMin: 18:00～24:00",
-    shop2Holiday: "Tutup pada hari Kamis",
-    shop2Address: "〒020-0022 2-3-14 Odori, Morioka, Prefektur Iwate 1F",
+    shop2Hours: "11:30～14:00 (Pesanan terakhir 13:30) / 17:00～23:00 (Pesanan terakhir 22:30)",
+    shop2Holiday: "Tutup Ahad & cuti",
+    shop2Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Pesanan terakhir 22:30)",
     shop3Holiday: "Buka sepanjang tahun (Tutup 31 Des - 2 Jan)",
@@ -472,13 +472,13 @@ const couponTranslations: Record<
     shopModalDescription2: "Mostre à equipe ao fazer o pedido para obter uma primeira bebida ou prato de sashimi (3 peças) grátis por pessoa.",
     shopModalDescription3: "Com seu cupom ou mostrando esta tela, obtenha uma primeira bebida ou prato de sashimi (3 peças) grátis por pessoa!",
     shop1Name: "Sakaenokushi Seven",
-    shop1Hours: "11:30～14:00 (Últ. pedido 13:30) / 17:00～23:00 (Últ. pedido 22:30)",
+    shop1Hours: "17:00～24:00 (Comida 23:00 / Bebida 23:30)",
     shop1Holiday: "Fechado dom. e feriados",
-    shop1Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
+    shop1Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki 1F",
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
-    shop2Hours: "17:00～24:00 (Comida 23:00 / Bebida 23:30)",
+    shop2Hours: "11:30～14:00 (Últ. pedido 13:30) / 17:00～23:00 (Últ. pedido 22:30)",
     shop2Holiday: "Fechado dom. e feriados",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Último pedido 22:30)",
     shop3Holiday: "Aberto o ano todo (Fechado 31 dez - 2 jan)",
@@ -504,13 +504,13 @@ const couponTranslations: Record<
     shopModalDescription2: "Ipakita sa staff kapag umorder upang makakuha ng unang inumin o plato ng sashimi (3 piraso) libre bawat tao.",
     shopModalDescription3: "Sa iyong coupon o sa pagpapakita ng screen na ito, makakuha ng unang inumin o plato ng sashimi (3 piraso) libre bawat tao!",
     shop1Name: "Sakaenokushi Seven",
-    shop1Hours: "11:30～14:00 (Huling order 13:30) / 17:00～23:00 (Huling order 22:30)",
+    shop1Hours: "17:00～24:00 (Pagkain 23:00 / Inumin 23:30)",
     shop1Holiday: "Sarado Linggo at holidays",
-    shop1Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
+    shop1Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Gusali Daihachi Nishiki 1F",
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
-    shop2Hours: "17:00～24:00 (Pagkain 23:00 / Inumin 23:30)",
+    shop2Hours: "11:30～14:00 (Huling order 13:30) / 17:00～23:00 (Huling order 22:30)",
     shop2Holiday: "Sarado Linggo at holidays",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Gusali Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Huling order 22:30)",
     shop3Holiday: "Bukas buong taon (Sarado Dis 31 - Ene 2)",
@@ -536,13 +536,13 @@ const couponTranslations: Record<
     shopModalDescription2: "Tunjukkan kepada kakitangan semasa membuat pesanan untuk mendapatkan minuman pertama atau pinggan sashimi (3 keping) percuma setiap orang.",
     shopModalDescription3: "Dengan kupon anda atau dengan menunjukkan skrin ini, dapatkan minuman pertama atau pinggan sashimi (3 keping) percuma setiap orang!",
     shop1Name: "Sakaenokushi Seven",
-    shop1Hours: "11:30～14:00 (Pesanan terakhir 13:30) / 17:00～23:00 (Pesanan terakhir 22:30)",
+    shop1Hours: "17:00～24:00 (Makanan 23:00 / Minuman 23:30)",
     shop1Holiday: "Tutup Ahad & cuti",
-    shop1Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
+    shop1Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bangunan Daihachi Nishiki 1F",
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
-    shop2Hours: "17:00～24:00 (Makanan 23:00 / Minuman 23:30)",
+    shop2Hours: "11:30～14:00 (Pesanan terakhir 13:30) / 17:00～23:00 (Pesanan terakhir 22:30)",
     shop2Holiday: "Tutup Ahad & cuti",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bangunan Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 2-20-15 Nishiki, Naka-ku, Nagoya, Hirokoji Cross Tower 1F",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Pesanan terakhir 22:30)",
     shop3Holiday: "Buka sepanjang tahun (Tutup 31 Dis - 2 Jan)",
@@ -565,45 +565,8 @@ function getCouponT(lang: LanguageCode) {
   return merged as typeof couponTranslations.en;
 }
 
+// 表示順: 1番目＝大衆ホルモン・煙力 伏見店、2番目＝栄の串せぶん、3番目＝大衆すし酒場 魚喜
 const shopsBase = [
-  {
-    nameKey: "shop1" as const,
-    imageSrc: shopImages[0],
-    branches: [
-      {
-        name: "栄の串せぶん",
-        address: "〒460-0003 名古屋市中区錦2-20-15 広小路クロスタワー1F",
-        tel: "052-222-7707",
-        hours: "11:30～14:00（L.O.13:30）\n17:00～23:00（L.O.22:30）",
-        holiday: "日曜・祝日",
-        lat: 35.1705,
-        lng: 136.898,
-        placeUrl: "https://www.google.com/maps/search/?api=1&query=名古屋市中区錦2-20-15+栄の串せぶん",
-      },
-    ],
-    hours: "11:30～14:00（L.O.13:30）／17:00～23:00（L.O.22:30）",
-    holiday: "日曜・祝日",
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=栄の串せぶん+名古屋",
-  },
-  {
-    nameKey: "shop2" as const,
-    imageSrc: shopImages[1],
-    branches: [
-      {
-        name: "大衆すし酒場 魚喜",
-        address: "〒460-0003 愛知県名古屋市中区錦3丁目20-12 第八錦ビル 1F",
-        tel: "052-953-0940",
-        hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
-        holiday: "日曜・祝日",
-        lat: 35.171,
-        lng: 136.899,
-        placeUrl: "https://www.google.com/maps/search/?api=1&query=大衆すし酒場+魚喜+名古屋",
-      },
-    ],
-    hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
-    holiday: "日曜・祝日",
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=大衆すし酒場+魚喜+名古屋",
-  },
   {
     nameKey: "shop3" as const,
     imageSrc: shopImages[2],
@@ -622,6 +585,56 @@ const shopsBase = [
     hours: "16:00～23:00（L.O.22:30）",
     holiday: "年中無休（12/31～1/2休業）",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=大衆ホルモン+煙力+伏見店+名古屋",
+  },
+  /* 2枚目: 串せぶんの写真 + 魚喜のテキスト（名前・営業時間・住所・TEL） */
+  {
+    nameKey: "shop2" as const,
+    imageSrc: shopImages[0],
+    branches: [
+      {
+        name: "大衆すし酒場　魚喜",
+        address: "〒460-0003 愛知県名古屋市中区錦3丁目20-12 第八錦ビル 1F",
+        tel: "052-953-0940",
+        hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
+        holiday: "日曜・祝日",
+        lat: 35.171,
+        lng: 136.899,
+        placeUrl: "https://www.google.com/maps/search/?api=1&query=大衆すし酒場+魚喜+名古屋",
+      },
+    ],
+    hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
+    holiday: "日曜・祝日",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=大衆すし酒場+魚喜+名古屋",
+  },
+  /* 3枚目: 魚喜の写真 + 串せぶんのテキスト（同一タブに栄の串せぶん＋うなぎ四代目菊川栄店） */
+  {
+    nameKey: "shop1" as const,
+    imageSrc: shopImages[1],
+    branches: [
+      {
+        name: "栄の串せぶん",
+        address: "〒460-0003 名古屋市中区錦2-20-15 広小路クロスタワー1F",
+        tel: "052-222-7707",
+        hours: "11:30～14:00（L.O.13:30）\n17:00～23:00（L.O.22:30）",
+        holiday: "日曜・祝日",
+        lat: 35.1705,
+        lng: 136.898,
+        placeUrl: "https://www.google.com/maps/search/?api=1&query=名古屋市中区錦2-20-15+栄の串せぶん",
+      },
+      {
+        name: "うなぎ四代目菊川栄店",
+        address: "〒460-0003 愛知県名古屋市中区錦3-24-17 BINO栄5F",
+        tel: "050-5494-3673",
+        hours: "11:00～15:00（L.O.14:00）／17:00～22:00（L.O.21:00）",
+        holiday: "年中無休",
+        lat: 35.1702,
+        lng: 136.900,
+        placeUrl: "https://www.google.com/maps/search/?api=1&query=うなぎ四代目菊川+栄店+名古屋",
+      },
+    ],
+    hours: "11:30～14:00（L.O.13:30）／17:00～23:00（L.O.22:30）",
+    holiday: "日曜・祝日",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=栄の串せぶん+名古屋",
   },
 ];
 
@@ -834,30 +847,19 @@ export default function CouponPage() {
         {/* 3店舗クーポンカード（MAPボタン下端揃え） */}
         <section className="grid grid-cols-1 gap-6 md:grid-cols-3 md:items-stretch">
           {shopsBase.map((shop, i) => {
-            const name = 
-              i === 0 ? t.shop1Name :
-              i === 1 ? t.shop2Name :
-              t.shop3Name;
-            const hours = 
-              i === 0 ? t.shop1Hours :
-              i === 1 ? t.shop2Hours :
-              t.shop3Hours;
-            const holiday = 
-              i === 0 ? t.shop1Holiday :
-              i === 1 ? t.shop2Holiday :
-              t.shop3Holiday;
-            const address = 
-              i === 0 ? t.shop1Address :
-              i === 1 ? t.shop2Address :
-              t.shop3Address;
+            const k = shop.nameKey;
+            const name = t[`${k}Name`];
+            const hours = t[`${k}Hours`];
+            const holiday = t[`${k}Holiday`];
+            const address = t[`${k}Address`];
             const couponContent =
-              i === 0 ? (
+              k === "shop1" ? (
                 <>
                   {t.bringCoupon}
                   <br />
                   <span className="text-white">{t.shop1Offer}</span>
                 </>
-              ) : i === 1 ? (
+              ) : k === "shop2" ? (
                 <>
                   {t.bringCoupon}
                   <br />
@@ -914,21 +916,27 @@ export default function CouponPage() {
                 {/* 店舗情報（白背景・MAPを下端で横揃え・MAP下に余白） */}
                 <div className="flex min-h-0 flex-1 flex-col bg-white px-4 pt-3 pb-3 text-sm text-gray-900">
                   <div className="min-h-0 flex-1">
-                    {shop.branches.map((b, j) => (
-                      <div key={j} className={j > 0 ? "mt-3 pt-3 border-t border-gray-200" : ""}>
-                        <p className="font-semibold text-gray-900">{name}</p>
-                        <p className="mt-1 text-xs whitespace-pre-line">{hours}</p>
-                        <p className="mt-0.5 text-xs">{t.holidayLabel}{holiday}</p>
-                        <p className="mt-1">{address}</p>
-                        <p className="mt-0.5">{t.tel} {b.tel}</p>
-                        {"validity" in b && b.validity != null && typeof b.validity === "string" && (
-                          <p className="mt-1 text-xs">{b.validity}</p>
-                        )}
-                        {"distance" in b && b.distance != null && typeof b.distance === "string" && (
-                          <p className="mt-0.5 text-xs">{b.distance}</p>
-                        )}
-                      </div>
-                    ))}
+                    {shop.branches.map((b, j) => {
+                      const branchName = ("name" in b && typeof b.name === "string" ? b.name : null) ?? name;
+                      const branchHours = ("hours" in b && typeof b.hours === "string" ? b.hours : null) ?? hours;
+                      const branchHoliday = ("holiday" in b && typeof b.holiday === "string" ? b.holiday : null) ?? holiday;
+                      const branchAddress = ("address" in b && typeof b.address === "string" ? b.address : null) ?? address;
+                      return (
+                        <div key={j} className={j > 0 ? "mt-3 pt-3 border-t border-gray-200" : ""}>
+                          <p className="font-semibold text-gray-900">{branchName}</p>
+                          <p className="mt-1 text-xs whitespace-pre-line">{branchHours}</p>
+                          <p className="mt-0.5 text-xs">{t.holidayLabel}{branchHoliday}</p>
+                          <p className="mt-1">{branchAddress}</p>
+                          <p className="mt-0.5">{t.tel} {b.tel}</p>
+                          {"validity" in b && b.validity != null && typeof b.validity === "string" && (
+                            <p className="mt-1 text-xs">{b.validity}</p>
+                          )}
+                          {"distance" in b && b.distance != null && typeof b.distance === "string" && (
+                            <p className="mt-0.5 text-xs">{b.distance}</p>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
 
                   {/* MAPボタン（モーダルを開く・外部へ飛ばない） */}
@@ -955,27 +963,13 @@ export default function CouponPage() {
       {/* 店舗詳細モーダル（MAP押下時・外部へ飛ばず画面内で表示） */}
       {openModalShopIndex !== null && (() => {
         const shop = shopsBase[openModalShopIndex];
-        const modalName = 
-          openModalShopIndex === 0 ? t.shop1Name :
-          openModalShopIndex === 1 ? t.shop2Name :
-          t.shop3Name;
+        const k = shop.nameKey;
+        const modalName = t[`${k}Name`];
         const modalImages = shopModalImages[openModalShopIndex] ?? [];
-        const description = 
-          openModalShopIndex === 0 ? t.shopModalDescription1 :
-          openModalShopIndex === 1 ? t.shopModalDescription2 :
-          t.shopModalDescription3;
-        const modalHours = 
-          openModalShopIndex === 0 ? t.shop1Hours :
-          openModalShopIndex === 1 ? t.shop2Hours :
-          t.shop3Hours;
-        const modalHoliday = 
-          openModalShopIndex === 0 ? t.shop1Holiday :
-          openModalShopIndex === 1 ? t.shop2Holiday :
-          t.shop3Holiday;
-        const modalAddress = 
-          openModalShopIndex === 0 ? t.shop1Address :
-          openModalShopIndex === 1 ? t.shop2Address :
-          t.shop3Address;
+        const description = t[`shopModalDescription${k.replace("shop", "")}`];
+        const modalHours = t[`${k}Hours`];
+        const modalHoliday = t[`${k}Holiday`];
+        const modalAddress = t[`${k}Address`];
         return (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
@@ -1118,6 +1112,9 @@ export default function CouponPage() {
                   {shop.branches.map((branch, branchIndex) => {
                     const branchAddress = branch.address || ("name" in branch && typeof branch.name === "string" ? branch.name : "") || modalName;
                     const branchName = ("name" in branch && typeof branch.name === "string" ? branch.name : "") || modalName;
+                    const branchHours = ("hours" in branch && typeof branch.hours === "string" ? branch.hours : null) ?? modalHours;
+                    const branchHoliday = ("holiday" in branch && typeof branch.holiday === "string" ? branch.holiday : null) ?? modalHoliday;
+                    const branchAddressDisplay = ("address" in branch && typeof branch.address === "string" ? branch.address : null) ?? modalAddress;
                     // 店舗名で検索（ホームページと同様）
                     const branchMapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(branchName)}&output=embed&hl=ja&z=17`;
                     
@@ -1128,11 +1125,11 @@ export default function CouponPage() {
                         className={`min-w-0 ${branchIndex > 0 ? "mt-6 border-t border-gray-200 pt-4" : "mt-4 border-t border-gray-200 pt-4"}`}
                       >
                         <div className="text-sm text-gray-900">
-                          <p className="font-semibold">{modalName}</p>
-                          <p className="mt-1">{modalAddress}</p>
+                          <p className="font-semibold">{branchName}</p>
+                          <p className="mt-1">{branchAddressDisplay}</p>
                           <p className="mt-1">{t.tel} {branch.tel}</p>
-                          <p className="mt-2 text-xs text-gray-600 whitespace-pre-line">{modalHours}</p>
-                          <p className="mt-0.5 text-xs text-gray-600 whitespace-pre-line">{t.holidayLabel}{modalHoliday}</p>
+                          <p className="mt-2 text-xs text-gray-600 whitespace-pre-line">{branchHours}</p>
+                          <p className="mt-0.5 text-xs text-gray-600 whitespace-pre-line">{t.holidayLabel}{branchHoliday}</p>
                         </div>
                         {/* 各店舗のミニマップ（Androidではiframeが表示されない場合があるため拡大地図リンクで代替可能） */}
                         <div className="mt-3 w-full min-w-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
