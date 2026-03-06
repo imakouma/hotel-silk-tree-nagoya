@@ -6,9 +6,9 @@ import { useEffect, useState, type ReactNode } from "react";
  * Android の WebView では Google マップの https が ERR_BLOCKED_BY_RESPONSE で
  * ブロックされるため、Android のときは geo: URI でマップアプリを開く。
  */
-const HOTEL_GEO_LAT = 39.7032885;
-const HOTEL_GEO_LNG = 141.1451645;
-const HOTEL_ADDRESS = "岩手県盛岡市中央通2丁目11-35 ホテルエース盛岡";
+const HOTEL_GEO_LAT = 35.1708;
+const HOTEL_GEO_LNG = 136.8995;
+const HOTEL_ADDRESS = "愛知県名古屋市中区錦2丁目20-5 ホテルシルク・トゥリー名古屋";
 
 function isAndroid(): boolean {
   if (typeof navigator === "undefined") return false;
@@ -37,13 +37,13 @@ export function MapFallbackLinkGeneric({
   const [href, setHref] = useState<string>(defaultHref);
 
   useEffect(() => {
-    if (isAndroid()) {
-      if (lat != null && lng != null) {
-        setHref(`geo:${lat},${lng}?q=${encodeURIComponent(address)}`);
-      } else {
-        setHref(`geo:0,0?q=${encodeURIComponent(address)}`);
-      }
-    }
+    if (!isAndroid()) return;
+    const nextHref =
+      lat != null && lng != null
+        ? `geo:${lat},${lng}?q=${encodeURIComponent(address)}`
+        : `geo:0,0?q=${encodeURIComponent(address)}`;
+    const id = setTimeout(() => setHref(nextHref), 0);
+    return () => clearTimeout(id);
   }, [address, lat, lng]);
 
   return (
@@ -53,7 +53,7 @@ export function MapFallbackLinkGeneric({
   );
 }
 
-/** メインページ用：ホテルエース盛岡の地図を開くリンク */
+/** メインページ用：ホテルシルク・トゥリー名古屋の地図を開くリンク */
 export function MapFallbackLink() {
   return (
     <MapFallbackLinkGeneric address={HOTEL_ADDRESS} lat={HOTEL_GEO_LAT} lng={HOTEL_GEO_LNG}>

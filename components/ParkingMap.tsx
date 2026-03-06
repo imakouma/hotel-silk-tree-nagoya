@@ -6,17 +6,13 @@ import L from "leaflet";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 
-/** 提携駐車場 P1〜P5 の座標とラベル */
+/** ホテルシルク・トゥリー名古屋（駐車場は2025年2月末で廃止、周辺駐車場をご利用ください） */
 const PARKING_SPOTS = [
-  { id: "P1", lat: 39.7043323, lng: 141.1447715, name: "P1 ホテルエース駐車場", isHotel: true },
-  { id: "P2", lat: 39.704337, lng: 141.1456775, name: "P2 リリオ第一駐車場", isHotel: false },
-  { id: "P3", lat: 39.7032, lng: 141.1468, name: "P3 三井のリパーク", isHotel: false },
-  { id: "P4", lat: 39.7025476, lng: 141.144922, name: "P4 MOSS駐車場", isHotel: false },
-  { id: "P5", lat: 39.703083, lng: 141.142611, name: "P5 クロステラス駐車場", isHotel: false },
+  { id: "P1", lat: 35.1708, lng: 136.8995, name: "ホテルシルク・トゥリー名古屋", isHotel: true },
 ] as const;
 
-const CENTER: [number, number] = [39.7033, 141.1445];
-const ZOOM = 16;
+const CENTER: [number, number] = [35.1708, 136.8995];
+const ZOOM = 17;
 
 /** 円形のピン用アイコン（P1=赤、P2〜P5=青） */
 function createPinIcon(label: string, isHotel: boolean) {
@@ -37,9 +33,13 @@ function createPinIcon(label: string, isHotel: boolean) {
 function FitBounds() {
   const map = useMap();
   useEffect(() => {
-    const bounds = L.latLngBounds(PARKING_SPOTS.map((s) => [s.lat, s.lng]));
-    bounds.pad(0.15);
-    map.fitBounds(bounds, { maxZoom: 17 });
+    if (PARKING_SPOTS.length === 1) {
+      map.setView([PARKING_SPOTS[0].lat, PARKING_SPOTS[0].lng], 17);
+    } else {
+      const bounds = L.latLngBounds(PARKING_SPOTS.map((s) => [s.lat, s.lng]));
+      bounds.pad(0.15);
+      map.fitBounds(bounds, { maxZoom: 17 });
+    }
   }, [map]);
   return null;
 }

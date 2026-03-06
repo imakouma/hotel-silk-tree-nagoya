@@ -1,16 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { use, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage, type LanguageCode } from '@/contexts/LanguageContext';
-import dynamic from 'next/dynamic';
-import { MapFallbackLink, MapFallbackLinkGeneric } from '@/components/MapFallbackLink';
-
-const ParkingMap = dynamic(() => import('@/components/ParkingMap'), {
-  ssr: false,
-  loading: () => <div className="h-[280px] min-h-[240px] bg-gray-200 rounded-lg animate-pulse" />,
-});
+import { MapFallbackLink } from '@/components/MapFallbackLink';
 
 const translations = {
   ja: {
@@ -56,8 +50,8 @@ const translations = {
     breakfastVenue: '朝食会場',
     breakfastFloor: '2F ALLY\'s Nagoya',
     breakfastTime: '営業時間',
-    breakfastTimeDetail: '6:30～9:30（ラストオーダー9:00）',
-    breakfastDesc: '4つのスタイルを一度に楽しむ朝ごはん。ヨーロピアン&オリエンタルスタイルビュッフェ。',
+    breakfastTimeDetail: '6:30～9:30（オーダーストップ9:00）',
+    breakfastDesc: '2つのスタイルを一度に楽しむ朝ごはん。ヨーロピアン&オリエンタルスタイルビュッフェ。',
     breakfastCatchphrase: '名古屋めし・和惣菜・パン・シリアルなど、お好みのスタイルでお楽しみください。',
     breakfastNotice: '入店には朝食券が必要です。スリッパでの入店はご遠慮ください。',
     bathTitle: 'アメニティ',
@@ -72,7 +66,12 @@ const translations = {
     bathServiceDesc: '乳酸菌飲料とアイスキャンディーを無料で提供しております。',
     breakfastTitle: 'ご朝食のご案内（2F ALLY\'s Nagoya）',
     breakfastPrice: '大人 1,650円（税込）／小学生 1,100円（税込）',
-    breakfastHours: '6:30～9:30 (ラストオーダー9:00)',
+    breakfastPriceLabel: '朝食料金',
+    breakfastHours: '6:30～9:30（オーダーストップ9:00・当日購入最終受付9:00）',
+    breakfastPurchaseNote: '※当日の朝食をご要望の方はフロントにて朝食券を販売しております。',
+    breakfastPreschoolFree: '※未就学児は無料です。',
+    breakfastDetail: '「種類豊富なパン」「フルーツコンフィチュール」「ハムやサラダなど」の洋食コーナーと、ご飯をベースに和食・名古屋めし・中華・アジア料理を取り入れたオリエンタルコーナーが楽しめるブッフェスタイル。のっけ丼・お茶漬け、きしめん・味噌カツ・どて煮・あんバターなどの名古屋めし、パン＆シリアル、味噌玉のお味噌汁・日替わりスープ、サラダコーナー（ドレッシング5種以上）、デトックスウォーター・フルーツティー・コーヒーなどドリンクも充実しています。',
+    breakfastMenuNote: '※ブッフェは日替わりでのご提供のため、すべてのメニューがご用意できない場合がございます。',
     breakfastNote1: '※満席の場合はお待ちいただくことがございます。',
     breakfastNote2: '※混雑状況により営業時間を変更させていただく場合がございます。',
     sobaTitle: '■夜鳴きそば (ハーフサイズ) / 無料',
@@ -98,9 +97,9 @@ const translations = {
     smoking: '喫煙所 1F',
     wifiTitle: 'Wi-Fi',
     password: 'SSID :',
-    wifiAccessPoint: 'SSIDは「silk-tree」です。パスワードは客室のご案内またはフロントへお問い合わせください。有線LANケーブルのご利用はできません。',
+    wifiAccessPoint: 'SSIDは「silk-tree」です。パスワードは「silktree」です。有線LANケーブルのご利用はできません。',
     copy: 'コピー',
-    wifiCopyNote: '※パスワードは客室のご案内またはフロントでお確かめください。',
+    wifiCopyNote: '※ボタンを押すとパスワードをコピーできます。',
     passwordCopied: 'パスワードをコピーしました！',
     lostTitle: 'お忘れ物',
     lostText1: 'お客様がチェックアウトしたあと、手荷物又は携帯品が当ホテルに保管の依頼が無く残置されていた場合、所有者が破棄したものとして当ホテルの規定に基づき処分させていただきます。',
@@ -114,36 +113,6 @@ const translations = {
     cleaningRequest: 'タオル交換が必要な場合：朝10時までにドア裏の赤い札（「Change towels and Collect garbage」）をドア表面（廊下側）に貼ってください。バスマットはフロントでご用意します。',
     sheetExchange: 'アメニティとナイトウェアはロビー棚から自由にご利用いただけます。',
     noCleaning: '衛生清掃以外の追加清掃は有料です。朝10時までにフロントへお申し付けください。プレミアルーム 2,640円（税込）/1回、その他の客室 1,100円（税込）/1回。',
-    parking: '提携駐車場のご案内',
-    parkingAllPrice: 'P1～P5は全て1泊900円（延長30分100円）',
-    parkingMidExit: '※途中出庫の際は課金額が発生します。',
-    parkingInquiry: '※時間帯によっては駐車場車庫がありますのでお問い合わせください。',
-    parkingP1Name: 'P1 ホテルエース駐車場',
-    parkingP2Name: 'P2 リリオ第一駐車場',
-    parkingP3Name: 'P3 三井のリパーク',
-    parkingP4Name: 'P4 MOSS駐車場',
-    parkingP5Name: 'P5 クロステラス駐車場',
-    parkingUsageTime: '■利用時間：',
-    parkingP1Time: '15:00～翌11:00',
-    parkingP4Time: '16:00～翌11:00',
-    parkingP5Time: '17:00～翌11:00',
-    parkingExtension: '※延長30分100円',
-    parkingHeightLimit: '■車高制限：',
-    parkingP2Height: '2.30mまで',
-    parkingP4Height: '2.50mまで',
-    parkingP5Height: '2.10mまで',
-    parkingReservation: '■事前予約：利用なし',
-    parkingFee: '駐車料金',
-    heightLimit: '高さ制限',
-    hours24: '24h営業',
-    discountTime: '割引適用時間',
-    parkingNote1: '※ワゴン車・RV車・ルーフキャリアをお付けの車等は、こちらをご利用下さい。',
-    parkingDiscount1: '入庫から24h',
-    parkingDiscount2: '入庫から24h（出し入れOK。申告制）',
-    parkingDiscount3: '入庫から最大36h（電話予約、出し入れOK。）',
-    parkingNote2: '※入庫から翌日19時までが1泊計算となります。（入庫は朝7時より可）',
-    parkingNote3: '※バイク（事前予約）1泊600円。',
-    parkingNote4: '※カーナビ検索の場合は022-223-3863の番号を入力して下さい。',
     officialHP: '公式HPはこちら',
     preparing: '詳細情報は準備中です。',
     dinnerCouponLine1: '今夜のご夕食にどうぞ',
@@ -192,8 +161,8 @@ const translations = {
     breakfastVenue: 'Breakfast Venue',
     breakfastFloor: '2F ALLY\'s Nagoya',
     breakfastTime: 'Operating Hours',
-    breakfastTimeDetail: '6:30–9:30 (Last order 9:00)',
-    breakfastDesc: 'Four styles in one breakfast. European & Oriental style buffet.',
+    breakfastTimeDetail: '6:30–9:30 (Order stop 9:00)',
+    breakfastDesc: 'Two styles in one breakfast. European & Oriental style buffet.',
     breakfastCatchphrase: 'Enjoy Nagoya dishes, Japanese sides, bread, cereal, and more in your preferred style.',
     breakfastNotice: 'A breakfast ticket is required for entry. No entry in slippers.',
     bathTitle: 'Amenities',
@@ -208,7 +177,12 @@ const translations = {
     bathServiceDesc: 'We provide free lactic acid drinks and ice candy.',
     breakfastTitle: 'Breakfast (2F ALLY\'s Nagoya)',
     breakfastPrice: 'Adult ¥1,650 (tax incl.) / Child (elementary) ¥1,100 (tax incl.)',
-    breakfastHours: '6:30–9:30 (Last order 9:00)',
+    breakfastPriceLabel: 'Breakfast fee',
+    breakfastHours: '6:30–9:30 (Order stop 9:00 / Last purchase 9:00)',
+    breakfastPurchaseNote: '*Breakfast tickets are available at the front desk for same-day purchase.',
+    breakfastPreschoolFree: '*Preschool children are free.',
+    breakfastDetail: 'European-style corner with a variety of breads, fruit compote, ham, salad and more; Oriental corner with rice-based dishes, Nagoya specialties, Chinese and Asian items. Enjoy nozuke don (topping bowl), ochazuke, kishimen noodles, miso katsu, doteni, an-butter, bread & cereal, miso soup, daily soup, salad (5+ dressings), detox water, fruit tea, coffee and other drinks. Buffet items vary daily.',
+    breakfastMenuNote: '*The buffet is offered on a daily rotating basis; not all menu items may be available.',
     breakfastNote1: '*You may be asked to wait if the restaurant is full.',
     breakfastNote2: '*Operating hours may change depending on congestion.',
     serviceTitle: 'Floor Information',
@@ -231,9 +205,9 @@ const translations = {
     smoking: 'Smoking corner (1F)',
     wifiTitle: 'Wi-Fi',
     password: 'SSID:',
-    wifiAccessPoint: 'SSID is "silk-tree". Please ask at the front desk or check the in-room guide for the password. Wired LAN is not available.',
+    wifiAccessPoint: 'SSID is "silk-tree". Password is "silktree". Wired LAN is not available.',
     copy: 'Copy',
-    wifiCopyNote: '*Please check the in-room guide or front desk for the password.',
+    wifiCopyNote: '*Tap the button to copy the password.',
     passwordCopied: 'Copied!',
     lostTitle: 'Lost & Found',
     lostText1: 'If luggage or personal belongings are left behind at our hotel without a request for storage after checkout, they will be disposed of in accordance with hotel regulations, assuming the owner has discarded them.',
@@ -247,36 +221,6 @@ const translations = {
     cleaningRequest: 'For towel exchange: Please place the red card ("Change towels and Collect garbage") on the corridor side of the door by 10:00. Bath mats are available at the front desk.',
     sheetExchange: 'Amenities and nightwear are available at the lobby shelf.',
     noCleaning: 'Additional cleaning (other than sanitary) is charged. Please request at the front desk by 10:00. Premium room ¥2,640 (tax incl.)/time; other rooms ¥1,100 (tax incl.)/time.',
-    parking: 'Partner Parking Information',
-    parkingAllPrice: 'P1～P5: All 900 yen per night (Extension: 100 yen per 30 minutes)',
-    parkingMidExit: '※Charges will apply if you exit mid-stay.',
-    parkingInquiry: '※Please inquire as parking may be full depending on the time.',
-    parkingP1Name: 'P1 Hotel Ace Parking',
-    parkingP2Name: 'P2 Ririo Daiichi Parking',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 MOSS Parking',
-    parkingP5Name: 'P5 Cross Terrace Parking',
-    parkingUsageTime: '■Usage Hours:',
-    parkingP1Time: '15:00～Next day 11:00',
-    parkingP4Time: '16:00～Next day 11:00',
-    parkingP5Time: '17:00～Next day 11:00',
-    parkingExtension: '※Extension: 100 yen per 30 minutes',
-    parkingHeightLimit: '■Height Limit:',
-    parkingP2Height: 'Up to 2.30m',
-    parkingP4Height: 'Up to 2.50m',
-    parkingP5Height: 'Up to 2.10m',
-    parkingReservation: '■Advance Reservation: Not available',
-    parkingFee: 'Parking Fee',
-    heightLimit: 'Height Limit',
-    hours24: 'Open 24h',
-    discountTime: 'Discount Period',
-    parkingNote1: '*Please use this for wagons, RVs, and vehicles with roof carriers.',
-    parkingDiscount1: '24h from entry',
-    parkingDiscount2: '24h from entry (In/out OK, declaration required)',
-    parkingDiscount3: 'Up to 36h from entry (Phone reservation, in/out OK)',
-    parkingNote2: '*One night is calculated from entry until 7PM the next day (Entry available from 7AM)',
-    parkingNote3: '*Motorcycle (advance reservation) 600 yen per night.',
-    parkingNote4: '*For car navigation search, please enter 022-223-3863.',
     officialHP: 'Official Website',
     preparing: 'Detailed information is being prepared.',
     dinnerCouponLine1: 'For tonight\'s dinner',
@@ -312,10 +256,10 @@ const translations = {
     lobbyDesc2: '让您忘却都市喧嚣的宁静空间。',
     lobbyDesc3: '可从大堂直接进入"星巴克咖啡"。',
     breakfastVenue: '早餐会场',
-    breakfastFloor: '1楼餐厅',
+    breakfastFloor: '2F ALLY\'s Nagoya',
     breakfastTime: '营业时间',
-    breakfastTimeDetail: '6:00～9:00（最终入店8:45）',
-    breakfastDesc: '可享用使用岩手当地食材、营养丰富的自助早餐。',
+    breakfastTimeDetail: '6:30～9:30（点餐截止9:00）',
+    breakfastDesc: '欧式与和式两种风格的自助早餐。欧洲&东方风格自助。',
     breakfastNotice: '营业时间可能会在不另行通知的情况下更改。',
     bathTitle: '大堂・设施',
     bathDescription: '男女分开大浴场 9F',
@@ -327,9 +271,14 @@ const translations = {
     bathNotice2: '※进入女性大浴场需要密码。密码将在前台提供。',
     freeService: '免费服务',
     bathServiceDesc: '我们免费提供乳酸菌饮料和冰棒。',
-    breakfastTitle: '早餐（1F 餐厅）',
-    breakfastPrice: '成人 1,200日元（含税）／儿童（小学生）800日元（含税）',
-    breakfastHours: '6:15~9:30（最后入场9:00）',
+    breakfastTitle: '早餐（2F ALLY\'s Nagoya）',
+    breakfastPrice: '成人 1,650日元（含税）／儿童（小学生）1,100日元（含税）',
+    breakfastPriceLabel: '早餐费用',
+    breakfastHours: '6:30～9:30（点餐截止9:00）',
+    breakfastPurchaseNote: '※当日需用早餐的客人请在前台购买早餐券。',
+    breakfastPreschoolFree: '※学龄前儿童免费。',
+    breakfastDetail: '欧式角提供多种面包、果酱、火腿与沙拉等；和风角提供盖饭、茶泡饭、名古屋美食（ Kishimen、味噌猪排、Doteni、红豆黄油）及面包麦片、味噌汤、沙拉、饮品等自助。',
+    breakfastMenuNote: '※自助菜单每日更换，部分菜品可能无法提供。',
     breakfastNote1: '※满座时可能需要等待。',
     breakfastNote2: '※根据拥挤情况，营业时间可能会有所调整。',
     serviceTitle: '服务区',
@@ -360,36 +309,6 @@ const translations = {
     cleaningRequest: '如需清扫，请在11:00前将Dondes卡"请清扫"挂在门外侧门把手上。',
     sheetExchange: '如需清扫，请在早上9点前将绿色磁铁"请打扫"贴在门外走廊侧。',
     noCleaning: '如不需要清扫，请将蓝色磁铁"请勿打扰"贴在门外走廊侧。如果没有贴磁铁，我们将不进行清扫，仅在门前准备毛巾类物品。出于卫生考虑，清扫为每3天1次（前2晚仅更换毛巾类，第3晚清扫，第4晚以后重复）。',
-    parking: '合作停车场信息',
-    parkingAllPrice: 'P1～P5：全部一晚900日元（延长30分钟100日元）',
-    parkingMidExit: '※中途出库时会产生费用。',
-    parkingInquiry: '※根据时间段，停车场可能满库，请咨询。',
-    parkingP1Name: 'P1 盛冈Ace酒店停车场',
-    parkingP2Name: 'P2 利利奥第一停车场',
-    parkingP3Name: 'P3 三井Re-Park',
-    parkingP4Name: 'P4 MOSS停车场',
-    parkingP5Name: 'P5 Cross Terrace停车场',
-    parkingUsageTime: '■使用时间：',
-    parkingP1Time: '15:00～次日11:00',
-    parkingP4Time: '16:00～次日11:00',
-    parkingP5Time: '17:00～次日11:00',
-    parkingExtension: '※延长30分钟100日元',
-    parkingHeightLimit: '■车高限制：',
-    parkingP2Height: '2.30m以下',
-    parkingP4Height: '2.50m以下',
-    parkingP5Height: '2.10m以下',
-    parkingReservation: '■提前预约：不可用',
-    parkingFee: '停车费',
-    heightLimit: '高度限制',
-    hours24: '24小时营业',
-    discountTime: '折扣适用时间',
-    parkingNote1: '※货车、RV车、带车顶行李架的车辆等，请使用此处。',
-    parkingDiscount1: '入库后24小时',
-    parkingDiscount2: '入库后24小时（可出入。需申报）',
-    parkingDiscount3: '入库后最多36小时（电话预约、可出入）',
-    parkingNote2: '※从入库到次日19点为一晚计算。（入库可从早上7点开始）',
-    parkingNote3: '※摩托车（需提前预约）一晚600日元。',
-    parkingNote4: '※导航搜索时请输入022-223-3863。',
     officialHP: '官方网站',
     preparing: '详细信息正在准备中。',
     dinnerCouponLine1: '今晚的晚餐',
@@ -447,10 +366,10 @@ const translations = {
     lobbyDesc2: '도시의 번잡함을 잊게 하는 편안한 공간입니다.',
     lobbyDesc3: '"스타벅스 커피"는 로비에서 직접 입장하실 수 있습니다.',
     breakfastVenue: '조식 장소',
-    breakfastFloor: '1층 레스토랑',
+    breakfastFloor: '2F ALLY\'s Nagoya',
     breakfastTime: '운영 시간',
-    breakfastTimeDetail: '6:00～9:00 (최종 입장 8:45)',
-    breakfastDesc: '이와테 현지 식재료를 활용한 영양 만점 조식 뷔페를 즐기실 수 있습니다。',
+    breakfastTimeDetail: '6:30～9:30 (오더 스탑 9:00)',
+    breakfastDesc: '유럽식과 오리엔탈 두 가지 스타일의 조식 뷔페. European & Oriental style buffet.',
     breakfastNotice: '운영 시간은 예고 없이 변경될 수 있습니다.',
     bathTitle: '로비・시설',
     bathDescription: '남녀 분리 대욕장 9F',
@@ -462,9 +381,14 @@ const translations = {
     bathNotice2: '※여성 대욕장 입장 시 비밀번호가 필요합니다. 비밀번호는 프런트에서 제공합니다.',
     freeService: '무료 서비스',
     bathServiceDesc: '유산균 음료와 아이스 캔디를 무료로 제공합니다.',
-    breakfastTitle: '조식 (1F 레스토랑)',
-    breakfastPrice: '성인 1,200엔(세금 포함) / 어린이(초등학생) 800엔(세금 포함)',
-    breakfastHours: '6:15~9:30 (최종 입장 9:00)',
+    breakfastTitle: '조식 (2F ALLY\'s Nagoya)',
+    breakfastPrice: '성인 1,650엔(세금 포함) / 어린이(초등학생) 1,100엔(세금 포함)',
+    breakfastPriceLabel: '조식 요금',
+    breakfastHours: '6:30～9:30 (오더 스탑 9:00)',
+    breakfastPurchaseNote: '※당일 조식은 프런트에서 식권을 판매합니다.',
+    breakfastPreschoolFree: '※미취학 아동 무료.',
+    breakfastDetail: '유럽식 코너(빵·잼·햄·샐러드 등)와 오리엔탈 코너(덮밥·차즈케·기시멘·미소카츠·도테니·앙버터 등) 뷔페. 빵·시리얼·미소국·일일 스프·샐러드·드링크 풍부.',
+    breakfastMenuNote: '※뷔페는 일일 교체로 모든 메뉴가 준비되지 않을 수 있습니다.',
     breakfastNote1: '※만석일 경우 대기하셔야 할 수 있습니다.',
     breakfastNote2: '※혼잡 상황에 따라 영업 시간이 변경될 수 있습니다.',
     serviceTitle: '서비스 코너',
@@ -495,36 +419,6 @@ const translations = {
     cleaningRequest: '청소를 원하시는 경우, 돈데스 카드 "청소해 주세요"를 11:00까지 외부 도어 손잡이에 걸어 주시기 바랍니다.',
     sheetExchange: '청소를 희망하시는 분은 초록색 마그넷 "청소해 주세요"를 아침 9시까지 입구 도어 복도 쪽에 부착해 주세요.',
     noCleaning: '청소가 필요 없으신 분은 파란색 마그넷 "깨우지 마세요"를 입구 도어 복도 쪽에 부착해 주세요. 마그넷이 부착되지 않은 경우 청소를 하지 않고 타월류만 도어 앞에 준비합니다. 위생상의 관점에서 청소는 3일에 1회(2박까지는 타월류만 교환, 3박째는 청소, 4박째 이후는 반복)입니다.',
-    parking: '제휴 주차장 안내',
-    parkingAllPrice: 'P1～P5 모두 1박 900엔（연장 30분 100엔）',
-    parkingMidExit: '※중간 출고 시 요금이 발생합니다.',
-    parkingInquiry: '※시간대에 따라 주차장이 만차일 수 있으니 문의해 주세요.',
-    parkingP1Name: 'P1 호텔 에이스 주차장',
-    parkingP2Name: 'P2 리리카 주차장',
-    parkingP3Name: 'P3 미쓰이 리파크',
-    parkingP4Name: 'P4 MOSS 주차장',
-    parkingP5Name: 'P5 크로스 테라스 주차장',
-    parkingUsageTime: '■이용 시간：',
-    parkingP1Time: '15:00～다음날 11:00',
-    parkingP4Time: '16:00～다음날 11:00',
-    parkingP5Time: '17:00～다음날 11:00',
-    parkingExtension: '※연장 30분 100엔',
-    parkingHeightLimit: '■차고 제한：',
-    parkingP2Height: '2.30m까지',
-    parkingP4Height: '2.50m까지',
-    parkingP5Height: '2.10m까지',
-    parkingReservation: '■사전 예약：이용 불가',
-    parkingFee: '주차 요금',
-    heightLimit: '높이 제한',
-    hours24: '24시간 영업',
-    discountTime: '할인 적용 시간',
-    parkingNote1: '※왜건, RV차, 루프 캐리어를 부착한 차량 등은 이곳을 이용해 주세요.',
-    parkingDiscount1: '입고 후 24시간',
-    parkingDiscount2: '입고 후 24시간 (출입 가능. 신고제)',
-    parkingDiscount3: '입고 후 최대 36시간 (전화 예약, 출입 가능)',
-    parkingNote2: '※입고 후 다음날 19시까지가 1박 계산입니다. (입고는 아침 7시부터 가능)',
-    parkingNote3: '※오토바이 (사전 예약) 1박 600엔.',
-    parkingNote4: '※내비게이션 검색 시 022-223-3863 번호를 입력하세요.',
     officialHP: '공식 홈페이지',
     preparing: '상세 정보를 준비 중입니다.',
     dinnerCouponLine1: '오늘 밤 저녁식사',
@@ -597,9 +491,14 @@ const translations = {
     bathNotice2: '*Un code d\'accès est requis pour entrer dans le bain public des femmes. Le code sera fourni à la réception.',
     freeService: 'Service gratuit',
     bathServiceDesc: 'Nous fournissons gratuitement des boissons lactiques et des bonbons glacés.',
-    breakfastTitle: 'Petit-déjeuner (Restaurant 1F)',
-    breakfastPrice: '/ ¥2,300',
-    breakfastHours: '6:15~9:30 (Dernière entrée 9:00)',
+    breakfastTitle: 'Petit-déjeuner (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Adulte 1 650 ¥ (TTC) / Enfant (primaire) 1 100 ¥ (TTC)',
+    breakfastPriceLabel: 'Tarif petit-déjeuner',
+    breakfastHours: '6:30～9:30 (Arrêt des commandes 9:00)',
+    breakfastPurchaseNote: '*Les tickets petit-déjeuner sont en vente à la réception le jour même.',
+    breakfastPreschoolFree: '*Gratuit pour les enfants d\'âge préscolaire.',
+    breakfastDetail: 'Buffet style européen et oriental : pains, confiture, jambon, salades, donburi, ochazuke, spécialités de Nagoya (kishimen, miso katsu, doteni, an-butter), soupe miso, boissons.',
+    breakfastMenuNote: '*Le buffet varie selon les jours ; tous les plats ne sont pas toujours disponibles.',
     breakfastNote1: '*Vous pourriez être invité à attendre si le restaurant est complet.',
     breakfastNote2: '*Les heures d\'ouverture peuvent changer selon l\'affluence.',
     serviceTitle: 'Coin Service',
@@ -630,25 +529,6 @@ const translations = {
     cleaningRequest: 'Si vous souhaitez un nettoyage, veuillez accrocher la carte Dondes \"Veuillez nettoyer\" sur la poignée de porte extérieure avant 11:00.',
     sheetExchange: 'Les clients qui souhaitent échanger les draps, housses de futon et taies d\'oreiller, veuillez afficher la \"Carte WECO\" sur le lit. Nous ne les échangerons pas si la carte n\'est pas affichée. (Nous échangerons les serviettes et les vêtements de chambre.)',
     noCleaning: 'Les clients qui n\'ont pas besoin de nettoyage, veuillez afficher la carte verte \"WECO\" du côté du couloir, qui se trouve à l\'intérieur de la porte d\'entrée. Dans ce cas, nous ne nettoierons pas et n\'entrerons pas dans la chambre.',
-    parking: 'Informations sur les parkings partenaires',
-    parkingAllPrice: 'P1～P5: Tous 900 yens par nuit (Prolongation: 100 yens par 30 minutes)',
-    parkingMidExit: '※Des frais s\'appliqueront si vous sortez en cours de séjour.',
-    parkingInquiry: '※Veuillez vous renseigner car le parking peut être complet selon l\'heure.',
-    parkingP1Name: 'P1 Parking Hotel Ace',
-    parkingP2Name: 'P2 Parking Ririo',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 Parking MOSS',
-    parkingP5Name: 'P5 Parking Cross Terrace',
-    parkingUsageTime: '■Heures d\'utilisation:',
-    parkingP1Time: '15:00～Le lendemain 11:00',
-    parkingP4Time: '16:00～Le lendemain 11:00',
-    parkingP5Time: '17:00～Le lendemain 11:00',
-    parkingExtension: '※Prolongation: 100 yens par 30 minutes',
-    parkingHeightLimit: '■Limite de hauteur:',
-    parkingP2Height: 'Jusqu\'à 2.30m',
-    parkingP4Height: 'Jusqu\'à 2.50m',
-    parkingP5Height: 'Jusqu\'à 2.10m',
-    parkingReservation: '■Réservation à l\'avance: Non disponible',
     officialHP: 'Site Web officiel',
     preparing: 'Les informations détaillées sont en cours de préparation.',
     dinnerCouponLine1: 'Pour le dîner de ce soir',
@@ -721,9 +601,14 @@ const translations = {
     bathNotice2: '*Ein Passcode ist erforderlich, um das Frauenbad zu betreten. Der Passcode wird an der Rezeption bereitgestellt.',
     freeService: 'Kostenloser Service',
     bathServiceDesc: 'Wir bieten kostenlos Milchsäuregetränke und Eisbonbons an.',
-    breakfastTitle: 'Frühstück (Restaurant 1F)',
-    breakfastPrice: '/ ¥2,300',
-    breakfastHours: '6:15~9:30 (Letzter Einlass 9:00)',
+    breakfastTitle: 'Frühstück (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Erwachsene 1.650 ¥ (inkl. MwSt.) / Kind (Grundschule) 1.100 ¥ (inkl. MwSt.)',
+    breakfastPriceLabel: 'Frühstücksgebühr',
+    breakfastHours: '6:30～9:30 (Bestellschluss 9:00)',
+    breakfastPurchaseNote: '*Frühstückstickets sind an der Rezeption am selben Tag erhältlich.',
+    breakfastPreschoolFree: '*Vorschulkinder frei.',
+    breakfastDetail: 'Europäische & orientalische Buffet: Brot, Konfitüre, Schinken, Salat, Donburi, Ochazuke, Nagoya-Spezialitäten (Kishimen, Miso-Katsu, Doteni, An-Butter), Misosuppe, Getränke.',
+    breakfastMenuNote: '*Das Buffet wechselt tagesweise; nicht alle Gerichte sind immer verfügbar.',
     breakfastNote1: '*Sie könnten gebeten werden zu warten, wenn das Restaurant voll ist.',
     breakfastNote2: '*Die Öffnungszeiten können sich je nach Andrang ändern.',
     serviceTitle: 'Service-Ecke',
@@ -754,25 +639,6 @@ const translations = {
     cleaningRequest: 'Wenn Sie eine Reinigung wünschen, hängen Sie bitte die Dondes-Karte \"Bitte reinigen\" bis 11:00 an die äußere Türklinke.',
     sheetExchange: 'Gäste, die Bettwäsche, Futonbezüge und Kissenbezüge wechseln möchten, bitte zeigen Sie die \"WECO-Karte\" auf dem Bett. Wir tauschen sie nicht aus, wenn die Karte nicht angezeigt wird. (Wir tauschen Handtücher und Nachtwäsche aus.)',
     noCleaning: 'Gäste, die keine Reinigung benötigen, bitte zeigen Sie die grüne \"WECO\"-Karte auf der Korridorseite, die sich an der Innenseite der Eingangstür befindet. In diesem Fall reinigen wir nicht und betreten das Zimmer nicht.',
-    parking: 'Informationen zu Partnerparkhäusern',
-    parkingAllPrice: 'P1～P5: Alle 900 Yen pro Nacht (Verlängerung: 100 Yen pro 30 Minuten)',
-    parkingMidExit: '※Gebühren fallen an, wenn Sie während des Aufenthalts ausfahren.',
-    parkingInquiry: '※Bitte erkundigen Sie sich, da der Parkplatz je nach Tageszeit voll sein kann.',
-    parkingP1Name: 'P1 Hotel Ace Parkplatz',
-    parkingP2Name: 'P2 Ririo Parkplatz',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 MOSS Parkplatz',
-    parkingP5Name: 'P5 Cross Terrace Parkplatz',
-    parkingUsageTime: '■Nutzungszeiten:',
-    parkingP1Time: '15:00～Am nächsten Tag 11:00',
-    parkingP4Time: '16:00～Am nächsten Tag 11:00',
-    parkingP5Time: '17:00～Am nächsten Tag 11:00',
-    parkingExtension: '※Verlängerung: 100 Yen pro 30 Minuten',
-    parkingHeightLimit: '■Höhenbegrenzung:',
-    parkingP2Height: 'Bis zu 2.30m',
-    parkingP4Height: 'Bis zu 2.50m',
-    parkingP5Height: 'Bis zu 2.10m',
-    parkingReservation: '■Vorausbuchung: Nicht verfügbar',
     officialHP: 'Offizielle Website',
     preparing: 'Detaillierte Informationen werden vorbereitet.',
     dinnerCouponLine1: 'Für das Abendessen heute',
@@ -845,9 +711,14 @@ const translations = {
     bathNotice2: '*Se requiere un código de acceso para entrar al baño público de mujeres. El código se proporcionará en la recepción.',
     freeService: 'Servicio gratuito',
     bathServiceDesc: 'Ofrecemos gratuitamente bebidas lácteas y caramelos de hielo.',
-    breakfastTitle: 'Desayuno (Restaurante 1F)',
-    breakfastPrice: '/ ¥2,300',
-    breakfastHours: '6:15~9:30 (Última entrada 9:00)',
+    breakfastTitle: 'Desayuno (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Adulto 1.650 ¥ (iva incl.) / Niño (primaria) 1.100 ¥ (iva incl.)',
+    breakfastPriceLabel: 'Precio del desayuno',
+    breakfastHours: '6:30～9:30 (Último pedido 9:00)',
+    breakfastPurchaseNote: '*Los tickets de desayuno se venden en recepción el mismo día.',
+    breakfastPreschoolFree: '*Niños en edad preescolar gratis.',
+    breakfastDetail: 'Buffet europeo y oriental: pan, mermelada, jamón, ensalada, donburi, ochazuke, especialidades de Nagoya (kishimen, miso katsu, doteni), sopa miso, bebidas.',
+    breakfastMenuNote: '*El buffet varía según el día; no todos los platos están siempre disponibles.',
     breakfastNote1: '*Es posible que se le pida que espere si el restaurante está lleno.',
     breakfastNote2: '*El horario puede cambiar según la congestión.',
     serviceTitle: 'Rincón de servicio',
@@ -878,25 +749,6 @@ const translations = {
     cleaningRequest: 'Si desea limpieza, por favor cuelgue la tarjeta Dondes \"Por favor limpie\" en el pomo exterior de la puerta antes de las 11:00.',
     sheetExchange: 'Los huéspedes que deseen cambiar las sábanas, fundas de futón y fundas de almohada, por favor muestren la \"Tarjeta WECO\" en la cama. No las cambiaremos si la tarjeta no se muestra. (Cambiaremos toallas y ropa de habitación.)',
     noCleaning: 'Los huéspedes que no necesiten limpieza, por favor muestren la tarjeta verde \"WECO\" en el lado del pasillo, que se encuentra en el interior de la puerta de entrada. En ese caso, no limpiaremos ni entraremos en la habitación.',
-    parking: 'Información de aparcamientos asociados',
-    parkingAllPrice: 'P1～P5: Todos 900 yenes por noche (Prolongación: 100 yenes por 30 minutos)',
-    parkingMidExit: '※Se aplicarán cargos si sale durante la estancia.',
-    parkingInquiry: '※Por favor consulte, ya que el estacionamiento puede estar lleno según la hora.',
-    parkingP1Name: 'P1 Estacionamiento Hotel Ace',
-    parkingP2Name: 'P2 Estacionamiento Ririo',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 Estacionamiento MOSS',
-    parkingP5Name: 'P5 Estacionamiento Cross Terrace',
-    parkingUsageTime: '■Horas de uso:',
-    parkingP1Time: '15:00～Al día siguiente 11:00',
-    parkingP4Time: '16:00～Al día siguiente 11:00',
-    parkingP5Time: '17:00～Al día siguiente 11:00',
-    parkingExtension: '※Prolongación: 100 yenes por 30 minutos',
-    parkingHeightLimit: '■Límite de altura:',
-    parkingP2Height: 'Hasta 2.30m',
-    parkingP4Height: 'Hasta 2.50m',
-    parkingP5Height: 'Hasta 2.10m',
-    parkingReservation: '■Reserva anticipada: No disponible',
     officialHP: 'Sitio web oficial',
     preparing: 'La información detallada se está preparando.',
     dinnerCouponLine1: 'Para la cena de esta noche',
@@ -969,9 +821,14 @@ const translations = {
     bathNotice2: '*È richiesto un codice di accesso per entrare nel bagno pubblico delle donne. Il codice verrà fornito alla reception.',
     freeService: 'Servizio gratuito',
     bathServiceDesc: 'Forniamo gratuitamente bevande lattiche e caramelle ghiacciate.',
-    breakfastTitle: 'Colazione (Ristorante 1F)',
-    breakfastPrice: '/ ¥2,300',
-    breakfastHours: '6:15~9:30 (Ultimo ingresso 9:00)',
+    breakfastTitle: 'Colazione (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Adulto 1.650 ¥ (IVA incl.) / Bambino (scuola elem.) 1.100 ¥ (IVA incl.)',
+    breakfastPriceLabel: 'Prezzo colazione',
+    breakfastHours: '6:30～9:30 (Stop ordini 9:00)',
+    breakfastPurchaseNote: '*I biglietti per la colazione sono in vendita alla reception il giorno stesso.',
+    breakfastPreschoolFree: '*Bambini in età prescolastica gratis.',
+    breakfastDetail: 'Buffet stile europeo e orientale: pane, confettura, prosciutto, insalata, donburi, ochazuke, specialità di Nagoya (kishimen, miso katsu, doteni), zuppa miso, bevande.',
+    breakfastMenuNote: '*Il buffet varia a seconda del giorno; non tutti i piatti sono sempre disponibili.',
     breakfastNote1: '*Potrebbe essere richiesto di attendere se il ristorante è pieno.',
     breakfastNote2: '*Gli orari di apertura possono cambiare a seconda della congestione.',
     serviceTitle: 'Angolo servizio',
@@ -1002,25 +859,6 @@ const translations = {
     cleaningRequest: 'Se desiderate la pulizia, si prega di appendere la carta Dondes \"Si prega di pulire\" sulla maniglia esterna della porta entro le 11:00.',
     sheetExchange: 'Gli ospiti che desiderano cambiare lenzuola, coperture futon e federe, si prega di mostrare la \"Carta WECO\" sul letto. Non le cambieremo se la carta non viene mostrata. (Cambieremo asciugamani e abbigliamento da camera.)',
     noCleaning: 'Gli ospiti che non necessitano di pulizia, si prega di mostrare la carta verde \"WECO\" sul lato del corridoio, che si trova all\'interno della porta d\'ingresso. In tal caso, non puliremo né entreremo nella camera.',
-    parking: 'Informazioni sui parcheggi partner',
-    parkingAllPrice: 'P1～P5: Tutti 900 yen a notte (Prolungamento: 100 yen per 30 minuti)',
-    parkingMidExit: '※Verranno applicate tariffe se uscite durante il soggiorno.',
-    parkingInquiry: '※Si prega di informarsi, in quanto il parcheggio può essere pieno a seconda dell\'ora.',
-    parkingP1Name: 'P1 Parcheggio Hotel Ace',
-    parkingP2Name: 'P2 Parcheggio Ririo',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 Parcheggio MOSS',
-    parkingP5Name: 'P5 Parcheggio Cross Terrace',
-    parkingUsageTime: '■Orari di utilizzo:',
-    parkingP1Time: '15:00～Il giorno successivo 11:00',
-    parkingP4Time: '16:00～Il giorno successivo 11:00',
-    parkingP5Time: '17:00～Il giorno successivo 11:00',
-    parkingExtension: '※Prolungamento: 100 yen per 30 minuti',
-    parkingHeightLimit: '■Limite di altezza:',
-    parkingP2Height: 'Fino a 2.30m',
-    parkingP4Height: 'Fino a 2.50m',
-    parkingP5Height: 'Fino a 2.10m',
-    parkingReservation: '■Prenotazione anticipata: Non disponibile',
     officialHP: 'Sito web ufficiale',
     preparing: 'Le informazioni dettagliate sono in preparazione.',
     dinnerCouponLine1: 'Per la cena di stasera',
@@ -1093,9 +931,14 @@ const translations = {
     bathNotice2: '※ต้องใช้รหัสผ่านในการเข้าห้องอาบน้ำสตรี รหัสผ่านจะมีให้ที่แผนกต้อนรับ',
     freeService: 'บริการฟรี',
     bathServiceDesc: 'เรามีบริการเครื่องดื่มแลคโตบาซิลลัสและไอศกรีมแท่งฟรี',
-    breakfastTitle: 'อาหารเช้า (ร้านอาหาร 1F)',
-    breakfastPrice: 'ผู้ใหญ่ 1,200 เยน (รวมภาษี) / เด็ก (นักเรียนประถม) 800 เยน (รวมภาษี)',
-    breakfastHours: '6:15~9:30 (เข้าครั้งสุดท้าย 9:00)',
+    breakfastTitle: 'อาหารเช้า (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'ผู้ใหญ่ 1,650 เยน (รวมภาษี) / เด็ก (ประถม) 1,100 เยน (รวมภาษี)',
+    breakfastPriceLabel: 'ค่าอาหารเช้า',
+    breakfastHours: '6:30～9:30 (หยุดรับออเดอร์ 9:00)',
+    breakfastPurchaseNote: '※ซื้อตั๋วอาหารเช้าวันนั้นได้ที่ฝ่ายต้อนรับ',
+    breakfastPreschoolFree: '※เด็กก่อนวัยเรียนไม่เสียค่าใช้จ่าย',
+    breakfastDetail: 'บุฟเฟ่ต์สไตล์ยุโรปและเอเชีย: ขนมปัง แยม แฮม สลัด  donburi โอชาซูเกะ อาหาร名古屋 (kishimen, miso katsu, doteni) ซุปมิโซะ เครื่องดื่ม',
+    breakfastMenuNote: '※เมนูบุฟเฟ่ต์เปลี่ยนตามวัน บางเมนูอาจไม่มี',
     breakfastNote1: '※อาจต้องรอคิวในกรณีที่เต็ม',
     breakfastNote2: '※เวลาทำการอาจเปลี่ยนแปลงตามสถานการณ์ความแออัด',
     serviceTitle: 'มุมบริการ',
@@ -1126,25 +969,6 @@ const translations = {
     cleaningRequest: 'หากต้องการทำความสะอาด กรุณาแขวนบัตร Dondes "กรุณาทำความสะอาด" ที่ลูกบิดประตูด้านนอกก่อน 11:00',
     sheetExchange: 'หากต้องการบริการทำความสะอาด กรุณาติดแม่เหล็กสีเขียว "กรุณาทำความสะอาด" ที่ด้านนอกประตูห้องทางด้านทางเดินก่อน 9:00 น. ของเช้าวันถัดไป',
     noCleaning: 'หากไม่ต้องการทำความสะอาด กรุณาติดแม่เหล็กสีน้ำเงิน "ห้ามรบกวน" ที่ด้านนอกประตูห้องทางด้านทางเดิน หากไม่มีการติดแม่เหล็ก เราจะไม่ทำความสะอาดและจะวางผ้าเช็ดตัวไว้หน้าประตูเท่านั้น จากมุมมองด้านสุขอนามัย การทำความสะอาดจะเป็นทุก 3 วัน (2 คืนแรกเปลี่ยนผ้าเช็ดตัวเท่านั้น คืนที่ 3 ทำความสะอาด คืนที่ 4 เป็นต้นไปวนซ้ำ)',
-    parking: 'ข้อมูลที่จอดรถพันธมิตร',
-    parkingAllPrice: 'P1～P5 ทั้งหมด 900 เยนต่อคืน（ต่อเวลา 30 นาที 100 เยน）',
-    parkingMidExit: '※หากออกกลางคันจะมีการเรียกเก็บเงิน',
-    parkingInquiry: '※กรุณาสอบถามเนื่องจากที่จอดรถอาจเต็มตามช่วงเวลา',
-    parkingP1Name: 'P1 ที่จอดรถโรงแรมเอซ',
-    parkingP2Name: 'P2 ที่จอดรถริริกะ',
-    parkingP3Name: 'P3 มิตซูอิ รีพาร์ค',
-    parkingP4Name: 'P4 ที่จอดรถ MOSS',
-    parkingP5Name: 'P5 ที่จอดรถ Cross Terrace',
-    parkingUsageTime: '■เวลาทำการ：',
-    parkingP1Time: '15:00～วันถัดไป 11:00',
-    parkingP4Time: '16:00～วันถัดไป 11:00',
-    parkingP5Time: '17:00～วันถัดไป 11:00',
-    parkingExtension: '※ต่อเวลา 30 นาที 100 เยน',
-    parkingHeightLimit: '■จำกัดความสูง：',
-    parkingP2Height: 'สูงสุด 2.30m',
-    parkingP4Height: 'สูงสุด 2.50m',
-    parkingP5Height: 'สูงสุด 2.10m',
-    parkingReservation: '■จองล่วงหน้า：ไม่สามารถใช้ได้',
     officialHP: 'เว็บไซต์อย่างเป็นทางการ',
     preparing: 'ข้อมูลรายละเอียดกำลังเตรียมการ',
     dinnerCouponLine1: 'สำหรับอาหารเย็นคืนนี้',
@@ -1217,9 +1041,14 @@ const translations = {
     bathNotice2: '※Cần mật khẩu để vào bồn tắm nữ. Mật khẩu sẽ được cung cấp tại lễ tân.',
     freeService: 'Dịch vụ miễn phí',
     bathServiceDesc: 'Chúng tôi cung cấp miễn phí đồ uống lactic acid và kẹo que đá.',
-    breakfastTitle: 'Bữa sáng (Nhà hàng 1F)',
-    breakfastPrice: 'Người lớn 1,200 yên (đã bao gồm thuế) / Trẻ em (học sinh tiểu học) 800 yên (đã bao gồm thuế)',
-    breakfastHours: '6:15~9:30 (Vào lần cuối 9:00)',
+    breakfastTitle: 'Bữa sáng (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Người lớn 1.650 yên (đã gồm thuế) / Trẻ em (tiểu học) 1.100 yên (đã gồm thuế)',
+    breakfastPriceLabel: 'Giá bữa sáng',
+    breakfastHours: '6:30～9:30 (Dừng gọi món 9:00)',
+    breakfastPurchaseNote: '※Vé bữa sáng bán tại quầy lễ tân trong ngày.',
+    breakfastPreschoolFree: '※Trẻ mầm non miễn phí.',
+    breakfastDetail: 'Buffet phong cách châu Âu & châu Á: bánh mì, mứt, giăm bông, salad, donburi, ochazuke, đặc sản Nagoya (kishimen, miso katsu, doteni), súp miso, đồ uống.',
+    breakfastMenuNote: '※Thực đơn buffet thay đổi theo ngày; không phải món nào cũng có.',
     breakfastNote1: '※Có thể phải chờ nếu đầy chỗ.',
     breakfastNote2: '※Giờ mở cửa có thể thay đổi tùy theo tình hình đông khách.',
     serviceTitle: 'Khu vực dịch vụ',
@@ -1250,25 +1079,6 @@ const translations = {
     cleaningRequest: 'Nếu muốn dọn phòng, vui lòng treo thẻ Dondes "Vui lòng dọn phòng" trên tay nắm cửa bên ngoài trước 11:00.',
     sheetExchange: 'Nếu muốn dọn phòng, vui lòng dán nam châm màu xanh lá "Vui lòng dọn phòng" ở phía hành lang cửa ra vào trước 9 giờ sáng mai.',
     noCleaning: 'Nếu không cần dọn phòng, vui lòng dán nam châm màu xanh dương "Xin đừng làm phiền" ở phía hành lang cửa ra vào. Nếu không có nam châm, chúng tôi sẽ không dọn phòng và chỉ chuẩn bị khăn trước cửa. Vì lý do vệ sinh, việc dọn phòng sẽ là 3 ngày một lần (2 đêm đầu chỉ thay khăn, đêm thứ 3 dọn phòng, từ đêm thứ 4 trở đi lặp lại).',
-    parking: 'Thông tin bãi đỗ xe đối tác',
-    parkingAllPrice: 'P1～P5: Tất cả 900 yên mỗi đêm (Gia hạn: 100 yên mỗi 30 phút)',
-    parkingMidExit: '※Sẽ tính phí nếu bạn xuất xe giữa chừng.',
-    parkingInquiry: '※Vui lòng liên hệ vì bãi đỗ có thể đầy tùy theo thời gian.',
-    parkingP1Name: 'P1 Bãi đỗ xe Hotel Ace',
-    parkingP2Name: 'P2 Bãi đỗ xe Ririo',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 Bãi đỗ xe MOSS',
-    parkingP5Name: 'P5 Bãi đỗ xe Cross Terrace',
-    parkingUsageTime: '■Giờ sử dụng:',
-    parkingP1Time: '15:00～Ngày hôm sau 11:00',
-    parkingP4Time: '16:00～Ngày hôm sau 11:00',
-    parkingP5Time: '17:00～Ngày hôm sau 11:00',
-    parkingExtension: '※Gia hạn: 100 yên mỗi 30 phút',
-    parkingHeightLimit: '■Giới hạn chiều cao:',
-    parkingP2Height: 'Lên đến 2.30m',
-    parkingP4Height: 'Lên đến 2.50m',
-    parkingP5Height: 'Lên đến 2.10m',
-    parkingReservation: '■Đặt trước: Không có sẵn',
     officialHP: 'Trang web chính thức',
     preparing: 'Thông tin chi tiết đang được chuẩn bị.',
     dinnerCouponLine1: 'Cho bữa tối tối nay',
@@ -1341,9 +1151,14 @@ const translations = {
     bathNotice2: '※Kode sandi diperlukan untuk masuk ke pemandian wanita. Kode sandi akan diberikan di resepsionis.',
     freeService: 'Layanan gratis',
     bathServiceDesc: 'Kami menyediakan minuman asam laktat dan permen es gratis.',
-    breakfastTitle: 'Sarapan (Restoran 1F)',
-    breakfastPrice: 'Dewasa 1.200 yen (termasuk pajak) / Anak-anak (siswa SD) 800 yen (termasuk pajak)',
-    breakfastHours: '6:15~9:30 (Masuk terakhir 9:00)',
+    breakfastTitle: 'Sarapan (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Dewasa 1.650 yen (termasuk pajak) / Anak (SD) 1.100 yen (termasuk pajak)',
+    breakfastPriceLabel: 'Biaya sarapan',
+    breakfastHours: '6:30～9:30 (Stop pesanan 9:00)',
+    breakfastPurchaseNote: '※Tiket sarapan dijual di resepsionis pada hari yang sama.',
+    breakfastPreschoolFree: '※Anak prasekolah gratis.',
+    breakfastDetail: 'Buffet gaya Eropa & Asia: roti, selai, ham, salad, donburi, ochazuke, spesialisasi Nagoya (kishimen, miso katsu, doteni), sup miso, minuman.',
+    breakfastMenuNote: '※Menu buffet berganti per hari; tidak semua hidangan selalu tersedia.',
     breakfastNote1: '※Anda mungkin diminta menunggu jika penuh.',
     breakfastNote2: '※Jam operasional dapat berubah tergantung pada kepadatan.',
     serviceTitle: 'Sudut layanan',
@@ -1374,25 +1189,6 @@ const translations = {
     cleaningRequest: 'Jika ingin pembersihan, silakan gantungkan kartu Dondes "Silakan bersihkan" pada gagang pintu luar sebelum jam 11:00.',
     sheetExchange: 'Jika ingin pembersihan, silakan tempel magnet hijau "Silakan bersihkan" di sisi koridor pintu masuk sebelum jam 9 pagi besok.',
     noCleaning: 'Jika tidak perlu pembersihan, silakan tempel magnet biru "Jangan ganggu" di sisi koridor pintu masuk. Jika tidak ada magnet, kami tidak akan membersihkan dan hanya menyiapkan handuk di depan pintu. Dari sudut pandang kebersihan, pembersihan dilakukan 3 hari sekali (2 malam pertama hanya ganti handuk, malam ke-3 pembersihan, malam ke-4 dan seterusnya berulang).',
-    parking: 'Informasi parkir mitra',
-    parkingAllPrice: 'P1～P5: Semua 900 yen per malam (Perpanjangan: 100 yen per 30 menit)',
-    parkingMidExit: '※Biaya akan dikenakan jika Anda keluar di tengah-tengah menginap.',
-    parkingInquiry: '※Silakan tanyakan karena parkir mungkin penuh tergantung waktu.',
-    parkingP1Name: 'P1 Parkir Hotel Ace',
-    parkingP2Name: 'P2 Parkir Ririo',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 Parkir MOSS',
-    parkingP5Name: 'P5 Parkir Cross Terrace',
-    parkingUsageTime: '■Jam penggunaan:',
-    parkingP1Time: '15:00～Hari berikutnya 11:00',
-    parkingP4Time: '16:00～Hari berikutnya 11:00',
-    parkingP5Time: '17:00～Hari berikutnya 11:00',
-    parkingExtension: '※Perpanjangan: 100 yen per 30 menit',
-    parkingHeightLimit: '■Batas tinggi:',
-    parkingP2Height: 'Hingga 2.30m',
-    parkingP4Height: 'Hingga 2.50m',
-    parkingP5Height: 'Hingga 2.10m',
-    parkingReservation: '■Pemesanan di muka: Tidak tersedia',
     officialHP: 'Situs web resmi',
     preparing: 'Informasi detail sedang disiapkan.',
     dinnerCouponLine1: 'Untuk makan malam malam ini',
@@ -1465,9 +1261,14 @@ const translations = {
     bathNotice2: '※Kailangan ng password para makapasok sa banyo ng babae. Ang password ay ibibigay sa front desk.',
     freeService: 'Libreng serbisyo',
     bathServiceDesc: 'Nagbibigay kami ng libreng lactic acid drinks at ice candy.',
-    breakfastTitle: 'Almusal (Restaurant 1F)',
-    breakfastPrice: 'Matanda 1,200 yen (kasama ang tax) / Bata (elementary student) 800 yen (kasama ang tax)',
-    breakfastHours: '6:15~9:30 (Huling pagpasok 9:00)',
+    breakfastTitle: 'Almusal (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Matanda 1,650 yen (kasama ang tax) / Bata (elementary) 1,100 yen (kasama ang tax)',
+    breakfastPriceLabel: 'Presyo ng almusal',
+    breakfastHours: '6:30～9:30 (Stop order 9:00)',
+    breakfastPurchaseNote: '※Available ang almusal ticket sa front desk sa araw na iyon.',
+    breakfastPreschoolFree: '※Libre ang preschool children.',
+    breakfastDetail: 'European & Oriental buffet: tinapay, jam, ham, salad, donburi, ochazuke, Nagoya specialties (kishimen, miso katsu, doteni), miso soup, drinks.',
+    breakfastMenuNote: '※Nag-iiba ang buffet araw-araw; hindi lahat ng putahe ay laging available.',
     breakfastNote1: '※Maaaring kailangan maghintay kung puno.',
     breakfastNote2: '※Ang oras ng operasyon ay maaaring magbago depende sa siksikan.',
     serviceTitle: 'Sulok ng serbisyo',
@@ -1498,25 +1299,6 @@ const translations = {
     cleaningRequest: 'Kung nais ng paglilinis, mangyaring isabit ang Dondes card na "Mangyaring linisin" sa panlabas na doorknob bago mag-11:00.',
     sheetExchange: 'Kung nais ng linis, mangyaring idikit ang berdeng magnet na "Mangyaring linisin" sa gilid ng hallway ng entrance door bago mag-9:00 ng umaga bukas.',
     noCleaning: 'Kung hindi kailangan ng linis, mangyaring idikit ang asul na magnet na "Huwag guluhin" sa gilid ng hallway ng entrance door. Kung walang magnet, hindi kami maglilinis at maghahanda lang ng tuwalya sa harap ng pinto. Para sa kalinisan, ang linis ay bawat 3 araw (2 unang gabi ay palit ng tuwalya lang, 3rd gabi ay linis, 4th gabi pataas ay ulitin).',
-    parking: 'Impormasyon sa partner parking',
-    parkingAllPrice: 'P1～P5: Lahat 900 yen bawat gabi (Extension: 100 yen bawat 30 minuto)',
-    parkingMidExit: '※Magkakaroon ng bayad kung lalabas ka sa gitna ng stay.',
-    parkingInquiry: '※Mangyaring magtanong dahil maaaring puno ang parking depende sa oras.',
-    parkingP1Name: 'P1 Hotel Ace Parking',
-    parkingP2Name: 'P2 Ririo Daiichi Parking',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 MOSS Parking',
-    parkingP5Name: 'P5 Cross Terrace Parking',
-    parkingUsageTime: '■Oras ng paggamit:',
-    parkingP1Time: '15:00～Susunod na araw 11:00',
-    parkingP4Time: '16:00～Susunod na araw 11:00',
-    parkingP5Time: '17:00～Susunod na araw 11:00',
-    parkingExtension: '※Extension: 100 yen bawat 30 minuto',
-    parkingHeightLimit: '■Limitasyon sa taas:',
-    parkingP2Height: 'Hanggang 2.30m',
-    parkingP4Height: 'Hanggang 2.50m',
-    parkingP5Height: 'Hanggang 2.10m',
-    parkingReservation: '■Advance reservation: Hindi available',
     officialHP: 'Official website',
     preparing: 'Ang detalyadong impormasyon ay inihahanda.',
     dinnerCouponLine1: 'Para sa hapunan ngayong gabi',
@@ -1589,9 +1371,14 @@ const translations = {
     bathNotice2: '※Kata laluan diperlukan untuk masuk ke bilik mandi wanita. Kata laluan akan diberikan di kaunter depan.',
     freeService: 'Perkhidmatan percuma',
     bathServiceDesc: 'Kami menyediakan minuman asid laktik dan gula-gula ais percuma.',
-    breakfastTitle: 'Sarapan (Restoran 1F)',
-    breakfastPrice: 'Dewasa 1,200 yen (termasuk cukai) / Kanak-kanak (pelajar rendah) 800 yen (termasuk cukai)',
-    breakfastHours: '6:15~9:30 (Kemasukan terakhir 9:00)',
+    breakfastTitle: 'Sarapan (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Dewasa 1,650 yen (termasuk cukai) / Kanak-kanak (rendah) 1,100 yen (termasuk cukai)',
+    breakfastPriceLabel: 'Harga sarapan',
+    breakfastHours: '6:30～9:30 (Berhenti pesanan 9:00)',
+    breakfastPurchaseNote: '※Tiket sarapan dijual di kaunter resepsi pada hari yang sama.',
+    breakfastPreschoolFree: '※Kanak-kanak prasekolah percuma.',
+    breakfastDetail: 'Buffet gaya Eropah & Asia: roti, jem, ham, salad, donburi, ochazuke, hidangan Nagoya (kishimen, miso katsu, doteni), sup miso, minuman.',
+    breakfastMenuNote: '※Menu buffet berubah mengikut hari; tidak semua hidangan sentiasa tersedia.',
     breakfastNote1: '※Mungkin perlu menunggu jika penuh.',
     breakfastNote2: '※Waktu operasi mungkin berubah bergantung pada kesesakan.',
     serviceTitle: 'Sudut perkhidmatan',
@@ -1622,25 +1409,6 @@ const translations = {
     cleaningRequest: 'Jika mahu pembersihan, sila gantungkan kad Dondes "Sila bersihkan" pada pemegang pintu luar sebelum jam 11:00.',
     sheetExchange: 'Jika mahu pembersihan, sila lekatkan magnet hijau "Sila bersihkan" di bahagian koridor pintu masuk sebelum jam 9 pagi esok.',
     noCleaning: 'Jika tidak perlukan pembersihan, sila lekatkan magnet biru "Jangan ganggu" di bahagian koridor pintu masuk. Jika tiada magnet, kami tidak akan membersihkan dan hanya menyediakan tuala di hadapan pintu. Dari segi kebersihan, pembersihan adalah setiap 3 hari (2 malam pertama hanya tukar tuala, malam ke-3 pembersihan, malam ke-4 dan seterusnya ulang).',
-    parking: 'Maklumat tempat letak kereta rakan kongsi',
-    parkingAllPrice: 'P1～P5: Semua 900 yen semalam (Sambungan: 100 yen setiap 30 minit)',
-    parkingMidExit: '※Bayaran akan dikenakan jika anda keluar di tengah-tengah penginapan.',
-    parkingInquiry: '※Sila tanya kerana tempat letak kereta mungkin penuh bergantung pada masa.',
-    parkingP1Name: 'P1 Tempat Letak Kereta Hotel Ace',
-    parkingP2Name: 'P2 Tempat Letak Kereta Ririo',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 Tempat Letak Kereta MOSS',
-    parkingP5Name: 'P5 Tempat Letak Kereta Cross Terrace',
-    parkingUsageTime: '■Waktu penggunaan:',
-    parkingP1Time: '15:00～Hari berikutnya 11:00',
-    parkingP4Time: '16:00～Hari berikutnya 11:00',
-    parkingP5Time: '17:00～Hari berikutnya 11:00',
-    parkingExtension: '※Sambungan: 100 yen setiap 30 minit',
-    parkingHeightLimit: '■Had ketinggian:',
-    parkingP2Height: 'Sehingga 2.30m',
-    parkingP4Height: 'Sehingga 2.50m',
-    parkingP5Height: 'Sehingga 2.10m',
-    parkingReservation: '■Tempahan awal: Tidak tersedia',
     officialHP: 'Laman web rasmi',
     preparing: 'Maklumat terperinci sedang disediakan.',
     dinnerCouponLine1: 'Untuk makan malam malam ini',
@@ -1713,9 +1481,14 @@ const translations = {
     bathNotice2: '※É necessária uma senha para entrar no banho público feminino. A senha será fornecida na recepção.',
     freeService: 'Serviço gratuito',
     bathServiceDesc: 'Oferecemos gratuitamente bebidas de ácido lático e picolés.',
-    breakfastTitle: 'Café da manhã (Restaurante 1F)',
-    breakfastPrice: 'Adulto 1.200 ienes (com impostos) / Criança (aluno do ensino fundamental) 800 ienes (com impostos)',
-    breakfastHours: '6:15~9:30 (Última entrada 9:00)',
+    breakfastTitle: 'Café da manhã (2F ALLY\'s Nagoya)',
+    breakfastPrice: 'Adulto 1.650 ienes (com impostos) / Criança (ensino fundamental) 1.100 ienes (com impostos)',
+    breakfastPriceLabel: 'Preço do café da manhã',
+    breakfastHours: '6:30～9:30 (Parar pedidos 9:00)',
+    breakfastPurchaseNote: '※Ingressos para café da manhã à venda na recepção no mesmo dia.',
+    breakfastPreschoolFree: '※Crianças em idade pré-escolar grátis.',
+    breakfastDetail: 'Buffet estilo europeu e oriental: pão, compota, presunto, salada, donburi, ochazuke, especialidades de Nagoya (kishimen, miso katsu, doteni), sopa miso, bebidas.',
+    breakfastMenuNote: '※O buffet varia conforme o dia; nem todos os pratos estão sempre disponíveis.',
     breakfastNote1: '※Pode ser necessário esperar se estiver lotado.',
     breakfastNote2: '※O horário de funcionamento pode mudar dependendo da lotação.',
     serviceTitle: 'Canto de serviço',
@@ -1746,25 +1519,6 @@ const translations = {
     cleaningRequest: 'Se desejar limpeza, por favor pendure o cartão Dondes "Por favor limpe" na maçaneta externa da porta antes das 11:00.',
     sheetExchange: 'Se desejar limpeza, por favor cole o ímã verde "Por favor limpe" no lado do corredor da porta de entrada antes das 9h da manhã seguinte.',
     noCleaning: 'Se não precisar de limpeza, por favor cole o ímã azul "Não perturbe" no lado do corredor da porta de entrada. Se não houver ímã, não faremos limpeza e apenas prepararemos toalhas na frente da porta. Do ponto de vista de higiene, a limpeza é a cada 3 dias (2 primeiras noites apenas troca de toalhas, 3ª noite limpeza, da 4ª noite em diante repete).',
-    parking: 'Informações de estacionamento parceiro',
-    parkingAllPrice: 'P1～P5: Todos 900 ienes por noite (Prolongação: 100 ienes por 30 minutos)',
-    parkingMidExit: '※Taxas serão aplicadas se você sair durante a estadia.',
-    parkingInquiry: '※Por favor, consulte, pois o estacionamento pode estar cheio dependendo do horário.',
-    parkingP1Name: 'P1 Estacionamento Hotel Ace',
-    parkingP2Name: 'P2 Estacionamento Ririo',
-    parkingP3Name: 'P3 Mitsui Re-Park',
-    parkingP4Name: 'P4 Estacionamento MOSS',
-    parkingP5Name: 'P5 Estacionamento Cross Terrace',
-    parkingUsageTime: '■Horários de uso:',
-    parkingP1Time: '15:00～Dia seguinte 11:00',
-    parkingP4Time: '16:00～Dia seguinte 11:00',
-    parkingP5Time: '17:00～Dia seguinte 11:00',
-    parkingExtension: '※Prolongação: 100 ienes por 30 minutos',
-    parkingHeightLimit: '■Limite de altura:',
-    parkingP2Height: 'Até 2.30m',
-    parkingP4Height: 'Até 2.50m',
-    parkingP5Height: 'Até 2.10m',
-    parkingReservation: '■Reserva antecipada: Não disponível',
     officialHP: 'Site oficial',
     preparing: 'Informações detalhadas estão sendo preparadas.',
     dinnerCouponLine1: 'Para o jantar desta noite',
@@ -1837,9 +1591,14 @@ const translations = {
     bathNotice2: '※進入女性大浴場需要密碼。密碼將在前台提供。',
     freeService: '免費服務',
     bathServiceDesc: '我們免費提供乳酸菌飲料和冰棒。',
-    breakfastTitle: '早餐（1F 餐廳）',
-    breakfastPrice: '成人 1,200日圓（含稅）／兒童（小學生）800日圓（含稅）',
-    breakfastHours: '6:15~9:30（最後入場9:00）',
+    breakfastTitle: '早餐（2F ALLY\'s Nagoya）',
+    breakfastPrice: '成人 1,650日圓（含稅）／兒童（小學生）1,100日圓（含稅）',
+    breakfastPriceLabel: '早餐費用',
+    breakfastHours: '6:30～9:30（點餐截止9:00）',
+    breakfastPurchaseNote: '※當日需用早餐的客人請於前台購買早餐券。',
+    breakfastPreschoolFree: '※學齡前兒童免費。',
+    breakfastDetail: '歐式角提供多種麵包、果醬、火腿與沙拉等；和風角提供蓋飯、茶泡飯、名古屋美食（きしめん、味噌豬排、どて煮、紅豆奶油）及麵包麥片、味噌湯、沙拉、飲品等自助。',
+    breakfastMenuNote: '※自助菜單每日更換，部分菜品可能無法提供。',
     breakfastNote1: '※滿座時可能需要等待。',
     breakfastNote2: '※根據擁擠情況，營業時間可能會有所調整。',
     serviceTitle: '服務區',
@@ -1870,36 +1629,6 @@ const translations = {
     cleaningRequest: '如需清掃，請在11:00前將Dondes卡「請清掃」掛在門外側門把手上。',
     sheetExchange: '如需清掃，請在早上9點前將綠色磁鐵「請打掃」貼在門外走廊側。',
     noCleaning: '如不需要清掃，請將藍色磁鐵「請勿打擾」貼在門外走廊側。如果沒有貼磁鐵，我們將不進行清掃，僅在門前準備毛巾類物品。出於衛生考慮，清掃為每3天1次（前2晚僅更換毛巾類，第3晚清掃，第4晚以後重複）。',
-    parking: '合作停車場資訊',
-    parkingAllPrice: 'P1～P5：全部一晚900日圓（延長30分鐘100日圓）',
-    parkingMidExit: '※中途出庫時會產生費用。',
-    parkingInquiry: '※根據時間段，停車場可能滿庫，請諮詢。',
-    parkingP1Name: 'P1 盛岡Ace酒店停車場',
-    parkingP2Name: 'P2 利利奧第一停車場',
-    parkingP3Name: 'P3 三井Re-Park',
-    parkingP4Name: 'P4 MOSS停車場',
-    parkingP5Name: 'P5 Cross Terrace停車場',
-    parkingUsageTime: '■使用時間：',
-    parkingP1Time: '15:00～次日11:00',
-    parkingP4Time: '16:00～次日11:00',
-    parkingP5Time: '17:00～次日11:00',
-    parkingExtension: '※延長30分鐘100日圓',
-    parkingHeightLimit: '■車高限制：',
-    parkingP2Height: '2.30m以下',
-    parkingP4Height: '2.50m以下',
-    parkingP5Height: '2.10m以下',
-    parkingReservation: '■提前預約：不可用',
-    parkingFee: '停車費',
-    heightLimit: '高度限制',
-    hours24: '24小時營業',
-    discountTime: '折扣適用時間',
-    parkingNote1: '※貨車、RV車、帶車頂行李架的車輛等，請使用此處。',
-    parkingDiscount1: '入庫後24小時',
-    parkingDiscount2: '入庫後24小時（可出入。需申報）',
-    parkingDiscount3: '入庫後最多36小時（電話預約、可出入）',
-    parkingNote2: '※從入庫到次日19點為一晚計算。（入庫可從早上7點開始）',
-    parkingNote3: '※摩托車（需提前預約）一晚600日元。',
-    parkingNote4: '※導航搜索時請輸入022-223-3863。',
     officialHP: '官方網站',
     preparing: '詳細信息正在準備中。',
     dinnerCouponLine1: '今晚的晚餐',
@@ -1944,7 +1673,15 @@ function getTranslations(lang: LanguageCode) {
   return merged as typeof translations.en;
 }
 
-export default function Home() {
+type PageProps = {
+  params?: Promise<Record<string, string | string[]>>;
+  searchParams?: Promise<Record<string, string | string[]>>;
+};
+
+export default function Home(props: PageProps) {
+  use(props.params ?? Promise.resolve({}));
+  use(props.searchParams ?? Promise.resolve({}));
+
   const { language: selectedLanguage, setLanguage: setSelectedLanguage } = useLanguage();
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [showOtherLanguages, setShowOtherLanguages] = useState(false);
@@ -1953,6 +1690,12 @@ export default function Home() {
   const [breakfastImageIndex, setBreakfastImageIndex] = useState(0);
   const servicesGridRef = useRef<HTMLDivElement>(null);
   const [visibleServices, setVisibleServices] = useState<Set<string>>(new Set());
+  const [headerLogoMounted, setHeaderLogoMounted] = useState(false);
+
+  useEffect(() => {
+    const id = setTimeout(() => setHeaderLogoMounted(true), 0);
+    return () => clearTimeout(id);
+  }, []);
 
   const heroImages = [
     '/main-page/hero-picture/Y341439427.jpg',
@@ -2059,24 +1802,7 @@ export default function Home() {
       ), 
       titleKey: 'checkInOut' as const,
       id: 'checkin',
-      textColor: 'text-[#3E8668]'
-    },
-    { 
-      icon: (
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center">
-          <Image
-            src={encodeURI('/main-page/icon-matome/スクリーンショット 2026-02-25 20.30.35.svg')}
-            alt={t.bath}
-            width={112}
-            height={112}
-            className="w-full h-full object-contain"
-            unoptimized
-          />
-        </div>
-      ), 
-      titleKey: 'bath' as const,
-      id: 'bath',
-      textColor: 'text-[#3E8668]'
+      textColor: 'text-[#85B510]'
     },
     { 
       icon: (
@@ -2093,7 +1819,7 @@ export default function Home() {
       ), 
       titleKey: 'breakfast' as const,
       id: 'breakfast',
-      textColor: 'text-[#3E8668]'
+      textColor: 'text-[#85B510]'
     },
     { 
       icon: (
@@ -2128,7 +1854,7 @@ export default function Home() {
       ), 
       titleKey: 'service' as const,
       id: 'service',
-      textColor: 'text-[#3E8668]'
+      textColor: 'text-[#85B510]'
     },
     { 
       icon: (
@@ -2145,7 +1871,7 @@ export default function Home() {
       ), 
       titleKey: 'wifi' as const,
       id: 'wifi',
-      textColor: 'text-[#3E8668]'
+      textColor: 'text-[#85B510]'
     },
     { 
       icon: (
@@ -2162,7 +1888,7 @@ export default function Home() {
       ), 
       titleKey: 'lighting' as const,
       id: 'lighting',
-      textColor: 'text-[#3E8668]'
+      textColor: 'text-[#85B510]'
     },
     { 
       icon: (
@@ -2179,7 +1905,7 @@ export default function Home() {
       ), 
       titleKey: 'longstay' as const,
       id: 'longstay',
-      textColor: 'text-[#3E8668]'
+      textColor: 'text-[#85B510]'
     },
     { 
       icon: (
@@ -2196,24 +1922,7 @@ export default function Home() {
       ), 
       titleKey: 'lost' as const,
       id: 'lost',
-      textColor: 'text-[#3E8668]'
-    },
-    { 
-      icon: (
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center">
-          <Image
-            src="/main-page/icon-matome/icon-parking.svg"
-            alt={t.parking}
-            width={112}
-            height={112}
-            className="w-full h-full object-contain"
-            unoptimized
-          />
-        </div>
-      ), 
-      titleKey: 'parking' as const,
-      id: 'parking',
-      textColor: 'text-[#3E8668]'
+      textColor: 'text-[#85B510]'
     },
   ];
 
@@ -2244,24 +1953,24 @@ return (
     <header className="bg-white/98 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-1.5 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-1 py-1.5 sm:gap-2 sm:py-2">
-          {/* 左側：ホテル名 */}
-            <div className="flex items-center gap-1 sm:gap-2 shrink min-w-0 flex-1">
-              <div className="min-w-0 flex-1 overflow-hidden">
-              <h1 className="sr-only">
-                {t.hotelName} {t.hotelTitle}
-              </h1>
-                <div className="relative h-14 w-full max-w-[380px] sm:h-20 sm:max-w-[550px] md:h-28 md:max-w-[750px]">
-                <Image
-                  src={encodeURI('/main-page/1141FB0E-4155-4A97-97AA-1726C242D2AF.JPG')}
-                  alt={`${t.hotelName} ${t.hotelTitle}`}
-                  fill
-                  className="object-contain object-left"
-                    sizes="(max-width: 640px) 380px, (max-width: 768px) 550px, 750px"
-                  unoptimized
-                />
+          {/* 左側：ロゴ＋ホテル名 */}
+            <div className="flex items-center gap-2 sm:gap-3 shrink min-w-0 flex-1">
+              <div className="relative h-10 w-24 shrink-0 sm:h-12 sm:w-28 md:h-14 md:w-32">
+                {headerLogoMounted && (
+                  <Image
+                    src={encodeURI('/main-page/スクリーンショット 2026-03-06 11.00.52.png')}
+                    alt=""
+                    fill
+                    className="object-contain object-left"
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
+                    unoptimized
+                  />
+                )}
               </div>
+              <h1 className="text-base sm:text-lg md:text-xl font-medium text-gray-800 truncate" style={{ fontFamily: '"Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif' }}>
+                ホテル シルク・トゥリー名古屋
+              </h1>
             </div>
-          </div>
 
             {/* 右側：言語選択と飲食店クーポンボタン */}
             <div className="flex items-center justify-end shrink-0 space-x-0.5 sm:space-x-1 md:space-x-2 flex-nowrap ml-1">
@@ -2397,12 +2106,12 @@ return (
                       : 'opacity-0 translate-y-4'
                   }`}
                   style={{ 
-                    backgroundColor: '#3E8668',
+                    backgroundColor: '#85B510',
                     boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2)',
                     transitionDelay: visibleServices.has(service.id) ? `${index * 100}ms` : '0ms'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 30px rgba(62, 134, 104, 0.6), 0 25px 50px -12px rgba(0, 0, 0, 0.4)';
+                    e.currentTarget.style.boxShadow = '0 0 30px rgba(133, 181, 16, 0.6), 0 25px 50px -12px rgba(0, 0, 0, 0.4)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2)';
@@ -2441,43 +2150,6 @@ return (
                     {t[service.titleKey]}
                   </div>
                 </button>
-              ) : service.id === 'bath' ? (
-                <button
-                  key={service.id}
-                  data-service-id={service.id}
-                  onClick={() => {
-                    if (service.id === 'breakfast') {
-                      setBreakfastImageIndex(0);
-                    }
-                    setSelectedService(service.id);
-                  }}
-                  className={`bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-xl hover:shadow-[0_0_25px_rgba(62,134,104,0.6)] transition-all duration-300 ease-out flex flex-col items-center justify-center min-h-[100px] sm:min-h-[120px] md:min-h-[140px] hover:scale-105 ${
-                    visibleServices.has(service.id)
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-12'
-                  }`}
-                  style={{
-                    transitionDelay: visibleServices.has(service.id) ? `${index * 100}ms` : '0ms'
-                  }}
-                >
-                  <div className="mb-3 sm:mb-4 flex justify-center items-center shrink-0">
-                    {service.icon}
-                  </div>
-                  <div className={`text-[11px] sm:text-sm font-semibold text-center leading-snug wrap-break-word px-1 ${service.textColor || 'text-blue-800'}`}>
-                    {(() => {
-                      const label = t[service.titleKey];
-                      if (typeof label !== 'string') return label;
-                      const parts = label.split(' ');
-                      if (parts.length < 2) return label;
-                      return (
-                        <>
-                          <span className="block">{parts[0]}</span>
-                          <span className="block">{parts.slice(1).join(' ')}</span>
-                        </>
-                      );
-                    })()}
-                  </div>
-                </button>
               ) : (
                 <button
                   key={service.id}
@@ -2513,11 +2185,11 @@ return (
       {/* 飲食店クーポンとグリーンハウスボタン */}
       <section className="bg-white py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {/* 飲食店クーポンボタン */}
             <Link
               href="/coupon"
-              className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] transition-all duration-300 min-h-[144px] sm:min-h-[144px] group hover:scale-[1.02] active:scale-[0.98]"
+              className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] transition-all duration-300 min-h-[200px] sm:min-h-[220px] sm:col-span-2 w-full group hover:scale-[1.02] active:scale-[0.98]"
               style={{
                 background: 'linear-gradient(145deg, #059669, #047857)',
                 padding: '3px',
@@ -2558,9 +2230,9 @@ return (
               <div className="absolute inset-[3px] rounded-[10px] border-2 border-white/20 pointer-events-none"></div>
               
               {/* テキストコンテンツ */}
-              <div className="relative z-10 p-4 sm:p-6 flex flex-col items-center justify-center min-h-[138px] sm:min-h-[138px] gap-3">
+              <div className="relative z-10 p-6 sm:p-8 flex flex-col items-center justify-center min-h-[194px] sm:min-h-[214px] gap-3">
                 <div className="text-center">
-                  <div className="text-xl sm:text-2xl md:text-3xl font-black leading-tight mb-2" style={{ 
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black leading-tight mb-2" style={{ 
                     fontFamily: '"Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif',
                     color: '#FFE66D',
                     textShadow: '0 0 20px rgba(255, 230, 109, 0.8), 0 0 10px rgba(255, 200, 0, 0.6), 3px 3px 6px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(255, 255, 255, 0.3)',
@@ -2568,7 +2240,7 @@ return (
                   }}>
                     {t.dinnerCouponLine1}
                   </div>
-                  <div className="text-lg sm:text-xl md:text-2xl font-black leading-tight" style={{ 
+                  <div className="text-xl sm:text-2xl md:text-3xl font-black leading-tight" style={{ 
                     fontFamily: '"Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif',
                     color: '#FFFFFF',
                     textShadow: '0 0 15px rgba(255, 140, 0, 0.7), 0 0 8px rgba(255, 100, 0, 0.5), 2px 2px 6px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(255, 200, 0, 0.4)',
@@ -2579,60 +2251,6 @@ return (
                 </div>
               </div>
             </Link>
-
-            {/* 公式サイトボタン */}
-            <a
-              href="https://www.silk-tree.jp/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(62,134,104,0.6)] transition-all duration-300 min-h-[144px] sm:min-h-[144px] hover:scale-[1.02] active:scale-[0.98] overflow-hidden group"
-            >
-              {/* 背景画像グリッド */}
-              <div className="absolute inset-0 grid grid-cols-2 gap-0.5">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src="/main-page/431897.jpg"
-                    alt="アウトドア用品店内"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="relative overflow-hidden">
-                  <Image
-                    src="/main-page/431898.jpg"
-                    alt="キャンプ用品展示"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-              </div>
-              
-              {/* オーバーレイ */}
-              <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/40 to-black/60 group-hover:from-black/60 group-hover:via-black/50 group-hover:to-black/70 transition-all duration-300"></div>
-              
-              {/* 内側の光沢枠 */}
-              <div className="absolute inset-[3px] rounded-[10px] border-2 border-white/20 pointer-events-none"></div>
-              
-              {/* コンテンツ */}
-              <div className="relative z-10 p-4 sm:p-6 flex flex-col items-center justify-center min-h-[138px] sm:min-h-[138px] gap-1">
-                {/* ロゴ */}
-                <div className="relative w-80 sm:w-96 h-24 sm:h-24">
-                  <Image
-                    src="/main-page/icon-matome/logo.svg"
-                    alt="ホテル シルク・トゥリー 名古屋"
-                    fill
-                    className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-                    sizes="(max-width: 640px) 320px, 384px"
-                    unoptimized
-                  />
-                </div>
-                
-                {/* テキスト */}
-                <div className="text-white text-[10px] sm:text-xs md:text-sm font-extrabold text-center drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)] tracking-widest uppercase leading-tight" style={{ fontFamily: '"Arial Black", "Helvetica", "Hiragino Kaku Gothic ProN", sans-serif', letterSpacing: '0.15em', textShadow: '2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(255,255,255,0.1)' }}>
-                  今すぐ公式サイトをチェック！<br />会員大募集
-                </div>
-              </div>
-            </a>
           </div>
         </div>
       </section>
@@ -2680,75 +2298,6 @@ return (
                 </button>
               </>
             )}
-            {selectedService === 'bath' && (
-              <>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t.bathTitle}</h3>
-                
-                <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                  <h4 className="font-bold text-lg text-gray-900 mb-4">{t.amenitiesTitle}</h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityTowel}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityBathTowel}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityDryer}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityDeodorant}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityShampoo}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityConditioner}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityHandSoap}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityToothbrush}
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.amenityBodySoap}
-                    </li>
-                  </ul>
-                  <p className="text-sm text-gray-600 mt-4 pl-5">{t.amenitiesNote}</p>
-                </div>
-
-                {/* アメニティ画像 */}
-                <div className="mb-6 rounded-lg overflow-hidden border border-gray-200">
-                  <div className="relative w-full h-64">
-                    <Image
-                      src={encodeURI('/main-page/10-topic-picture/スクリーンショット 2026-02-08 2.24.32.png')}
-                      alt="アメニティコーナー"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 672px"
-                      unoptimized
-                    />
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setSelectedService(null)}
-                  className="w-full bg-white hover:bg-gray-50 text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  {t.close}
-                </button>
-              </>
-            )}
             {selectedService === 'breakfast' && (
               <>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
@@ -2757,10 +2306,15 @@ return (
                 
                 {/* 朝食セクション */}
                 <div className="mb-6">
-                    <div className="space-y-4 mb-4">
+                    <div className="space-y-3 mb-4">
                       <div className="text-gray-700">
-                      <span className="font-semibold">{t.breakfastTime}</span> {t.breakfastTimeDetail}
+                        <span className="font-semibold">{t.breakfastTime}</span> {t.breakfastTimeDetail}
                       </div>
+                      <div className="text-gray-700">
+                        <span className="font-semibold">{t.breakfastPriceLabel}</span> {t.breakfastPrice}
+                      </div>
+                      <p className="text-sm text-gray-600">{t.breakfastPurchaseNote}</p>
+                      <p className="text-sm text-gray-600">{t.breakfastPreschoolFree}</p>
                     </div>
                   {/* 朝食の画像 */}
                   <div className="mb-4 rounded-lg overflow-hidden">
@@ -2802,10 +2356,13 @@ return (
                       </button>
                     </div>
                   </div>
-                    <div className="space-y-2 text-gray-700">
+                    <div className="space-y-3 text-gray-700">
                     <p className="font-semibold text-lg">{t.breakfastDesc}</p>
                     <p className="text-[#3E8668] font-bold text-base">{t.breakfastCatchphrase}</p>
+                    <p className="text-sm leading-relaxed">{t.breakfastDetail}</p>
+                    <p className="text-sm text-gray-600">{t.breakfastMenuNote}</p>
                     <p className="text-sm text-gray-600">{t.breakfastNotice}</p>
+                    <p className="text-xs text-gray-500">{t.breakfastNote1} {t.breakfastNote2}</p>
                     </div>
                 </div>
 
@@ -2826,19 +2383,10 @@ return (
                   <h4 className="font-bold text-lg text-gray-900 mb-3">{t.floor1F}</h4>
                   
                   {/* 1F画像 */}
-                  <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="mb-4">
                     <div className="w-full">
                       <Image
                         src="/main-page/10-topic-picture/431503.jpg"
-                        alt="1Fサービスコーナー"
-                        width={600}
-                        height={400}
-                        className="w-full h-auto rounded-lg border border-gray-200"
-                      />
-                    </div>
-                    <div className="w-full">
-                      <Image
-                        src="/main-page/10-topic-picture/431504.jpg"
                         alt="1Fサービスコーナー"
                         width={600}
                         height={400}
@@ -2946,11 +2494,11 @@ return (
                     <div className="rounded-lg bg-[#E8F5F0] border border-[#3E8668] px-4 py-3 flex items-center justify-between">
                       <div className="flex items-center">
                     <span className="font-bold text-gray-900">{t.password}</span>
-                        <span className="font-bold text-[#3E8668] ml-2">silk-tree</span>
+                        <span className="font-bold text-[#3E8668] ml-2">silktree</span>
                       </div>
                       <button
                         onClick={() => {
-                          navigator.clipboard.writeText('silk-tree');
+                          navigator.clipboard.writeText('silktree');
                           alert(t.passwordCopied);
                         }}
                         className="ml-4 bg-[#3E8668] hover:bg-[#2D6550] text-white px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-1 shrink-0 shadow-lg hover:shadow-[0_0_20px_rgba(62,134,104,0.6)] hover:scale-105 active:scale-95"
@@ -3068,110 +2616,7 @@ return (
                 </button>
               </>
             )}
-            {selectedService === 'parking' && (
-              <>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t.parking}</h3>
-
-                {/* 提携駐車場 P1〜P5 のマップ（Leaflet + OpenStreetMap/CARTO、5本ピン＋凡例） */}
-                <div className="mb-6 w-full">
-                  <ParkingMap />
-                  <p className="mt-2 text-xs text-gray-600 mb-2">各駐車場の位置を地図で開く（タップでピン位置が開きます）</p>
-                  <ul className="space-y-1.5 mt-2">
-                    <li>
-                      <MapFallbackLinkGeneric address="〒020-0021 岩手県盛岡市中央通２丁目１１−３５（P1 ホテルエース駐車場）" lat={39.7043323} lng={141.1447715} className="text-sm font-medium text-[#304E84] underline underline-offset-2">
-                        P1 ホテルエース駐車場（タイムズのB ホテルエース機械式）
-                      </MapFallbackLinkGeneric>
-                    </li>
-                    <li>
-                      <MapFallbackLinkGeneric address="〒020-0021 岩手県盛岡市中央通２丁目９－１３（P2 リリオ第一駐車場）" lat={39.704337} lng={141.1456775} className="text-sm font-medium text-[#304E84] underline underline-offset-2">
-                        P2 リリオ第一駐車場
-                      </MapFallbackLinkGeneric>
-                    </li>
-                    <li>
-                      <MapFallbackLinkGeneric address="岩手県盛岡市盛岡駅前通付近（P3 三井のリパーク）" lat={39.7032} lng={141.1468} className="text-sm font-medium text-[#304E84] underline underline-offset-2">
-                        P3 三井のリパーク
-                      </MapFallbackLinkGeneric>
-                    </li>
-                    <li>
-                      <MapFallbackLinkGeneric address="〒020-0022 岩手県盛岡市大通二丁目8-14（P4 MOSS駐車場）" lat={39.7025476} lng={141.144922} className="text-sm font-medium text-[#304E84] underline underline-offset-2">
-                        P4 MOSS駐車場
-                      </MapFallbackLinkGeneric>
-                    </li>
-                    <li>
-                      <MapFallbackLinkGeneric address="〒020-0022 岩手県盛岡市大通3丁目3-18（P5 クロステラス駐車場）" lat={39.703083} lng={141.142611} className="text-sm font-medium text-[#304E84] underline underline-offset-2">
-                        P5 クロステラス駐車場（アートホテル盛岡付近）
-                      </MapFallbackLinkGeneric>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 駐車場情報 */}
-                <div className="space-y-6 text-sm text-gray-800">
-                  {/* 共通注意事項 */}
-                  <div className="bg-yellow-50 rounded-lg p-4 border-2 border-yellow-300">
-                    <div className="font-bold text-base mb-2 text-center text-red-600">
-                      {t.parkingAllPrice}
-                    </div>
-                    <div className="text-xs text-gray-700 space-y-1 mt-2">
-                      <p>{t.parkingMidExit}</p>
-                      <p>{t.parkingInquiry}</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="font-semibold text-lg mb-2">{t.parkingP1Name}</div>
-                    <div className="space-y-1 text-sm">
-                      <p className="font-semibold text-red-600">{t.parkingUsageTime}{t.parkingP1Time}</p>
-                      <p className="text-xs text-gray-600 mt-2">{t.parkingExtension}</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="font-semibold text-lg mb-2">{t.parkingP2Name}</div>
-                    <div className="space-y-1 text-sm">
-                      <p className="font-semibold text-red-600">{t.parkingUsageTime}{t.parkingP1Time}</p>
-                      <p className="font-semibold">{t.parkingHeightLimit}{t.parkingP2Height}</p>
-                      <p className="text-xs text-gray-600 mt-2">{t.parkingExtension}</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="font-semibold text-lg mb-2">{t.parkingP3Name}</div>
-                    <div className="space-y-1 text-sm">
-                      <p className="font-semibold text-red-600">{t.parkingUsageTime}{t.parkingP1Time}</p>
-                      <p className="font-semibold">{t.parkingReservation}</p>
-                      <p className="text-xs text-gray-600 mt-2">{t.parkingExtension}</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="font-semibold text-lg mb-2">{t.parkingP4Name}</div>
-                    <div className="space-y-1 text-sm">
-                      <p className="font-semibold text-red-600">{t.parkingUsageTime}{t.parkingP4Time}</p>
-                      <p className="font-semibold">{t.parkingHeightLimit}{t.parkingP4Height}</p>
-                      <p className="text-xs text-gray-600 mt-2">{t.parkingExtension}</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="font-semibold text-lg mb-2">{t.parkingP5Name}</div>
-                    <div className="space-y-1 text-sm">
-                      <p className="font-semibold text-red-600">{t.parkingUsageTime}{t.parkingP5Time}</p>
-                      <p className="font-semibold">{t.parkingHeightLimit}{t.parkingP5Height}</p>
-                      <p className="text-xs text-gray-600 mt-2">{t.parkingExtension}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setSelectedService(null)}
-                  className="mt-6 w-full bg-white hover:bg-gray-50 text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  {t.close}
-                </button>
-              </>
-            )}
-            {selectedService !== 'checkin' && selectedService !== 'bath' && selectedService !== 'breakfast' && selectedService !== 'service' && selectedService !== 'wifi' && selectedService !== 'lost' && selectedService !== 'lighting' && selectedService !== 'longstay' && selectedService !== 'parking' && (
+            {selectedService !== 'checkin' && selectedService !== 'breakfast' && selectedService !== 'service' && selectedService !== 'wifi' && selectedService !== 'lost' && selectedService !== 'lighting' && selectedService !== 'longstay' && (
               <>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {services.find(s => s.id === selectedService) ? t[services.find(s => s.id === selectedService)!.titleKey] : ''}
@@ -3207,27 +2652,26 @@ return (
                 )}
               </h3>
               <div className="space-y-2 text-sm text-gray-700 mb-6">
-                <p>〒020-0021<br />{selectedLanguage === 'ja' ? '岩手県盛岡市中央通２丁目１１−３５' : selectedLanguage === 'en' ? '2-11-35 Chuo-dori, Morioka, Iwate 020-0021' : selectedLanguage === 'zh' ? '岩手县盛冈市中央通2丁目11-35' : '이와테현 모리오카시 추오도리 2-11-35'}</p>
-                <p>TEL 019-654-3811</p>
+                <p>〒460-0003<br />{selectedLanguage === 'ja' ? '愛知県名古屋市中区錦２丁目２０−５' : selectedLanguage === 'en' ? '2-20-5 Nishiki, Naka-ku, Nagoya, Aichi 460-0003' : selectedLanguage === 'zh' ? '爱知县名古屋市中区锦2丁目20-5' : '아이치현 나고야시 나카구 니시키 2-20-5'}</p>
+                <p>TEL 052-222-1113</p>
               </div>
               <div className="mt-6">
                 <Link
-                  href="https://breezbay-group.com/hgt-s-kokubuncho/"
+                  href="https://www.silk-tree.jp/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex flex-col items-center space-y-2 hover:opacity-80 transition-opacity"
                 >
-                  <div className="relative w-20 h-20">
+                  <div className="relative w-32 h-14 sm:w-40 sm:h-16">
                     <Image
-                      src={encodeURI('/main-page/Gemini_Generated_Image_i9zvggi9zvggi9zv.png')}
-                      alt={selectedLanguage === 'ja' ? '鳥のキャラクター' : selectedLanguage === 'en' ? 'Bird Character' : selectedLanguage === 'zh' ? '鸟角色' : selectedLanguage === 'ko' ? '새 캐릭터' : 'Bird Character'}
+                      src={encodeURI('/main-page/スクリーンショット 2026-03-06 11.00.52.png')}
+                      alt={t.officialHP}
                       fill
                       className="object-contain"
-                      sizes="80px"
+                      sizes="(max-width: 640px) 128px, 160px"
                       unoptimized
                     />
                   </div>
-                  <span className="text-sm font-medium text-gray-900">{t.officialHP}</span>
                 </Link>
               </div>
             </div>
@@ -3236,7 +2680,7 @@ return (
             <div className="md:col-span-3">
               <div className="w-full h-64 sm:h-80 bg-gray-200 rounded-lg overflow-hidden border border-gray-300 shadow-sm">
                 <iframe
-                  src={`https://www.google.com/maps?q=${encodeURIComponent('岩手県盛岡市中央通2丁目11-35 ホテルエース盛岡')}&output=embed&hl=ja&z=17`}
+                  src={`https://www.google.com/maps?q=${encodeURIComponent('愛知県名古屋市中区錦2丁目20-5 ホテルシルク・トゥリー名古屋')}&output=embed&hl=ja&z=17`}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -3244,7 +2688,7 @@ return (
                   allow="geolocation; fullscreen"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full"
-                  title="ホテルエース盛岡"
+                  title="ホテルシルク・トゥリー名古屋"
                 />
               </div>
               <MapFallbackLink />

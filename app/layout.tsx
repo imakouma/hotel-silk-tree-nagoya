@@ -53,7 +53,7 @@ export default function RootLayout({
       {
         "@type": "LocationFeatureSpecification",
         "name": "朝食",
-        "description": "2F ALLY's Nagoya。大人 1,650円（税込）／小学生 1,100円（税込）。OPEN 6:30～CLOSE 9:30（ラストオーダー9:00）。ヨーロピアン&オリエンタルスタイルビュッフェ。"
+        "description": "2F ALLY's Nagoya。大人 1,650円（税込）／小学生 1,100円（税込）／未就学児無料。6:30～9:30（オーダーストップ9:00）。当日券はフロントで販売。ヨーロピアン＆オリエンタル・モーニングブッフェ（名古屋めし・のっけ丼・パン・スープ・サラダ・ドリンク等）。"
       },
       {
         "@type": "LocationFeatureSpecification",
@@ -63,7 +63,7 @@ export default function RootLayout({
       {
         "@type": "LocationFeatureSpecification",
         "name": "Wi-Fi",
-        "description": "無料Wi-Fi。SSID: silk-tree。有線LANはご利用いただけません。"
+        "description": "無料Wi-Fi。SSID: silk-tree。パスワード: silktree。有線LANはご利用いただけません。"
       },
       {
         "@type": "LocationFeatureSpecification",
