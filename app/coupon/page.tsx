@@ -19,16 +19,16 @@ const MAP_BTN_BG = "#F5A623";
 const COUPON_SITE = "/coupon-page";
 const bannerImage = `${COUPON_SITE}/title.png`;
 const shopImages = [
-  `${COUPON_SITE}/LINE_NOTE_260306_1.jpg`, // 栄の串せぶん / うなぎ四代目菊川 栄店
-  `${COUPON_SITE}/LINE_NOTE_260306_2.jpg`, // 大衆すし酒場 魚喜
-  `${COUPON_SITE}/LINE_NOTE_260306_3.jpg`, // 大衆ホルモン・煙力 伏見店
+  `${COUPON_SITE}/437042.jpg`, // 栄の串せぶん / うなぎ四代目菊川 栄店
+  `${COUPON_SITE}/437040.jpg`, // 大衆すし酒場 魚喜
+  `${COUPON_SITE}/437041.jpg`, // 大衆ホルモン・煙力 伏見店
 ];
 
 /** モーダル用の店舗詳細画像（MAP押下時に表示）※表示順に合わせて並べ替え */
 const shopModalImages: string[][] = [
-  [`${COUPON_SITE}/LINE_NOTE_260306_3.jpg`], // 1番目: 大衆ホルモン・煙力 伏見店
-  [`${COUPON_SITE}/LINE_NOTE_260306_1.jpg`], // 2番目: 栄の串せぶん
-  [`${COUPON_SITE}/LINE_NOTE_260306_2.jpg`], // 3番目: 大衆すし酒場 魚喜
+  [`${COUPON_SITE}/437041.jpg`], // 1番目: 大衆ホルモン・煙力 伏見店
+  [`${COUPON_SITE}/437042.jpg`], // 2番目: 栄の串せぶん
+  [`${COUPON_SITE}/437040.jpg`], // 3番目: 大衆すし酒場 魚喜
 ];
 
 
