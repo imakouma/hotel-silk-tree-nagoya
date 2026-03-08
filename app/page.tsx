@@ -12,7 +12,7 @@ const translations = {
     hotelTitle: 'ホテル シルク・トゥリー 名古屋',
     heroTitle: '館内のご案内',
     welcomeMessage: '本日は「ホテル シルク・トゥリー 名古屋」をご利用いただき誠にありがとうございます。',
-    welcomeMessage2: 'ご不明な点がございましたらフロント（内線333）までお気軽にお尋ねください。',
+    welcomeMessage2: '',
     restaurantCoupon: '限定クーポン',
     checkInOut: '入退館時間',
     bath: 'アメニティ',
@@ -123,7 +123,7 @@ const translations = {
     hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Hotel Guide',
     welcomeMessage: 'Thank you very much for staying with us at Hotel Silk Tree Nagoya today.',
-    welcomeMessage2: 'If you have any questions, please contact the front desk (extension 333).',
+    welcomeMessage2: '',
     restaurantCoupon: 'Coupon',
     checkInOut: 'Check-in/Check-out',
     bath: 'Amenities',
@@ -231,7 +231,7 @@ const translations = {
     hotelTitle: '盛冈Ace酒店',
     heroTitle: '酒店馆内指南',
     welcomeMessage: '感谢您今天入住"盛冈Ace酒店"。',
-    welcomeMessage2: '如有任何疑问，请随时咨询前台工作人员。',
+    welcomeMessage2: '',
     restaurantCoupon: '餐饮优惠券',
     checkInOut: '入住/退房时间',
     bath: '大堂・设施',
@@ -341,7 +341,7 @@ const translations = {
     hotelTitle: '호텔 에이스 모리오카',
     heroTitle: '호텔 관내 안내',
     welcomeMessage: '오늘 "호텔 에이스 모리오카"를 이용해 주셔서 진심으로 감사드립니다.',
-    welcomeMessage2: '궁금하신 점이 있으시면 프런트 데스크 직원에게 언제든지 문의해 주세요.',
+    welcomeMessage2: '',
     restaurantCoupon: '음식점 쿠폰',
     checkInOut: '입실/퇴실 시간',
     bath: '로비・시설',
@@ -451,7 +451,7 @@ const translations = {
     hotelTitle: 'Dormy Inn Sendai ANNEX',
     heroTitle: 'Guide de l\'hôtel',
     welcomeMessage: 'Merci beaucoup d\'avoir séjourné aujourd\'hui.',
-    welcomeMessage2: 'Si vous avez des questions, n\'hésitez pas à contacter notre réception.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Coupon Restaurant',
     checkInOut: 'Enregistrement/Départ',
     bath: 'Bain public',
@@ -561,7 +561,7 @@ const translations = {
     hotelTitle: 'Dormy Inn Sendai ANNEX',
     heroTitle: 'Hotel-Führer',
     welcomeMessage: 'Vielen Dank, dass Sie heute bei uns übernachtet haben.',
-    welcomeMessage2: 'Wenn Sie Fragen haben, wenden Sie sich bitte an unsere Rezeption.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Restaurant-Gutschein',
     checkInOut: 'Check-in/Check-out',
     bath: 'Öffentliches Bad',
@@ -671,7 +671,7 @@ const translations = {
     hotelTitle: 'Dormy Inn Sendai ANNEX',
     heroTitle: 'Guía del hotel',
     welcomeMessage: 'Muchas gracias por alojarse con nosotros hoy.',
-    welcomeMessage2: 'Si tiene alguna pregunta, no dude en consultar a nuestro personal de recepción.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Cupón de restaurante',
     checkInOut: 'Registro/Salida',
     bath: 'Baño público',
@@ -781,7 +781,7 @@ const translations = {
     hotelTitle: 'Dormy Inn Sendai ANNEX',
     heroTitle: 'Guida dell\'hotel',
     welcomeMessage: 'Grazie mille per aver soggiornato con noi oggi.',
-    welcomeMessage2: 'Se ha domande, non esiti a contattare il nostro personale della reception.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Buono ristorante',
     checkInOut: 'Check-in/Check-out',
     bath: 'Bagno pubblico',
@@ -891,7 +891,7 @@ const translations = {
     hotelTitle: 'โรงแรมแกรนด์เทอเรส เซนได โคคุบุนโช',
     heroTitle: 'คู่มือภายในโรงแรม',
     welcomeMessage: 'ขอขอบคุณที่เข้าพักที่ "โรงแรมแกรนด์เทอเรส เซนได โคคุบุนโช" ในวันนี้',
-    welcomeMessage2: 'หากมีข้อสงสัย กรุณาสอบถามพนักงานแผนกต้อนรับได้ตลอดเวลา',
+    welcomeMessage2: '',
     restaurantCoupon: 'คูปองร้านอาหาร',
     checkInOut: 'เวลาเช็คอิน/เช็คเอาท์',
     bath: 'ล็อบบี้・สิ่งอำนวยความสะดวก',
@@ -1001,7 +1001,7 @@ const translations = {
     hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
     heroTitle: 'Hướng dẫn trong khách sạn',
     welcomeMessage: 'Cảm ơn quý khách đã sử dụng "Hotel Grand Terrace Sendai Kokubuncho" hôm nay.',
-    welcomeMessage2: 'Nếu có bất kỳ thắc mắc nào, vui lòng hỏi nhân viên lễ tân.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Phiếu giảm giá nhà hàng',
     checkInOut: 'Giờ nhận/trả phòng',
     bath: 'Sảnh・Cơ sở vật chất',
@@ -1111,7 +1111,7 @@ const translations = {
     hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
     heroTitle: 'Panduan dalam hotel',
     welcomeMessage: 'Terima kasih telah menginap di "Hotel Grand Terrace Sendai Kokubuncho" hari ini.',
-    welcomeMessage2: 'Jika ada pertanyaan, silakan tanyakan kepada staf resepsionis kami.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Kupon restoran',
     checkInOut: 'Waktu check-in/check-out',
     bath: 'Lobi・Fasilitas',
@@ -1221,7 +1221,7 @@ const translations = {
     hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
     heroTitle: 'Gabay sa hotel',
     welcomeMessage: 'Maraming salamat sa pag-stay sa "Hotel Grand Terrace Sendai Kokubuncho" ngayong araw.',
-    welcomeMessage2: 'Kung mayroon kayong mga tanong, mangyaring magtanong sa aming staff sa front desk.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Coupon ng restaurant',
     checkInOut: 'Oras ng check-in/check-out',
     bath: 'Lobby・Pasilidad',
@@ -1331,7 +1331,7 @@ const translations = {
     hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
     heroTitle: 'Panduan hotel',
     welcomeMessage: 'Terima kasih kerana menginap di "Hotel Grand Terrace Sendai Kokubuncho" hari ini.',
-    welcomeMessage2: 'Jika ada sebarang pertanyaan, sila tanya kakitangan kaunter depan kami.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Kupon restoran',
     checkInOut: 'Masa daftar masuk/keluar',
     bath: 'Lobi・Kemudahan',
@@ -1441,7 +1441,7 @@ const translations = {
     hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
     heroTitle: 'Guia do hotel',
     welcomeMessage: 'Muito obrigado por se hospedar no "Hotel Grand Terrace Sendai Kokubuncho" hoje.',
-    welcomeMessage2: 'Se tiver alguma dúvida, por favor pergunte aos funcionários da recepção.',
+    welcomeMessage2: '',
     restaurantCoupon: 'Cupom de restaurante',
     checkInOut: 'Horário de check-in/check-out',
     bath: 'Lobby・Instalações',
@@ -1551,7 +1551,7 @@ const translations = {
     hotelTitle: '盛岡Ace酒店',
     heroTitle: '酒店館內指南',
     welcomeMessage: '感謝您今天入住「盛岡Ace酒店」。',
-    welcomeMessage2: '如有任何疑問，請隨時諮詢前台工作人員。',
+    welcomeMessage2: '',
     restaurantCoupon: '餐飲優惠券',
     checkInOut: '入住/退房時間',
     bath: '大廳・設施',
@@ -1698,12 +1698,17 @@ export default function Home(props: PageProps) {
   }, []);
 
   const heroImages = [
-    '/main-page/hero-picture/Y341439427.jpg',
-    '/main-page/hero-picture/スクリーンショット 2026-02-08 2.03.32.png',
-    '/main-page/hero-picture/スクリーンショット 2026-02-08 2.03.44.png',
-    '/main-page/hero-picture/スクリーンショット 2026-02-08 2.04.01.png',
-    '/main-page/hero-picture/スクリーンショット 2026-02-08 2.04.15.png',
-    '/main-page/hero-picture/download.jpg',
+    '/main-page/download-1.jpg',
+    '/main-page/download-2.jpg',
+    '/main-page/download.jpg',
+    '/main-page/images-1.jpg',
+    '/main-page/images.jpg',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.06.49.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.06.59.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.06.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.13.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.27.png',
+    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.32.png',
   ];
 
   const breakfastImages = [
@@ -2082,8 +2087,6 @@ return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
             {t.welcomeMessage}
-            <br className="hidden sm:block" />
-            {t.welcomeMessage2}
           </p>
         </div>
       </section>
@@ -2258,8 +2261,6 @@ return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
             {t.welcomeMessage}
-            <br className="hidden sm:block" />
-            {t.welcomeMessage2}
           </p>
         </div>
       </section>
