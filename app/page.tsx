@@ -2383,7 +2383,7 @@ return (
                   {/* 2F画像 */}
                   <div className="mb-4 w-full">
                     <Image
-                      src="/main-page/10-topic-picture/431506.jpg"
+                      src="/main-page/gallery_13.jpg"
                       alt="2Fサービスコーナー"
                       width={800}
                       height={600}
