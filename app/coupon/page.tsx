@@ -19,16 +19,16 @@ const MAP_BTN_BG = "#F5A623";
 const COUPON_SITE = "/coupon-page";
 const bannerImage = `${COUPON_SITE}/title.png`;
 const shopImages = [
-  `${COUPON_SITE}/437042.jpg`, // 栄の串せぶん / うなぎ四代目菊川 栄店
-  `${COUPON_SITE}/437040.jpg`, // 大衆すし酒場 魚喜
-  `${COUPON_SITE}/437041.jpg`, // 大衆ホルモン・煙力 伏見店
+  `${COUPON_SITE}/437040.jpg`, // 大衆すし酒場 魚喜（1枚目カード用）
+  `${COUPON_SITE}/437042.jpg`, // 栄の串せぶん / うなぎ四代目菊川（3枚目カード用）
+  `${COUPON_SITE}/437041.jpg`, // 大衆ホルモン・煙力 伏見店（2枚目カード用）
 ];
 
 /** モーダル用の店舗詳細画像（MAP押下時に表示）※表示順に合わせて並べ替え */
 const shopModalImages: string[][] = [
   [`${COUPON_SITE}/437041.jpg`], // 1番目: 大衆ホルモン・煙力 伏見店
-  [`${COUPON_SITE}/437042.jpg`], // 2番目: 栄の串せぶん
-  [`${COUPON_SITE}/437040.jpg`], // 3番目: 大衆すし酒場 魚喜
+  [`${COUPON_SITE}/437040.jpg`], // 2番目: 大衆すし酒場 魚喜
+  [`${COUPON_SITE}/437042.jpg`], // 3番目: 栄の串せぶん
 ];
 
 
@@ -895,13 +895,13 @@ export default function CouponPage() {
                   <span className="line-clamp-2 text-xs sm:text-sm">{name}</span>
                 </div>
 
-                {/* 料理画像（クーポン幅いっぱい・ややアップで見やすく表示） */}
-                <div className="relative w-full h-[240px] sm:h-[300px] md:h-[360px] bg-gray-700 overflow-hidden">
+                {/* 料理画像（ヘッダーと同じ幅いっぱい・画像全体を切らずに表示・余白なし） */}
+                <div className="relative w-full overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={encodeURI(shop.imageSrc)}
                     alt={name}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
+                    className="block w-full h-auto"
                   />
                 </div>
 
