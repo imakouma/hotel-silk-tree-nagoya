@@ -1698,17 +1698,14 @@ export default function Home(props: PageProps) {
   }, []);
 
   const heroImages = [
-    '/main-page/download-1.jpg',
-    '/main-page/download-2.jpg',
-    '/main-page/download.jpg',
-    '/main-page/images-1.jpg',
-    '/main-page/images.jpg',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.06.49.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.06.59.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.06.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.13.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.27.png',
-    '/main-page/10-topic-picture/morning-picture/スクリーンショット 2026-03-06 13.07.32.png',
+    '/main-page/gallery_01.jpg',
+    '/main-page/gallery_02.jpg',
+    '/main-page/gallery_05.jpg',
+    '/main-page/gallery_06.jpg',
+    '/main-page/gallery_07.jpg',
+    '/main-page/gallery_08.jpg',
+    '/main-page/gallery_13.jpg',
+    '/main-page/gallery_16.jpg',
   ];
 
   const breakfastImages = [
@@ -2332,7 +2329,7 @@ return (
                   <div className="mb-4">
                     <div className="w-full">
                       <Image
-                        src="/main-page/10-topic-picture/431503.jpg"
+                        src="/main-page/gallery_07.jpg"
                         alt="1Fサービスコーナー"
                         width={600}
                         height={400}
@@ -2482,7 +2479,7 @@ return (
                         return <span key={index}>{part}</span>;
                       })}
                     </p>
-                    <p className="text-base text-gray-700 leading-relaxed">
+                    <p className="text-base text-gray-700 leading-relaxed mb-4">
                       {t.cleaningRequest.split(/(「[^」]+」|"[^"]+"|'[^']+'|11:00[までまでに]|11:00|before\s+11:00|by\s+11:00)/i).map((part, index) => {
                         if (/11:00[までまでに]|11:00|before\s+11:00|by\s+11:00/i.test(part)) {
                           return <span key={index} className="font-semibold text-red-600">{part}</span>;
@@ -2493,6 +2490,16 @@ return (
                         return <span key={index}>{part}</span>;
                       })}
                     </p>
+                    <div className="mt-4 rounded-lg overflow-hidden border border-gray-200 bg-white">
+                      <Image
+                        src={encodeURI("/main-page/スクリーンショット 2026-03-18 16.19.52.png")}
+                        alt="タオル交換・ゴミ回収の赤い札"
+                        width={400}
+                        height={300}
+                        className="w-full h-auto object-contain"
+                        unoptimized
+                      />
+                    </div>
                   </div>
                 </div>
 
