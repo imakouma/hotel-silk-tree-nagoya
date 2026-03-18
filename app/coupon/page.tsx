@@ -579,7 +579,7 @@ const shopsBase = [
         holiday: "年中無休（12/31～1/2休業）",
         lat: 35.169,
         lng: 136.908,
-        placeUrl: "https://www.google.com/maps/search/?api=1&query=大衆ホルモン+煙力+伏見店+名古屋",
+        placeUrl: "https://www.google.com/maps/place/%E7%85%99%E5%8A%9B+%E4%BC%8F%E8%A6%8B%E5%BA%97/@35.1677721,136.8962404,17z/data=!3m1!4b1!4m6!3m5!1s0x600377a721d2919d:0x6810467da0d8b8e6!8m2!3d35.1677721!4d136.8988207!16s%2Fg%2F11n76rw_vt?entry=ttu",
       },
     ],
     hours: "16:00～23:00（L.O.22:30）",
@@ -599,7 +599,7 @@ const shopsBase = [
         holiday: "日曜・祝日",
         lat: 35.171,
         lng: 136.899,
-        placeUrl: "https://www.google.com/maps/search/?api=1&query=大衆すし酒場+魚喜+名古屋",
+        placeUrl: "https://www.google.com/maps/place/%E5%A4%A7%E8%A1%86%E3%81%99%E3%81%97%E9%85%92%E5%A0%B4+%E9%AD%9A%E5%96%9C/@35.1702583,136.9004081,17z/data=!3m2!4b1!5s0x600370d52c877b69:0xeca281ad89821735!4m6!3m5!1s0x600371c116dda56f:0xbee476b1fc12ccf6!8m2!3d35.1702583!4d136.9029884!16s%2Fg%2F11tcsv5420?entry=ttu",
       },
     ],
     hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
@@ -1085,8 +1085,11 @@ export default function CouponPage() {
                     const branchHours = ("hours" in branch && typeof branch.hours === "string" ? branch.hours : null) ?? modalHours;
                     const branchHoliday = ("holiday" in branch && typeof branch.holiday === "string" ? branch.holiday : null) ?? modalHoliday;
                     const branchAddressDisplay = ("address" in branch && typeof branch.address === "string" ? branch.address : null) ?? modalAddress;
-                    // 店舗名で検索（ホームページと同様）
-                    const branchMapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(branchName)}&output=embed&hl=ja&z=17`;
+                    // 緯度経度があればそれでピン表示、なければ住所で検索（店舗名のみだと別場所になることがある）
+                    const hasLatLng = "lat" in branch && "lng" in branch && typeof branch.lat === "number" && typeof branch.lng === "number";
+                    const branchMapEmbedUrl = hasLatLng
+                      ? `https://www.google.com/maps?q=${branch.lat},${branch.lng}&output=embed&hl=ja&z=17`
+                      : `https://www.google.com/maps?q=${encodeURIComponent(branchAddressDisplay || branchAddress)}&output=embed&hl=ja&z=17`;
                     
                     const branchLabel = "name" in branch && branch.name != null ? branch.name : `${modalName} ${branchIndex + 1}`;
                     return (
@@ -1118,6 +1121,7 @@ export default function CouponPage() {
                         {/* 各店舗の拡大地図を表示（Android WebViewでは geo: でアプリを開く） */}
                         <MapFallbackLinkGeneric
                           address={branchAddress || branchName}
+                          placeUrl={"placeUrl" in branch && typeof branch.placeUrl === "string" ? branch.placeUrl : undefined}
                           className="mt-2 flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
                           style={{ backgroundColor: MAP_BTN_BG }}
                         >

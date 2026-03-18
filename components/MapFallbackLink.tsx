@@ -19,24 +19,32 @@ type MapFallbackLinkProps = {
   address: string;
   lat?: number;
   lng?: number;
+  /** 指定時は「拡大地図」でこのURLへ遷移（Googleマップのplaceページなど） */
+  placeUrl?: string;
   className?: string;
   style?: React.CSSProperties;
   children?: ReactNode;
 };
 
-/** 住所・任意で緯度経度を渡して地図リンクを表示。Android では geo: でアプリを開く。 */
+/** 住所・任意で緯度経度を渡して地図リンクを表示。placeUrl があればそれを優先。Android では geo: でアプリを開く。 */
 export function MapFallbackLinkGeneric({
   address,
   lat,
   lng,
+  placeUrl,
   className = "mt-2 inline-block text-sm font-medium text-[#304E84] underline underline-offset-2",
   style,
   children,
 }: MapFallbackLinkProps) {
-  const defaultHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+  const searchHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+  const defaultHref = placeUrl ?? searchHref;
   const [href, setHref] = useState<string>(defaultHref);
 
   useEffect(() => {
+    if (placeUrl) {
+      setHref(placeUrl);
+      return;
+    }
     if (!isAndroid()) return;
     const nextHref =
       lat != null && lng != null
@@ -44,7 +52,7 @@ export function MapFallbackLinkGeneric({
         : `geo:0,0?q=${encodeURIComponent(address)}`;
     const id = setTimeout(() => setHref(nextHref), 0);
     return () => clearTimeout(id);
-  }, [address, lat, lng]);
+  }, [address, lat, lng, placeUrl]);
 
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={className} style={style}>
