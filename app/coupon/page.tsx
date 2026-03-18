@@ -849,6 +849,8 @@ export default function CouponPage() {
           {shopsBase.map((shop, i) => {
             const k = shop.nameKey;
             const name = t[`${k}Name`];
+            // 3枚目カードは栄の串せぶん＋うなぎ四代目菊川栄店の2店舗のため、ヘッダーに両方表示
+            const headerTitle = k === "shop1" ? `${name}　うなぎ四代目菊川　栄店` : name;
             const hours = t[`${k}Hours`];
             const holiday = t[`${k}Holiday`];
             const address = t[`${k}Address`];
@@ -892,7 +894,7 @@ export default function CouponPage() {
                   className="flex h-14 items-center justify-center px-4 py-3 text-center text-white font-semibold"
                   style={{ backgroundColor: HEADER_BG }}
                 >
-                  <span className="line-clamp-2 text-xs sm:text-sm">{name}</span>
+                  <span className="line-clamp-2 text-xs sm:text-sm">{headerTitle}</span>
                 </div>
 
                 {/* 料理画像（ヘッダーと同じ幅いっぱい・画像全体を切らずに表示・余白なし） */}
