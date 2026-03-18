@@ -19,16 +19,16 @@ const MAP_BTN_BG = "#F5A623";
 const COUPON_SITE = "/coupon-page";
 const bannerImage = `${COUPON_SITE}/title.png`;
 const shopImages = [
-  `${COUPON_SITE}/437040.jpg`, // 大衆すし酒場 魚喜（1枚目カード用）
-  `${COUPON_SITE}/437042.jpg`, // 栄の串せぶん / うなぎ四代目菊川（3枚目カード用）
-  `${COUPON_SITE}/437041.jpg`, // 大衆ホルモン・煙力 伏見店（2枚目カード用）
+  `${COUPON_SITE}/439410.jpg`, // 大衆すし酒場 魚喜（2枚目カード用）
+  `${COUPON_SITE}/439411.jpg`, // 大衆ホルモン・煙力 伏見店（1枚目カード用）
+  `${COUPON_SITE}/439412.jpg`, // 栄の串せぶん・うなぎ四代目菊川栄店（3枚目カード用）
 ];
 
 /** モーダル用の店舗詳細画像（MAP押下時に表示）※表示順に合わせて並べ替え */
 const shopModalImages: string[][] = [
-  [`${COUPON_SITE}/437041.jpg`], // 1番目: 大衆ホルモン・煙力 伏見店
-  [`${COUPON_SITE}/437040.jpg`], // 2番目: 大衆すし酒場 魚喜
-  [`${COUPON_SITE}/437042.jpg`], // 3番目: 栄の串せぶん
+  [`${COUPON_SITE}/439411.jpg`], // 1番目: 大衆ホルモン・煙力 伏見店
+  [`${COUPON_SITE}/439410.jpg`], // 2番目: 大衆すし酒場 魚喜
+  [`${COUPON_SITE}/439412.jpg`], // 3番目: 栄の串せぶん・うなぎ四代目菊川栄店
 ];
 
 
@@ -84,9 +84,9 @@ const couponTranslations: Record<
     showLargerMap: "拡大地図を表示",
     close: "閉じる",
     holidayLabel: "定休日：",
-    shopModalDescription1: "配布のクーポン券持参または、この画面の提示で岩手名物盛岡冷麺(ハーフ)、前沢牛60gまたは県産ゴチャ盛り豚ホルモン無料!!",
-    shopModalDescription2: "注文時スタッフに提示でファーストドリンクかお刺身三点盛り人数分無料。",
-    shopModalDescription3: "配布のクーポン券持参または、この画面の提示でファーストドリンクかお刺身三点盛り人数分無料！",
+    shopModalDescription1: "配布のクーポン券持参または、この画面の提示で、注文時にスタッフへ提示するとドリンク1杯無料。",
+    shopModalDescription2: "配布のクーポン券持参または、この画面の提示で、刺盛5点盛り半額（税込1,518円）またはドリンク1杯人数分無料。",
+    shopModalDescription3: "配布のクーポン券持参または、この画面の提示で、日曜・金曜は60分飲み放題500円、水曜・土曜は1杯198円（※お一人様3,000円以上）。",
     shop1Name: "栄の串せぶん",
     shop1Hours: "11:30～14:00（L.O.13:30）／17:00～23:00（L.O.22:30）",
     shop1Holiday: "日曜・祝日",
@@ -116,9 +116,9 @@ const couponTranslations: Record<
     showLargerMap: "Show larger map",
     close: "Close",
     holidayLabel: "Holiday:",
-    shopModalDescription1: "With your coupon ticket or by showing this screen, get either Morioka cold noodles (half size) or Maesawa beef 60g free!!",
-    shopModalDescription2: "Show to staff when ordering to get first drink or 3-piece sashimi platter free per person.",
-    shopModalDescription3: "With your coupon ticket or by showing this screen, get first drink or 3-piece sashimi platter free per person!",
+    shopModalDescription1: "With your coupon ticket or by showing this screen, show it to staff when ordering to get 1 free drink.",
+    shopModalDescription2: "With your coupon ticket or by showing this screen, get 5-piece sashimi platter half price (¥1,518 incl. tax) or 1 free drink per person.",
+    shopModalDescription3: "With your coupon ticket or by showing this screen: Sun & Fri 60-min all-you-can-drink ¥500; Wed & Sat ¥198 per drink (min. ¥3,000 per person).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "11:30～14:00 (L.O. 13:30) / 17:00～23:00 (L.O. 22:30)",
     shop1Holiday: "Closed Sun. & holidays",
@@ -148,9 +148,9 @@ const couponTranslations: Record<
     showLargerMap: "显示大地图",
     close: "关闭",
     holidayLabel: "定休日：",
-    shopModalDescription1: "持发放的优惠券或出示此画面，可免费获得岩手名物盛冈冷面（半份）或前泽牛60g任选其一!!",
-    shopModalDescription2: "点餐时向工作人员出示，可免费获得首杯饮品或三片刺身拼盘（按人数）。",
-    shopModalDescription3: "持发放的优惠券或出示此画面，可免费获得首杯饮品或三片刺身拼盘（按人数）！",
+    shopModalDescription1: "持发放的优惠券或出示此画面，点餐时向店员出示可享饮料1杯免费。",
+    shopModalDescription2: "持发放的优惠券或出示此画面，刺身5点拼盘半价（含税1,518日元）或饮料每人1杯免费。",
+    shopModalDescription3: "持发放的优惠券或出示此画面，周日・周五60分钟畅饮500日元／周三・周六每杯198日元（每人消费满3,000日元以上）。",
     shop1Name: "荣之串七",
     shop1Hours: "11:30～14:00（最后点餐13:30）／17:00～23:00（最后点餐22:30）",
     shop1Holiday: "周日・节假日休息",
@@ -180,9 +180,9 @@ const couponTranslations: Record<
     showLargerMap: "顯示大地圖",
     close: "關閉",
     holidayLabel: "定休日：",
-    shopModalDescription1: "持發放的優惠券或出示此畫面，可免費獲得岩手名物盛岡冷麵（半份）或前澤牛60g任選其一!!",
-    shopModalDescription2: "點餐時向工作人員出示，可免費獲得首杯飲品或三片刺身拼盤（按人數）。",
-    shopModalDescription3: "持發放的優惠券或出示此畫面，可免費獲得首杯飲品或三片刺身拼盤（按人數）！",
+    shopModalDescription1: "持發放的優惠券或出示此畫面，點餐時向店員出示可享飲料1杯免費。",
+    shopModalDescription2: "持發放的優惠券或出示此畫面，刺身5點拼盤半價（含稅1,518日圓）或飲料每人1杯免費。",
+    shopModalDescription3: "持發放的優惠券或出示此畫面，週日・週五60分鐘暢飲500日圓／週三・週六每杯198日圓（每人消費滿3,000日圓以上）。",
     shop1Name: "榮之串七",
     shop1Hours: "11:30～14:00（最後點餐13:30）／17:00～23:00（最後點餐22:30）",
     shop1Holiday: "週日・節假日休息",
@@ -212,9 +212,9 @@ const couponTranslations: Record<
     showLargerMap: "지도 크게 보기",
     close: "닫기",
     holidayLabel: "정기 휴일:",
-    shopModalDescription1: "배포 쿠폰을 지참하거나 이 화면을 제시하면 이와테 명물 모리오카 냉면(하프) 또는 마에사와 소고기 60g 중 하나를 무료로 받을 수 있습니다!!",
-    shopModalDescription2: "주문 시 스태프에게 제시하면 첫 음료 또는 사시미 3점 모둠을 인원수만큼 무료로 받을 수 있습니다.",
-    shopModalDescription3: "배포 쿠폰을 지참하거나 이 화면을 제시하면 첫 음료 또는 사시미 3점 모둠을 인원수만큼 무료로 받을 수 있습니다!",
+    shopModalDescription1: "배포 쿠폰을 지참하거나 이 화면을 제시한 후 주문 시 스태프에게 보여주시면 음료 1잔 무료.",
+    shopModalDescription2: "배포 쿠폰을 지참하거나 이 화면을 제시하면 회 5점 모둠 반가격(세금 포함 1,518엔) 또는 음료 1인당 1잔 무료.",
+    shopModalDescription3: "배포 쿠폰을 지참하거나 이 화면을 제시하면 일・금 60분 무제한 음료 500엔, 수・토 1잔 198엔(1인 3,000엔 이상).",
     shop1Name: "사카에노쿠시 세븐",
     shop1Hours: "11:30～14:00（마지막 주문 13:30）／17:00～23:00（마지막 주문 22:30）",
     shop1Holiday: "일요일・공휴일 휴무",
@@ -244,9 +244,9 @@ const couponTranslations: Record<
     showLargerMap: "Agrandir la carte",
     close: "Fermer",
     holidayLabel: "Jours de fermeture :",
-    shopModalDescription1: "Avec votre coupon ou en montrant cet écran, obtenez gratuitement soit des nouilles froides de Morioka (demi-portion) ou 60g de bœuf Maesawa!!",
-    shopModalDescription2: "Montrez au personnel lors de la commande pour obtenir une première boisson ou un assortiment de sashimi (3 pièces) gratuit par personne.",
-    shopModalDescription3: "Avec votre coupon ou en montrant cet écran, obtenez une première boisson ou un assortiment de sashimi (3 pièces) gratuit par personne!",
+    shopModalDescription1: "Avec votre coupon ou en montrant cet écran, présentez-le au personnel à la commande pour 1 boisson offerte.",
+    shopModalDescription2: "Avec votre coupon ou en montrant cet écran, plateau de 5 sashimis à moitié prix (1 518 ¥ TTC) ou 1 boisson offerte par personne.",
+    shopModalDescription3: "Avec votre coupon ou en montrant cet écran : dim. et ven. boissons à volonté 60 min 500 ¥ ; mer. et sam. 198 ¥/verre (min. 3 000 ¥/pers.).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "11:30～14:00 (Dernière cde 13:30) / 17:00～23:00 (Dernière cde 22:30)",
     shop1Holiday: "Fermé dim. et jours fériés",
@@ -276,9 +276,9 @@ const couponTranslations: Record<
     showLargerMap: "Karte vergrößern",
     close: "Schließen",
     holidayLabel: "Ruhetag:",
-    shopModalDescription1: "Mit Ihrem Gutschein oder durch Zeigen dieses Bildschirms erhalten Sie kostenlos entweder Morioka-Kaltnudeln (halbe Portion) oder 60g Maesawa-Rindfleisch!!",
-    shopModalDescription2: "Zeigen Sie dem Personal beim Bestellen, um ein erstes Getränk oder eine Sashimi-Platte (3 Stück) kostenlos pro Person zu erhalten.",
-    shopModalDescription3: "Mit Ihrem Gutschein oder durch Zeigen dieses Bildschirms erhalten Sie ein erstes Getränk oder eine Sashimi-Platte (3 Stück) kostenlos pro Person!",
+    shopModalDescription1: "Mit Ihrem Gutschein oder durch Zeigen dieses Bildschirms bei der Bestellung erhalten Sie 1 Getränk gratis.",
+    shopModalDescription2: "Mit Ihrem Gutschein oder durch Zeigen dieses Bildschirms: 5-teilige Sashimi-Platte halber Preis (1.518 ¥ inkl. MwSt.) oder 1 Getränk pro Person gratis.",
+    shopModalDescription3: "Mit Ihrem Gutschein oder durch Zeigen dieses Bildschirms: So. & Fr. 60 Min. Flatrate 500 ¥; Mi. & Sa. 198 ¥/Glas (min. 3.000 ¥/Pers.).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "11:30～14:00 (Letzte Best. 13:30) / 17:00～23:00 (Letzte Best. 22:30)",
     shop1Holiday: "So. & Feiertage geschlossen",
@@ -308,9 +308,9 @@ const couponTranslations: Record<
     showLargerMap: "Ver mapa más grande",
     close: "Cerrar",
     holidayLabel: "Día de descanso:",
-    shopModalDescription1: "Con su cupón o mostrando esta pantalla, obtenga gratis fideos fríos de Morioka (media porción) o 60g de carne de res Maesawa!!",
-    shopModalDescription2: "Muestre al personal al hacer el pedido para obtener una primera bebida o un plato de sashimi (3 piezas) gratis por persona.",
-    shopModalDescription3: "Con su cupón o mostrando esta pantalla, obtenga una primera bebida o un plato de sashimi (3 piezas) gratis por persona!",
+    shopModalDescription1: "Con su cupón o mostrando esta pantalla, preséntelo al personal al pedir para 1 bebida gratis.",
+    shopModalDescription2: "Con su cupón o mostrando esta pantalla: plato de 5 sashimis a mitad de precio (1.518 ¥ IVA incl.) o 1 bebida gratis por persona.",
+    shopModalDescription3: "Con su cupón o mostrando esta pantalla: dom. y vie. barra libre 60 min 500 ¥; mié. y sáb. 198 ¥/copa (mín. 3.000 ¥/pers.).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "11:30～14:00 (Últ. pedido 13:30) / 17:00～23:00 (Últ. pedido 22:30)",
     shop1Holiday: "Cerrado dom. y festivos",
@@ -340,9 +340,9 @@ const couponTranslations: Record<
     showLargerMap: "Visualizza mappa più grande",
     close: "Chiudi",
     holidayLabel: "Giorno di chiusura:",
-    shopModalDescription1: "Con il tuo coupon o mostrando questo schermo, ottieni gratis noodles freddi di Morioka (mezza porzione) o 60g di manzo Maesawa!!",
-    shopModalDescription2: "Mostra al personale quando ordini per ottenere una prima bevanda o un piatto di sashimi (3 pezzi) gratis a persona.",
-    shopModalDescription3: "Con il tuo coupon o mostrando questo schermo, ottieni una prima bevanda o un piatto di sashimi (3 pezzi) gratis a persona!",
+    shopModalDescription1: "Con il tuo coupon o mostrando questo schermo, presentalo al personale quando ordini per 1 bevanda gratis.",
+    shopModalDescription2: "Con il tuo coupon o mostrando questo schermo: piatto di 5 sashimi a metà prezzo (1.518 ¥ IVA incl.) o 1 bevanda gratis a persona.",
+    shopModalDescription3: "Con il tuo coupon o mostrando questo schermo: dom. e ven. bevande illimitate 60 min 500 ¥; mer. e sab. 198 ¥/bicchiere (min. 3.000 ¥/pers.).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "11:30～14:00 (Ult. ordine 13:30) / 17:00～23:00 (Ult. ordine 22:30)",
     shop1Holiday: "Chiuso dom. e festivi",
@@ -372,9 +372,9 @@ const couponTranslations: Record<
     showLargerMap: "แสดงแผนที่ขนาดใหญ่",
     close: "ปิด",
     holidayLabel: "วันหยุด:",
-    shopModalDescription1: "นำคูปองมาหรือแสดงหน้าจอนี้ รับบะหมี่เย็นโมริโอกะ (ครึ่งส่วน) หรือเนื้อเมะซาวะ 60g ฟรี!!",
-    shopModalDescription2: "แสดงให้พนักงานเมื่อสั่งอาหารเพื่อรับเครื่องดื่มแรกหรือซาชิมิ 3 ชิ้น ฟรีต่อคน",
-    shopModalDescription3: "นำคูปองมาหรือแสดงหน้าจอนี้ รับเครื่องดื่มแรกหรือซาชิมิ 3 ชิ้น ฟรีต่อคน!",
+    shopModalDescription1: "นำคูปองมาหรือแสดงหน้าจอนี้ แล้วแสดงให้พนักงานเมื่อสั่งอาหาร ได้เครื่องดื่ม 1 แก้วฟรี",
+    shopModalDescription2: "นำคูปองมาหรือแสดงหน้าจอนี้ ซาชิมิ 5 ชิ้นครึ่งราคา (1,518 เยน รวมภาษี) หรือเครื่องดื่ม 1 แก้วต่อคน ฟรี",
+    shopModalDescription3: "นำคูปองมาหรือแสดงหน้าจอนี้ อาทิตย์・ศุกร์ ดื่มไม่จำกัด 60 นาที 500 เยน / พุธ・เสาร์ 198 เยน/แก้ว (ขั้นต่ำ 3,000 เยน/คน)",
     shop1Name: "ซากาเอะ โนะ คูชิเซบุง",
     shop1Hours: "17:00～24:00 (สั่งสุดท้าย อาหาร 23:00 / เครื่องดื่ม 23:30)",
     shop1Holiday: "ปิดวันอาทิตย์และวันหยุดนักขัตฤกษ์",
@@ -404,9 +404,9 @@ const couponTranslations: Record<
     showLargerMap: "Hiện bản đồ lớn hơn",
     close: "Đóng",
     holidayLabel: "Ngày nghỉ:",
-    shopModalDescription1: "Mang theo phiếu hoặc hiển thị màn hình này để nhận miễn phí mì lạnh Morioka (nửa phần) hoặc 60g thịt bò Maesawa!!",
-    shopModalDescription2: "Hiển thị cho nhân viên khi đặt hàng để nhận đồ uống đầu tiên hoặc đĩa sashimi (3 miếng) miễn phí mỗi người.",
-    shopModalDescription3: "Mang theo phiếu hoặc hiển thị màn hình này để nhận đồ uống đầu tiên hoặc đĩa sashimi (3 miếng) miễn phí mỗi người!",
+    shopModalDescription1: "Mang theo phiếu hoặc hiển thị màn hình này, xuất trình cho nhân viên khi gọi món được 1 ly nước miễn phí.",
+    shopModalDescription2: "Mang theo phiếu hoặc hiển thị màn hình này: đĩa sashimi 5 miếng giảm nửa giá (1.518 yên đã gồm thuế) hoặc 1 ly nước miễn phí/người.",
+    shopModalDescription3: "Mang theo phiếu hoặc hiển thị màn hình này: CN & T6 60 phút uống thoải mái 500 yên; T4 & T7 198 yên/ly (tối thiểu 3.000 yên/người).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "17:00～24:00 (Đồ ăn 23:00 / Đồ uống 23:30)",
     shop1Holiday: "Đóng CN và ngày lễ",
@@ -436,9 +436,9 @@ const couponTranslations: Record<
     showLargerMap: "Tampilkan peta lebih besar",
     close: "Tutup",
     holidayLabel: "Hari libur:",
-    shopModalDescription1: "Dengan kupon Anda atau dengan menampilkan layar ini, dapatkan gratis mie dingin Morioka (setengah porsi) atau 60g daging sapi Maesawa!!",
-    shopModalDescription2: "Tunjukkan kepada staf saat memesan untuk mendapatkan minuman pertama atau piring sashimi (3 potong) gratis per orang.",
-    shopModalDescription3: "Dengan kupon Anda atau dengan menampilkan layar ini, dapatkan minuman pertama atau piring sashimi (3 potong) gratis per orang!",
+    shopModalDescription1: "Dengan kupon Anda atau dengan menampilkan layar ini, tunjukkan ke staf saat memesan untuk 1 minuman gratis.",
+    shopModalDescription2: "Dengan kupon Anda atau dengan menampilkan layar ini: piring sashimi 5 potong setengah harga (1.518 yen incl. pajak) atau 1 minuman gratis per orang.",
+    shopModalDescription3: "Dengan kupon Anda atau dengan menampilkan layar ini: Min & Jum 60 menit minum sepuasnya 500 yen; Rab & Sab 198 yen/gelas (min. 3.000 yen/orang).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "17:00～24:00 (Makanan 23:00 / Minuman 23:30)",
     shop1Holiday: "Tutup Ahad & cuti",
@@ -468,9 +468,9 @@ const couponTranslations: Record<
     showLargerMap: "Mostrar mapa maior",
     close: "Fechar",
     holidayLabel: "Dia de descanso:",
-    shopModalDescription1: "Com seu cupom ou mostrando esta tela, obtenha gratuitamente macarrão frio de Morioka (meia porção) ou 60g de carne bovina Maesawa!!",
-    shopModalDescription2: "Mostre à equipe ao fazer o pedido para obter uma primeira bebida ou prato de sashimi (3 peças) grátis por pessoa.",
-    shopModalDescription3: "Com seu cupom ou mostrando esta tela, obtenha uma primeira bebida ou prato de sashimi (3 peças) grátis por pessoa!",
+    shopModalDescription1: "Com seu cupom ou mostrando esta tela, apresente ao staff ao pedir para 1 bebida grátis.",
+    shopModalDescription2: "Com seu cupom ou mostrando esta tela: prato de 5 sashimis a metade do preço (1.518 ¥ c/ IVA) ou 1 bebida grátis por pessoa.",
+    shopModalDescription3: "Com seu cupom ou mostrando esta tela: dom. e sex. 60 min barra livre 500 ¥; qua. e sáb. 198 ¥/copo (mín. 3.000 ¥/pessoa).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "17:00～24:00 (Comida 23:00 / Bebida 23:30)",
     shop1Holiday: "Fechado dom. e feriados",
@@ -500,9 +500,9 @@ const couponTranslations: Record<
     showLargerMap: "Ipakita ang mas malaking mapa",
     close: "Isara",
     holidayLabel: "Araw ng pahinga:",
-    shopModalDescription1: "Sa iyong coupon o sa pagpapakita ng screen na ito, makakuha ng libreng malamig na noodles ng Morioka (kalahating bahagi) o 60g ng karne ng baka na Maesawa!!",
-    shopModalDescription2: "Ipakita sa staff kapag umorder upang makakuha ng unang inumin o plato ng sashimi (3 piraso) libre bawat tao.",
-    shopModalDescription3: "Sa iyong coupon o sa pagpapakita ng screen na ito, makakuha ng unang inumin o plato ng sashimi (3 piraso) libre bawat tao!",
+    shopModalDescription1: "Sa iyong coupon o sa pagpapakita ng screen na ito, ipakita sa staff kapag umorder para sa 1 inumin libre.",
+    shopModalDescription2: "Sa iyong coupon o sa pagpapakita ng screen na ito: 5-pirasong sashimi platter kalahating presyo (¥1,518 incl. tax) o 1 inumin libre bawat tao.",
+    shopModalDescription3: "Sa iyong coupon o sa pagpapakita ng screen na ito: Linggo at Biy. 60 min all-you-can-drink ¥500; Miy. at Sab. ¥198/baso (min. ¥3,000/tao).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "17:00～24:00 (Pagkain 23:00 / Inumin 23:30)",
     shop1Holiday: "Sarado Linggo at holidays",
@@ -532,9 +532,9 @@ const couponTranslations: Record<
     showLargerMap: "Tunjukkan peta lebih besar",
     close: "Tutup",
     holidayLabel: "Hari cuti:",
-    shopModalDescription1: "Dengan kupon anda atau dengan menunjukkan skrin ini, dapatkan mi sejuk Morioka (separuh bahagian) atau 60g daging lembu Maesawa percuma!!",
-    shopModalDescription2: "Tunjukkan kepada kakitangan semasa membuat pesanan untuk mendapatkan minuman pertama atau pinggan sashimi (3 keping) percuma setiap orang.",
-    shopModalDescription3: "Dengan kupon anda atau dengan menunjukkan skrin ini, dapatkan minuman pertama atau pinggan sashimi (3 keping) percuma setiap orang!",
+    shopModalDescription1: "Dengan kupon anda atau dengan menunjukkan skrin ini, tunjukkan kepada kakitangan ketika membuat pesanan untuk 1 minuman percuma.",
+    shopModalDescription2: "Dengan kupon anda atau dengan menunjukkan skrin ini: sashimi 5 keping separuh harga (1,518 yen incl. cukai) atau 1 minuman percuma seorang.",
+    shopModalDescription3: "Dengan kupon anda atau dengan menunjukkan skrin ini: Ahad & Jumaat 60 min minum tanpa had 500 yen; Rabu & Sabtu 198 yen/gelas (min. 3,000 yen/orang).",
     shop1Name: "Sakaenokushi Seven",
     shop1Hours: "17:00～24:00 (Makanan 23:00 / Minuman 23:30)",
     shop1Holiday: "Tutup Ahad & cuti",
@@ -569,7 +569,7 @@ function getCouponT(lang: LanguageCode) {
 const shopsBase = [
   {
     nameKey: "shop3" as const,
-    imageSrc: shopImages[2],
+    imageSrc: shopImages[1],
     branches: [
       {
         name: "大衆ホルモン・煙力 伏見店",
@@ -609,7 +609,7 @@ const shopsBase = [
   /* 3枚目: 魚喜の写真 + 串せぶんのテキスト（同一タブに栄の串せぶん＋うなぎ四代目菊川栄店） */
   {
     nameKey: "shop1" as const,
-    imageSrc: shopImages[1],
+    imageSrc: shopImages[2],
     branches: [
       {
         name: "栄の串せぶん",

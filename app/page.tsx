@@ -2133,11 +2133,11 @@ return (
                 padding: '3px',
               }}
             >
-              {/* 背景画像グリッド */}
+              {/* 背景画像グリッド（3枚：寿司・焼肉・串焼き） */}
               <div className="absolute inset-0 grid grid-cols-3 gap-0.5">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/coupon-page/rikyuu/スクリーンショット 2026-02-01 22.43.06.png"
+                    src="/main-page/P028082381_480.jpg"
                     alt="お刺身"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -2145,16 +2145,16 @@ return (
                 </div>
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/coupon-page/tama/スクリーンショット 2026-02-06 5.42.41.png"
-                    alt="串焼き"
+                    src={encodeURI("/main-page/スクリーンショット 2026-03-18 19.04.45.png")}
+                    alt="焼肉"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/coupon-page/toritetu/スクリーンショット 2026-02-06 5.32.32.png"
-                    alt="焼肉"
+                    src="/main-page/150x150_square_cc26fddb73735b04c8ef569a22c13a20.jpg"
+                    alt="串焼き"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
