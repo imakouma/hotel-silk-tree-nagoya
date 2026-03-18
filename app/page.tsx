@@ -96,8 +96,8 @@ const translations = {
     alcoholNote: '(アルコール類は5・7・9F)',
     smoking: '喫煙所 1F',
     wifiTitle: 'Wi-Fi',
-    password: 'SSID :',
-    wifiAccessPoint: 'SSIDは「silk-tree」です。パスワードは「silktree」です。有線LANケーブルのご利用はできません。',
+    password: 'パスワード :',
+    wifiAccessPoint: 'SSIDは「silktree」です。パスワードは「silktree」です。有線LANケーブルのご利用はできません。',
     copy: 'コピー',
     wifiCopyNote: '※ボタンを押すとパスワードをコピーできます。',
     passwordCopied: 'パスワードをコピーしました！',
@@ -204,8 +204,8 @@ const translations = {
     alcoholNote: '(Alcoholic beverages: 5F, 9F)',
     smoking: 'Smoking corner (1F)',
     wifiTitle: 'Wi-Fi',
-    password: 'SSID:',
-    wifiAccessPoint: 'SSID is "silk-tree". Password is "silktree". Wired LAN is not available.',
+    password: 'Password:',
+    wifiAccessPoint: 'SSID is "silktree". Password is "silktree". Wired LAN is not available.',
     copy: 'Copy',
     wifiCopyNote: '*Tap the button to copy the password.',
     passwordCopied: 'Copied!',
@@ -1880,23 +1880,6 @@ export default function Home(props: PageProps) {
       icon: (
         <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center">
           <Image
-            src="/main-page/icon-matome/icon-light.svg"
-            alt={t.lighting}
-            width={112}
-            height={112}
-            className="w-full h-full object-contain"
-            unoptimized
-          />
-        </div>
-      ), 
-      titleKey: 'lighting' as const,
-      id: 'lighting',
-      textColor: 'text-[#85B510]'
-    },
-    { 
-      icon: (
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center">
-          <Image
             src={encodeURI('/main-page/icon-matome/icon-bed (1).svg')}
             alt={t.longstay}
             width={112}
@@ -1908,23 +1891,6 @@ export default function Home(props: PageProps) {
       ), 
       titleKey: 'longstay' as const,
       id: 'longstay',
-      textColor: 'text-[#85B510]'
-    },
-    { 
-      icon: (
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center">
-          <Image
-            src="/main-page/icon-matome/icon-tool.svg"
-            alt={t.lost}
-            width={112}
-            height={112}
-            className="w-full h-full object-contain"
-            unoptimized
-          />
-        </div>
-      ), 
-      titleKey: 'lost' as const,
-      id: 'lost',
       textColor: 'text-[#85B510]'
     },
   ];
@@ -1958,7 +1924,7 @@ return (
           <div className="flex items-center justify-between gap-1 py-1.5 sm:gap-2 sm:py-2">
           {/* 左側：ロゴ＋ホテル名 */}
             <div className="flex items-center gap-2 sm:gap-3 shrink min-w-0 flex-1">
-              <div className="relative h-10 w-24 shrink-0 sm:h-12 sm:w-28 md:h-14 md:w-32">
+              <div className="relative h-10 w-24 shrink-0 overflow-hidden sm:h-12 sm:w-28 md:h-14 md:w-32 [clip-path:inset(0_20%_0_0)]">
                 {headerLogoMounted && (
                   <Image
                     src="/main-page/icon-hotelnagoya.png"
@@ -1970,7 +1936,7 @@ return (
                   />
                 )}
               </div>
-              <h1 className="text-base sm:text-lg md:text-xl font-medium text-gray-800 truncate" style={{ fontFamily: '"Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif' }}>
+              <h1 className="font-sans text-sm font-semibold tracking-tight text-gray-800 truncate sm:text-base md:text-lg lg:text-xl xl:text-2xl">
                 ホテル シルク・トゥリー名古屋
               </h1>
             </div>
@@ -2125,32 +2091,6 @@ return (
                     {t[service.titleKey]}
                   </div>
                 </Link>
-              ) : service.id === 'lighting' ? (
-                <button
-                  key={service.id}
-                  data-service-id={service.id}
-                  onClick={() => {
-                    if (service.id === 'breakfast') {
-                      setBreakfastImageIndex(0);
-                    }
-                    setSelectedService(service.id);
-                  }}
-                  className={`bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg hover:shadow-[0_0_25px_rgba(62,134,104,0.6)] transition-all duration-300 ease-out flex flex-col items-center justify-center min-h-[100px] sm:min-h-[120px] md:min-h-[140px] hover:scale-105 ${
-                    visibleServices.has(service.id)
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-12'
-                  }`}
-                  style={{
-                    transitionDelay: visibleServices.has(service.id) ? `${index * 100}ms` : '0ms'
-                  }}
-                >
-                  <div className="mb-3 sm:mb-4 flex justify-center items-center shrink-0">
-                    {service.icon}
-                  </div>
-                  <div className={`text-xs sm:text-sm font-semibold text-center leading-tight wrap-break-word px-1 ${service.textColor || 'text-blue-800'}`}>
-                    {t[service.titleKey]}
-                  </div>
-                </button>
               ) : (
                 <button
                   key={service.id}
@@ -2528,64 +2468,6 @@ return (
                 </button>
               </>
             )}
-            {selectedService === 'lost' && (
-              <>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t.lostTitle}</h3>
-                <div className="border-t border-gray-200 pt-4">
-                  <div className="space-y-3 text-gray-700 leading-relaxed">
-                    <p>
-                      {t.lostText1}
-                    </p>
-                    {t.lostText2 && (
-                      <p>
-                        {t.lostText2}
-                      </p>
-                    )}
-                    {t.lostText3 && (
-                      <p>
-                        {t.lostText3}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <button
-                  onClick={() => setSelectedService(null)}
-                  className="mt-6 w-full bg-white hover:bg-gray-50 text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  {t.close}
-                </button>
-              </>
-            )}
-            {selectedService === 'lighting' && (
-              <>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t.lightingTitle}</h3>
-                <div className="border-t border-gray-200 pt-4">
-                  <p className="text-gray-700 mb-6 leading-relaxed">
-                    {t.lightingDesc}
-                  </p>
-                  
-                  {/* 図解の画像 */}
-                  <div className="rounded-lg overflow-hidden border border-gray-200">
-                    <div className="relative w-full h-auto">
-                      <Image
-                      src={encodeURI("/main-page/10-topic-picture/81DA2A29-508F-4CE2-A164-50487C07036A.PNG")}
-                      alt={t.lightingTitle}
-                        width={800}
-                        height={600}
-                        className="w-full h-auto object-contain"
-                        unoptimized
-                      />
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setSelectedService(null)}
-                  className="mt-6 w-full bg-white hover:bg-gray-50 text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  {t.close}
-                </button>
-              </>
-            )}
             {selectedService === 'longstay' && (
               <>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t.longstayTitle}</h3>
@@ -2622,7 +2504,7 @@ return (
                 </button>
               </>
             )}
-            {selectedService !== 'checkin' && selectedService !== 'breakfast' && selectedService !== 'service' && selectedService !== 'wifi' && selectedService !== 'lost' && selectedService !== 'lighting' && selectedService !== 'longstay' && (
+            {selectedService !== 'checkin' && selectedService !== 'breakfast' && selectedService !== 'service' && selectedService !== 'wifi' && selectedService !== 'longstay' && (
               <>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {services.find(s => s.id === selectedService) ? t[services.find(s => s.id === selectedService)!.titleKey] : ''}

@@ -66,7 +66,7 @@ export default function RootLayout({
       {
         "@type": "LocationFeatureSpecification",
         "name": "Wi-Fi",
-        "description": "無料Wi-Fi。SSID: silk-tree。パスワード: silktree。有線LANはご利用いただけません。"
+        "description": "無料Wi-Fi。SSID: silktree。パスワード: silktree。有線LANはご利用いただけません。"
       },
       {
         "@type": "LocationFeatureSpecification",
