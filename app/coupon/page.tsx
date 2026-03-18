@@ -1078,36 +1078,6 @@ export default function CouponPage() {
                   <p className="text-sm leading-relaxed text-gray-700">
                     {description}
                   </p>
-                  {openModalShopIndex === 0 && (
-                    <a
-                      href="https://www.hotpepper.jp/strJ001143787/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm font-semibold text-[#304E84] underline underline-offset-2"
-                    >
-                      公式HP
-                    </a>
-                  )}
-                  {openModalShopIndex === 2 && (
-                    <a
-                      href="https://www.hotpepper.jp/strJ001185245/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm font-semibold text-[#304E84] underline underline-offset-2"
-                    >
-                      公式HP
-                    </a>
-                  )}
-                  {openModalShopIndex === 1 && (
-                    <a
-                      href="https://www.hotpepper.jp/strJ001250661/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm font-semibold text-[#304E84] underline underline-offset-2"
-                    >
-                      公式HP
-                    </a>
-                  )}
                   {/* 全店舗分を表示（利久は4店舗・晴れの日2店舗・ぼんてん1店舗） */}
                   {shop.branches.map((branch, branchIndex) => {
                     const branchAddress = branch.address || ("name" in branch && typeof branch.name === "string" ? branch.name : "") || modalName;
