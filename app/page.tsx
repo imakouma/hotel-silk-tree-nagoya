@@ -228,9 +228,9 @@ const translations = {
   },
   zh: {
     hotelName: '',
-    hotelTitle: '盛冈Ace酒店',
+    hotelTitle: '名古屋丝绸树酒店',
     heroTitle: '酒店馆内指南',
-    welcomeMessage: '感谢您今天入住"盛冈Ace酒店"。',
+    welcomeMessage: '感谢您今天入住「名古屋丝绸树酒店」。',
     welcomeMessage2: '',
     restaurantCoupon: '餐饮优惠券',
     checkInOut: '入住/退房时间',
@@ -338,9 +338,9 @@ const translations = {
   },
   ko: {
     hotelName: '',
-    hotelTitle: '호텔 에이스 모리오카',
+    hotelTitle: '호텔 실크 트리 나고야',
     heroTitle: '호텔 관내 안내',
-    welcomeMessage: '오늘 "호텔 에이스 모리오카"를 이용해 주셔서 진심으로 감사드립니다.',
+    welcomeMessage: '오늘 "호텔 실크 트리 나고야"를 이용해 주셔서 진심으로 감사드립니다.',
     welcomeMessage2: '',
     restaurantCoupon: '음식점 쿠폰',
     checkInOut: '입실/퇴실 시간',
@@ -448,9 +448,9 @@ const translations = {
   },
   fr: {
     hotelName: '',
-    hotelTitle: 'Dormy Inn Sendai ANNEX',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Guide de l\'hôtel',
-    welcomeMessage: 'Merci beaucoup d\'avoir séjourné aujourd\'hui.',
+    welcomeMessage: 'Merci beaucoup d\'avoir séjourné au Hotel Silk Tree Nagoya aujourd\'hui.',
     welcomeMessage2: '',
     restaurantCoupon: 'Coupon Restaurant',
     checkInOut: 'Enregistrement/Départ',
@@ -558,9 +558,9 @@ const translations = {
   },
   de: {
     hotelName: '',
-    hotelTitle: 'Dormy Inn Sendai ANNEX',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Hotel-Führer',
-    welcomeMessage: 'Vielen Dank, dass Sie heute bei uns übernachtet haben.',
+    welcomeMessage: 'Vielen Dank, dass Sie heute im Hotel Silk Tree Nagoya bei uns übernachtet haben.',
     welcomeMessage2: '',
     restaurantCoupon: 'Restaurant-Gutschein',
     checkInOut: 'Check-in/Check-out',
@@ -668,9 +668,9 @@ const translations = {
   },
   es: {
     hotelName: '',
-    hotelTitle: 'Dormy Inn Sendai ANNEX',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Guía del hotel',
-    welcomeMessage: 'Muchas gracias por alojarse con nosotros hoy.',
+    welcomeMessage: 'Muchas gracias por alojarse hoy en el Hotel Silk Tree Nagoya.',
     welcomeMessage2: '',
     restaurantCoupon: 'Cupón de restaurante',
     checkInOut: 'Registro/Salida',
@@ -778,9 +778,9 @@ const translations = {
   },
   it: {
     hotelName: '',
-    hotelTitle: 'Dormy Inn Sendai ANNEX',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Guida dell\'hotel',
-    welcomeMessage: 'Grazie mille per aver soggiornato con noi oggi.',
+    welcomeMessage: 'Grazie mille per aver soggiornato oggi all\'Hotel Silk Tree Nagoya.',
     welcomeMessage2: '',
     restaurantCoupon: 'Buono ristorante',
     checkInOut: 'Check-in/Check-out',
@@ -888,9 +888,9 @@ const translations = {
   },
   th: {
     hotelName: '',
-    hotelTitle: 'โรงแรมแกรนด์เทอเรส เซนได โคคุบุนโช',
+    hotelTitle: 'โรงแรมซิลค์ทรี นาโกยา',
     heroTitle: 'คู่มือภายในโรงแรม',
-    welcomeMessage: 'ขอขอบคุณที่เข้าพักที่ "โรงแรมแกรนด์เทอเรส เซนได โคคุบุนโช" ในวันนี้',
+    welcomeMessage: 'ขอขอบคุณที่เข้าพักที่ "โรงแรมซิลค์ทรี นาโกยา" ในวันนี้',
     welcomeMessage2: '',
     restaurantCoupon: 'คูปองร้านอาหาร',
     checkInOut: 'เวลาเช็คอิน/เช็คเอาท์',
@@ -998,9 +998,9 @@ const translations = {
   },
   vi: {
     hotelName: '',
-    hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Hướng dẫn trong khách sạn',
-    welcomeMessage: 'Cảm ơn quý khách đã sử dụng "Hotel Grand Terrace Sendai Kokubuncho" hôm nay.',
+    welcomeMessage: 'Cảm ơn quý khách đã lưu trú tại "Hotel Silk Tree Nagoya" hôm nay.',
     welcomeMessage2: '',
     restaurantCoupon: 'Phiếu giảm giá nhà hàng',
     checkInOut: 'Giờ nhận/trả phòng',
@@ -1108,9 +1108,9 @@ const translations = {
   },
   id: {
     hotelName: '',
-    hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Panduan dalam hotel',
-    welcomeMessage: 'Terima kasih telah menginap di "Hotel Grand Terrace Sendai Kokubuncho" hari ini.',
+    welcomeMessage: 'Terima kasih telah menginap di "Hotel Silk Tree Nagoya" hari ini.',
     welcomeMessage2: '',
     restaurantCoupon: 'Kupon restoran',
     checkInOut: 'Waktu check-in/check-out',
@@ -1218,9 +1218,9 @@ const translations = {
   },
   tl: {
     hotelName: '',
-    hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Gabay sa hotel',
-    welcomeMessage: 'Maraming salamat sa pag-stay sa "Hotel Grand Terrace Sendai Kokubuncho" ngayong araw.',
+    welcomeMessage: 'Maraming salamat sa pag-stay sa "Hotel Silk Tree Nagoya" ngayong araw.',
     welcomeMessage2: '',
     restaurantCoupon: 'Coupon ng restaurant',
     checkInOut: 'Oras ng check-in/check-out',
@@ -1328,9 +1328,9 @@ const translations = {
   },
   ms: {
     hotelName: '',
-    hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Panduan hotel',
-    welcomeMessage: 'Terima kasih kerana menginap di "Hotel Grand Terrace Sendai Kokubuncho" hari ini.',
+    welcomeMessage: 'Terima kasih kerana menginap di "Hotel Silk Tree Nagoya" hari ini.',
     welcomeMessage2: '',
     restaurantCoupon: 'Kupon restoran',
     checkInOut: 'Masa daftar masuk/keluar',
@@ -1438,9 +1438,9 @@ const translations = {
   },
   pt: {
     hotelName: '',
-    hotelTitle: 'Hotel Grand Terrace Sendai Kokubuncho',
+    hotelTitle: 'Hotel Silk Tree Nagoya',
     heroTitle: 'Guia do hotel',
-    welcomeMessage: 'Muito obrigado por se hospedar no "Hotel Grand Terrace Sendai Kokubuncho" hoje.',
+    welcomeMessage: 'Muito obrigado por se hospedar no "Hotel Silk Tree Nagoya" hoje.',
     welcomeMessage2: '',
     restaurantCoupon: 'Cupom de restaurante',
     checkInOut: 'Horário de check-in/check-out',
@@ -1548,9 +1548,9 @@ const translations = {
   },
   'zh-TW': {
     hotelName: '',
-    hotelTitle: '盛岡Ace酒店',
+    hotelTitle: '名古屋絲綢樹酒店',
     heroTitle: '酒店館內指南',
-    welcomeMessage: '感謝您今天入住「盛岡Ace酒店」。',
+    welcomeMessage: '感謝您今天入住「名古屋絲綢樹酒店」。',
     welcomeMessage2: '',
     restaurantCoupon: '餐飲優惠券',
     checkInOut: '入住/退房時間',
@@ -2025,7 +2025,7 @@ return (
             >
               <Image
                 src={src}
-                alt="HOTEL ドーミーイン Dormy inn"
+                alt="Hotel Silk Tree Nagoya"
                 fill
                 className="object-cover"
                 priority={index === 0}
