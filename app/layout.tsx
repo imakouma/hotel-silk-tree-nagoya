@@ -71,7 +71,7 @@ export default function RootLayout({
       {
         "@type": "LocationFeatureSpecification",
         "name": "館内設備",
-        "description": "ウェルカムドリンク・アメニティバイキング(14:00～25:00) 1F、喫煙所1F、自動販売機1F・3F、電子レンジ3F・4F・6F・8F・10F、VOD券売機・コインランドリー・製氷機・コミックコーナー 3F"
+        "description": "ウェルカムドリンク・アメニティバイキング(14:00～25:00) 1F、喫煙所1F、自動販売機1F・3F、電子レンジ3F・4F・6F・8F・10F、コインランドリー・製氷機・コミックコーナー 3F"
       }
     ]
   };

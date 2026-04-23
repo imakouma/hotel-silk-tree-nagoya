@@ -86,7 +86,6 @@ const translations = {
     iwateSachiko: '喫煙所 1F',
     wrappingVending: '自動販売機 1F・3F',
     souvenirVending1: '電子レンジ 3F・4F・6F・8F・10F',
-    souvenirVending2: 'VOD券売機 3F',
     floor2F: '■ 3F',
     vendingMachine: 'コインランドリー 3F（洗剤は自動投入）',
     iceMaker: '製氷機 3Fコインランドリー内',
@@ -194,7 +193,6 @@ const translations = {
     iwateSachiko: 'Smoking corner (1F)',
     wrappingVending: 'Vending machines (1F, 3F)',
     souvenirVending1: 'Microwave (3F, 4F, 6F, 8F, 10F)',
-    souvenirVending2: 'VOD ticket machine (3F)',
     floor2F: '■ 3F',
     vendingMachine: 'Coin laundry (3F, detergent auto-dispensed)',
     iceMaker: 'Ice machine (3F, inside coin laundry)',
@@ -332,7 +330,6 @@ const translations = {
     iwateSachiko: '岩手县公认VTuber「岩手さちこ」',
     wrappingVending: '包装自动售货机（初号机・4面包装）',
     souvenirVending1: '当地自动售货机（岩手特产）',
-    souvenirVending2: '当地自动售货机（特产）',
     vendingMachineNote: '自动售货机在别馆3F・6F也有',
     laundryHours: '使用时间段 10:00～22:00',
   },
@@ -442,7 +439,6 @@ const translations = {
     iwateSachiko: '이와테현 공인 VTuber「이와테 사치코」',
     wrappingVending: '래핑 자동판매기（초호기・4면 래핑）',
     souvenirVending1: '현지 자동판매기（이와테 특산품）',
-    souvenirVending2: '현지 자동판매기（특산품）',
     vendingMachineNote: '자동판매기는 별관 3F・6F에도 있습니다',
     laundryHours: '이용 시간대 10:00～22:00',
   },
@@ -552,7 +548,6 @@ const translations = {
     iwateSachiko: 'VTuber officiel de la préfecture d\'Iwate "Iwate Sachiko"',
     wrappingVending: 'Distributeur automatique emballé (Première unité, emballage 4 faces)',
     souvenirVending1: 'Distributeur automatique local (Souvenirs d\'Iwate)',
-    souvenirVending2: 'Distributeur automatique local (Souvenirs)',
     vendingMachineNote: 'Les distributeurs automatiques sont également disponibles au bâtiment annexe 3F et 6F',
     laundryHours: 'Heures disponibles: 10:00～22:00',
   },
@@ -662,7 +657,6 @@ const translations = {
     iwateSachiko: 'Offizieller VTuber der Präfektur Iwate "Iwate Sachiko"',
     wrappingVending: 'Verpackter Automat (Erste Einheit, 4-seitige Verpackung)',
     souvenirVending1: 'Lokaler Automat (Iwate-Souvenirs)',
-    souvenirVending2: 'Lokaler Automat (Souvenirs)',
     vendingMachineNote: 'Automaten sind auch im Nebengebäude 3F und 6F verfügbar',
     laundryHours: 'Verfügbare Stunden: 10:00～22:00',
   },
@@ -772,7 +766,6 @@ const translations = {
     iwateSachiko: 'VTuber oficial de la prefectura de Iwate "Iwate Sachiko"',
     wrappingVending: 'Máquina expendedora envuelta (Primera unidad, envoltura de 4 lados)',
     souvenirVending1: 'Máquina expendedora local (Souvenirs de Iwate)',
-    souvenirVending2: 'Máquina expendedora local (Souvenirs)',
     vendingMachineNote: 'Las máquinas expendedoras también están disponibles en el edificio anexo 3F y 6F',
     laundryHours: 'Horas disponibles: 10:00～22:00',
   },
@@ -882,7 +875,6 @@ const translations = {
     iwateSachiko: 'VTuber ufficiale della prefettura di Iwate "Iwate Sachiko"',
     wrappingVending: 'Distributore automatico avvolto (Prima unità, confezione a 4 lati)',
     souvenirVending1: 'Distributore automatico locale (Souvenir di Iwate)',
-    souvenirVending2: 'Distributore automatico locale (Souvenir)',
     vendingMachineNote: 'I distributori automatici sono disponibili anche nell\'edificio annesso 3F e 6F',
     laundryHours: 'Ore disponibili: 10:00～22:00',
   },
@@ -992,7 +984,6 @@ const translations = {
     iwateSachiko: 'VTuber ทางการของจังหวัดอิวาเตะ「อิวาเตะ ซาจิโกะ」',
     wrappingVending: 'ตู้กดสินค้าห่อ（เครื่องแรก・ห่อ 4 ด้าน）',
     souvenirVending1: 'ตู้กดสินค้าท้องถิ่น（ของฝากอิวาเตะ）',
-    souvenirVending2: 'ตู้กดสินค้าท้องถิ่น（ของฝาก）',
     vendingMachineNote: 'ตู้กดสินค้ามีที่อาคารเสริม 3F・6F ด้วย',
     laundryHours: 'เวลาทำการ 10:00～22:00',
   },
@@ -1102,7 +1093,6 @@ const translations = {
     iwateSachiko: 'VTuber chính thức của tỉnh Iwate「Iwate Sachiko」',
     wrappingVending: 'Máy bán hàng tự động có bọc（Máy đầu tiên・Bọc 4 mặt）',
     souvenirVending1: 'Máy bán hàng tự động địa phương（Đặc sản Iwate）',
-    souvenirVending2: 'Máy bán hàng tự động địa phương（Đặc sản）',
     vendingMachineNote: 'Máy bán hàng tự động cũng có ở tòa nhà phụ 3F・6F',
     laundryHours: 'Giờ sử dụng 10:00～22:00',
   },
@@ -1212,7 +1202,6 @@ const translations = {
     iwateSachiko: 'VTuber resmi Prefektur Iwate「Iwate Sachiko」',
     wrappingVending: 'Mesin penjual otomatis berlapis（Unit pertama・Lapisan 4 sisi）',
     souvenirVending1: 'Mesin penjual otomatis lokal（Oleh-oleh Iwate）',
-    souvenirVending2: 'Mesin penjual otomatis lokal（Oleh-oleh）',
     vendingMachineNote: 'Mesin penjual otomatis juga tersedia di gedung tambahan 3F dan 6F',
     laundryHours: 'Jam tersedia: 10:00～22:00',
   },
@@ -1322,7 +1311,6 @@ const translations = {
     iwateSachiko: 'Opisyal na VTuber ng Prefecture ng Iwate「Iwate Sachiko」',
     wrappingVending: 'Wrapped vending machine（Unang unit・4-sided wrap）',
     souvenirVending1: 'Lokal na vending machine（Iwate souvenirs）',
-    souvenirVending2: 'Lokal na vending machine（Souvenirs）',
     vendingMachineNote: 'Ang vending machines ay available din sa annex building 3F at 6F',
     laundryHours: 'Available na oras: 10:00～22:00',
   },
@@ -1432,7 +1420,6 @@ const translations = {
     iwateSachiko: 'VTuber rasmi Wilayah Iwate「Iwate Sachiko」',
     wrappingVending: 'Mesin layan diri berbalut（Unit pertama・Balutan 4 sisi）',
     souvenirVending1: 'Mesin layan diri tempatan（Cenderamata Iwate）',
-    souvenirVending2: 'Mesin layan diri tempatan（Cenderamata）',
     vendingMachineNote: 'Mesin layan diri juga tersedia di bangunan tambahan 3F dan 6F',
     laundryHours: 'Waktu tersedia: 10:00～22:00',
   },
@@ -1542,7 +1529,6 @@ const translations = {
     iwateSachiko: 'VTuber oficial da Prefeitura de Iwate "Iwate Sachiko"',
     wrappingVending: 'Máquina de venda automática embalada (Primeira unidade, embalagem de 4 lados)',
     souvenirVending1: 'Máquina de venda automática local (Lembranças de Iwate)',
-    souvenirVending2: 'Máquina de venda automática local (Lembranças)',
     vendingMachineNote: 'As máquinas de venda automática também estão disponíveis no edifício anexo 3F e 6F',
     laundryHours: 'Horas disponíveis: 10:00～22:00',
   },
@@ -1652,7 +1638,6 @@ const translations = {
     iwateSachiko: '岩手縣公認VTuber「岩手さちこ」',
     wrappingVending: '包裝自動售貨機（初號機・4面包裝）',
     souvenirVending1: '當地自動售貨機（岩手特產）',
-    souvenirVending2: '當地自動售貨機（特產）',
     vendingMachineNote: '自動售貨機在別館3F・6F也有',
     laundryHours: '使用時間段 10:00～22:00',
   },
@@ -2361,10 +2346,6 @@ return (
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
                       {t.souvenirVending1}
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.souvenirVending2}
                     </li>
                   </ul>
                   

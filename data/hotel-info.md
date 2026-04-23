@@ -51,7 +51,6 @@
 - **喫煙所**: 1F (Smoking corner: 1F)
 - **自動販売機**: 1F・3F (Vending machine: 1F-3F)
 - **電子レンジ**: 3F・4F・6F・8F・10F (Microwave oven: 3F-4F-6F-8F-10F)
-- **VOD券売機**: 3F (VOD ticket machine: 3F)
 - **コインランドリー**: 3F（洗剤は自動投入されます）(Laundromat: 3F)
 - **製氷機**: 3Fコインランドリー内 (Ice machine: 3F Coin-operated laundry)
 - **コミックコーナー**: 3Fコインランドリー内（英語の漫画もあり）(Comic book corner: 3F)
