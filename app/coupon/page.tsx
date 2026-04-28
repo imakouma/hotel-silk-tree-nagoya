@@ -76,7 +76,7 @@ const couponTranslations: Record<
     bringCoupon: "配布のクーポン券持参または、この画面の提示で",
     shop1Offer: "注文時にスタッフへ提示で おでん盛合わせ（中）半額 または ドリンク1杯人数分無料",
     shop2Offer1:
-      "注文時にスタッフへ提示で（当ホテル宿泊者限定）\n指定メニューより ドリンク1杯人数分無料",
+      "注文時にスタッフへ提示で\n指定メニューより ドリンク1杯人数分無料",
     shop3Offer: "日曜・金曜 60分飲み放題500円／水曜・土曜 1杯198円（※お一人様3,000円以上）",
     map: "MAP",
     tel: "TEL",
@@ -85,7 +85,7 @@ const couponTranslations: Record<
     holidayLabel: "定休日：",
     shopModalDescription1: "配布のクーポン券持参または、この画面の提示で、おでん 鈴では盛合わせ（中）半額など、うなぎ四代目菊川 栄店ではドリンク1杯人数分無料など、各店舗の案内に従ってご利用ください。",
     shopModalDescription2:
-      "配布のクーポン券持参またはこの画面の提示で、当ホテル宿泊者限定。注文時にスタッフへお見せいただくと、指定メニューよりドリンク1杯が人数分無料です。チェックアウト当日まで有効。他のクーポン券との併用不可・1組1回1枚。会計時の提示は無効です。",
+      "配布のクーポン券持参またはこの画面の提示で、注文時にスタッフへお見せいただくと、指定メニューよりドリンク1杯が人数分無料です。",
     shopModalDescription3: "配布のクーポン券持参または、この画面の提示で、日曜・金曜は60分飲み放題500円、水曜・土曜は1杯198円（※お一人様3,000円以上）。",
     shop1Name: "おでん 鈴",
     shop1Hours: "月～金 11:30～14:00／17:30～24:00（L.O.各30分前）　土 16:00～24:00（L.O.23:30）",
@@ -94,7 +94,7 @@ const couponTranslations: Record<
     shop2Name: "大衆すし酒場　魚喜",
     shop2Hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
     shop2Holiday: "日曜・祝日",
-    shop2Address: "〒460-0003 愛知県名古屋市中区錦3丁目20-12 第八錦ビル 1F",
+    shop2Address: "〒460-0003 愛知県名古屋市中区錦3丁目20-12 第八錦ビル",
     shop3Name: "大衆ホルモン・煙力 伏見店",
     shop3Hours: "16:00～23:00（L.O.22:30）",
     shop3Holiday: "年中無休（12/31～1/2休業）",
@@ -126,7 +126,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (L.O. Food 23:00 / Drink 23:30)",
     shop2Holiday: "Closed Sun. & holidays",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Daihachi Nishiki Bldg. 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Daihachi Nishiki Bldg.",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (L.O. 22:30)",
     shop3Holiday: "Open all year (Closed Dec 31 - Jan 2)",
@@ -157,7 +157,7 @@ const couponTranslations: Record<
     shop2Name: "大众寿司酒场　鱼喜",
     shop2Hours: "17:00～24:00（餐点最后点餐23:00／饮料23:30）",
     shop2Holiday: "周日・节假日休息",
-    shop2Address: "〒460-0003 爱知县名古屋市中区锦3丁目20-12 第八锦大厦 1F",
+    shop2Address: "〒460-0003 爱知县名古屋市中区锦3丁目20-12 第八锦大厦",
     shop3Name: "大众ホルモン・烟力 伏见店",
     shop3Hours: "16:00～23:00（最后点餐22:30）",
     shop3Holiday: "全年无休（12/31～1/2休息）",
@@ -188,7 +188,7 @@ const couponTranslations: Record<
     shop2Name: "大眾壽司酒場　魚喜",
     shop2Hours: "17:00～24:00（餐點最後點餐23:00／飲料23:30）",
     shop2Holiday: "週日・節假日休息",
-    shop2Address: "〒460-0003 愛知縣名古屋市中區錦3丁目20-12 第八錦大廈 1F",
+    shop2Address: "〒460-0003 愛知縣名古屋市中區錦3丁目20-12 第八錦大廈",
     shop3Name: "大眾ホルモン・煙力 伏見店",
     shop3Hours: "16:00～23:00（最後點餐22:30）",
     shop3Holiday: "全年無休（12/31～1/2休息）",
@@ -220,7 +220,7 @@ const couponTranslations: Record<
     shop2Name: "대중스시주점 우오요로코비",
     shop2Hours: "17:00～24:00（음식 마지막 주문 23:00／음료 23:30）",
     shop2Holiday: "일요일・공휴일 휴무",
-    shop2Address: "〒460-0003 아이치현 나고야시 나카구 니시키 3정목 20-12 다이하치니시키 빌딩 1F",
+    shop2Address: "〒460-0003 아이치현 나고야시 나카구 니시키 3정목 20-12 다이하치니시키 빌딩",
     shop3Name: "대중 호르몬・켐리키 후시미점",
     shop3Hours: "16:00～23:00（마지막 주문 22:30）",
     shop3Holiday: "연중 무휴（12/31～1/2 휴업）",
@@ -252,7 +252,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (Cde nourriture 23:00 / boisson 23:30)",
     shop2Holiday: "Fermé dim. et jours fériés",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bât. Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bât. Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Dernière commande 22:30)",
     shop3Holiday: "Ouvert toute l'année (Fermé 31 déc - 2 jan)",
@@ -284,7 +284,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (Essen 23:00 / Getränke 23:30)",
     shop2Holiday: "So. & Feiertage geschlossen",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Letzte Bestellung 22:30)",
     shop3Holiday: "Ganzjährig (Geschlossen 31. Dez - 2. Jan)",
@@ -316,7 +316,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi e Izakaya)",
     shop2Hours: "17:00～24:00 (Comida 23:00 / Bebida 23:30)",
     shop2Holiday: "Cerrado dom. y festivos",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Último pedido 22:30)",
     shop3Holiday: "Abierto todo el año (Cerrado 31 dic - 2 ene)",
@@ -348,7 +348,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi e Izakaya)",
     shop2Hours: "17:00～24:00 (Cibo 23:00 / Bevande 23:30)",
     shop2Holiday: "Chiuso dom. e festivi",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Ultimo ordine 22:30)",
     shop3Holiday: "Aperto tutto l'anno (Chiuso 31 dic - 2 gen)",
@@ -380,7 +380,7 @@ const couponTranslations: Record<
     shop2Name: "ยูโยโยโคบิ (ซูชิและอิซากายะ)",
     shop2Hours: "17:00～24:00 (สั่งสุดท้าย อาหาร 23:00 / เครื่องดื่ม 23:30)",
     shop2Holiday: "ปิดวันอาทิตย์และวันหยุดนักขัตฤกษ์",
-    shop2Address: "〒460-0003 3-20-12 นิชิกิ นากะ-คุ นาโงยะ อาคารไดฮาจิ นิชิกิ 1F",
+    shop2Address: "〒460-0003 3-20-12 นิชิกิ นากะ-คุ นาโงยะ อาคารไดฮาจิ นิชิกิ",
     shop3Name: "ยามิตสึกิ โฮรุมง ริคิว โอโดริ",
     shop3Hours: "16:00～23:00 (สั่งสุดท้าย 22:30)",
     shop3Holiday: "เปิดทุกวัน (ปิด 31 ธ.ค. - 2 ม.ค.)",
@@ -412,7 +412,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (Đồ ăn 23:00 / Đồ uống 23:30)",
     shop2Holiday: "Đóng CN và ngày lễ",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Tòa nhà Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Tòa nhà Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Đặt món cuối 22:30)",
     shop3Holiday: "Mở quanh năm (Đóng 31/12 - 2/1)",
@@ -444,7 +444,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (Makanan 23:00 / Minuman 23:30)",
     shop2Holiday: "Tutup Ahad & cuti",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bangunan Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bangunan Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Pesanan terakhir 22:30)",
     shop3Holiday: "Buka sepanjang tahun (Tutup 31 Des - 2 Jan)",
@@ -476,7 +476,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (Comida 23:00 / Bebida 23:30)",
     shop2Holiday: "Fechado dom. e feriados",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Ed. Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Último pedido 22:30)",
     shop3Holiday: "Aberto o ano todo (Fechado 31 dez - 2 jan)",
@@ -508,7 +508,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (Pagkain 23:00 / Inumin 23:30)",
     shop2Holiday: "Sarado Linggo at holidays",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Gusali Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Gusali Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Huling order 22:30)",
     shop3Holiday: "Bukas buong taon (Sarado Dis 31 - Ene 2)",
@@ -540,7 +540,7 @@ const couponTranslations: Record<
     shop2Name: "UOYOROKOBI (Sushi & Izakaya)",
     shop2Hours: "17:00～24:00 (Makanan 23:00 / Minuman 23:30)",
     shop2Holiday: "Tutup Ahad & cuti",
-    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bangunan Daihachi Nishiki 1F",
+    shop2Address: "〒460-0003 3-20-12 Nishiki, Naka-ku, Nagoya, Bangunan Daihachi Nishiki",
     shop3Name: "Taishu Horumon Kemuriki Fushimi",
     shop3Hours: "16:00～23:00 (Pesanan terakhir 22:30)",
     shop3Holiday: "Buka sepanjang tahun (Tutup 31 Dis - 2 Jan)",
@@ -591,7 +591,7 @@ const shopsBase = [
     branches: [
       {
         name: "大衆すし酒場　魚喜",
-        address: "〒460-0003 愛知県名古屋市中区錦3丁目20-12 第八錦ビル 1F",
+        address: "〒460-0003 愛知県名古屋市中区錦3丁目20-12 第八錦ビル",
         tel: "052-953-0940",
         hours: "17:00～24:00（L.O.Food 23:00／Drink 23:30）",
         holiday: "日曜・祝日",
@@ -854,23 +854,11 @@ export default function CouponPage() {
             const address = t[`${k}Address`];
             const couponContent =
               k === "shop1" ? (
-                <>
-                  {t.bringCoupon}
-                  <br />
-                  <span className="text-white">{t.shop1Offer}</span>
-                </>
+                <span className="text-white">{t.shop1Offer}</span>
               ) : k === "shop2" ? (
-                <>
-                  {t.bringCoupon}
-                  <br />
-                  <span className="whitespace-pre-line text-white">{t.shop2Offer1}</span>
-                </>
+                <span className="whitespace-pre-line text-white">{t.shop2Offer1}</span>
               ) : (
-                <>
-                  {t.bringCoupon}
-                  <br />
-                  <span className="text-white">{t.shop3Offer}</span>
-                </>
+                <span className="text-white">{t.shop3Offer}</span>
               );
             return (
               <article
@@ -897,7 +885,7 @@ export default function CouponPage() {
 
                 {/* クーポン内容（ベージュ・スマホは文字大きく見やすく） */}
                 <div
-                  className="flex h-34 flex-col items-center justify-center px-4 py-3 text-center text-base font-bold leading-relaxed sm:h-36 sm:text-sm"
+                  className="flex h-34 flex-col items-center justify-center px-4 py-3 text-center text-base leading-relaxed sm:h-36 sm:text-sm"
                   style={{ backgroundColor: COUPON_BG, color: COUPON_TEXT_COLOR }}
                 >
                   {couponContent}

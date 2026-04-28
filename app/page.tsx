@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage, type LanguageCode } from '@/contexts/LanguageContext';
@@ -81,16 +81,16 @@ const translations = {
     floor1F: '■ 1F',
     freeSpaceNote: '',
     freeSpace: 'ウェルカムドリンクサービス',
-    freeSpaceHours: '1F',
-    microwave: 'アメニティバイキング（14:00～25:00）1F',
-    iwateSachiko: '喫煙所 1F',
-    wrappingVending: '自動販売機 1F・3F',
-    souvenirVending1: '電子レンジ 3F・4F・6F・8F・10F',
+    freeSpaceHours: '',
+    microwave: 'アメニティバイキング（14:00～25:00）',
+    iwateSachiko: '喫煙所',
+    wrappingVending: '自動販売機',
+    souvenirVending1: '電子レンジ（4F・6F・8F・10Fにもあります）',
     floor2F: '■ 3F',
     vendingMachine: '自動販売機',
-    iceMaker: '製氷機 3Fコインランドリー内',
-    vendingMachineNote: 'コミックコーナー 3F（英語の漫画もあり）',
-    laundry: 'コインランドリー 3F',
+    iceMaker: '製氷機 コインランドリー内',
+    vendingMachineNote: 'コミックコーナー（英語の漫画もあり）',
+    laundry: 'コインランドリー',
     laundryHours: '洗剤は自動投入されます',
     alcoholNote: '(アルコール類は5・7・9F)',
     smoking: '喫煙所 1F',
@@ -108,7 +108,7 @@ const translations = {
     lightingDesc: '入室後、入口脇の電源ソケットにお部屋のキーホルダーを差し込む事で室内照明は点灯致します。',
     lightingNote: '※キーを電源ソケットに差し込みます。',
     longstayTitle: '連泊清掃のご案内',
-    cleaningHours: 'SDGsの観点から連泊時の清掃は基本的に中止です。衛生管理のため、7日毎に無料清掃を実施します。',
+    cleaningHours: 'SDGsの観点から連泊時の清掃は基本的に取り止めます。衛生管理のため、7日毎に無料清掃を実施します。',
     cleaningRequest: 'タオル交換が必要な場合：朝10時までにドア裏の赤い札（「Change towels and Collect garbage」）をドア表面（廊下側）に貼ってください。バスマットはフロントでご用意します。',
     sheetExchange: 'アメニティとナイトウェアはロビー棚から自由にご利用いただけます。',
     noCleaning: '衛生清掃以外の追加清掃は有料です。朝10時までにフロントへお申し付けください。プレミアルーム 2,640円（税込）/1回、その他の客室 1,100円（税込）/1回。',
@@ -1658,14 +1658,7 @@ function getTranslations(lang: LanguageCode) {
   return merged as typeof translations.en;
 }
 
-type PageProps = {
-  params?: Promise<Record<string, string | string[]>>;
-  searchParams?: Promise<Record<string, string | string[]>>;
-};
-
-export default function Home(props: PageProps) {
-  use(props.params ?? Promise.resolve({}));
-  use(props.searchParams ?? Promise.resolve({}));
+export default function Home() {
 
   const { language: selectedLanguage, setLanguage: setSelectedLanguage } = useLanguage();
   const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -2030,15 +2023,6 @@ return (
         </div>
       </section>
 
-      {/* ウェルカムメッセージ */}
-      <section className="bg-white py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-            {t.welcomeMessage}
-          </p>
-        </div>
-      </section>
-
       {/* サービスグリッド */}
       <section className="bg-white py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -2175,15 +2159,6 @@ return (
               </div>
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* ウェルカムメッセージ */}
-      <section className="bg-white py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-            {t.welcomeMessage}
-          </p>
         </div>
       </section>
 
@@ -2327,8 +2302,10 @@ return (
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3 mt-2 shrink-0"></span>
                       <div>
-                        <div className="font-semibold">{t.freeSpace}</div>
-                        <div className="text-sm text-gray-600 mt-1">{t.freeSpaceHours}</div>
+                        <div>{t.freeSpace}</div>
+                        {t.freeSpaceHours && (
+                          <div className="text-sm text-gray-600 mt-1">{t.freeSpaceHours}</div>
+                        )}
                       </div>
                     </li>
                     <li className="flex items-center">
@@ -2342,10 +2319,6 @@ return (
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
                       {t.wrappingVending}
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.souvenirVending1}
                     </li>
                   </ul>
                   
@@ -2373,6 +2346,17 @@ return (
                   </div>
                   
                   <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3 mt-2 shrink-0"></span>
+                      <div>
+                        <div>{t.laundry}</div>
+                        <div className="text-sm text-gray-600 mt-1">{t.laundryHours}</div>
+                      </div>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
+                      {t.souvenirVending1}
+                    </li>
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
                       {t.vendingMachine}
@@ -2384,13 +2368,6 @@ return (
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
                       {t.vendingMachineNote}
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3 mt-2 shrink-0"></span>
-                      <div>
-                        <div className="font-semibold">{t.laundry}</div>
-                        <div className="text-sm text-gray-600 mt-1">{t.laundryHours}</div>
-                      </div>
                     </li>
                   </ul>
                 </div>
