@@ -188,7 +188,7 @@ const translations = {
     floor1F: '■ 1F',
     freeSpaceNote: '',
     freeSpace: 'Welcome drink service',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     microwave: 'Amenity buffet (14:00–25:00) 1F',
     iwateSachiko: 'Smoking corner (1F)',
     wrappingVending: 'Vending machines (1F, 3F)',
@@ -326,7 +326,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: '迎宾饮料服务',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: '吸烟区 1F',
     wrappingVending: '自动售货机 1F・3F',
     souvenirVending1: '微波炉 3F・4F・6F・8F・10F',
@@ -435,7 +435,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: '웰컴 드링크 서비스',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: '흡연실 1F',
     wrappingVending: '자동판매기 1F・3F',
     souvenirVending1: '전자레인지 3F・4F・6F・8F・10F',
@@ -544,7 +544,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Boissons de bienvenue',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Espace fumeurs (1F)',
     wrappingVending: 'Distributeurs automatiques (1F, 3F)',
     souvenirVending1: 'Micro-ondes (3F, 4F, 6F, 8F, 10F)',
@@ -653,7 +653,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Willkommensgetränk',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Raucherbereich (1F)',
     wrappingVending: 'Automaten (1F, 3F)',
     souvenirVending1: 'Mikrowelle (3F, 4F, 6F, 8F, 10F)',
@@ -762,7 +762,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Bebida de bienvenida',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Zona de fumadores (1F)',
     wrappingVending: 'Máquinas expendedoras (1F, 3F)',
     souvenirVending1: 'Microondas (3F, 4F, 6F, 8F, 10F)',
@@ -871,7 +871,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Bevanda di benvenuto',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Area fumatori (1F)',
     wrappingVending: 'Distributori automatici (1F, 3F)',
     souvenirVending1: 'Forno a microonde (3F, 4F, 6F, 8F, 10F)',
@@ -980,7 +980,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'เครื่องดื่มต้อนรับ',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'มุมสูบบุหรี่ 1F',
     wrappingVending: 'ตู้กดสินค้า 1F・3F',
     souvenirVending1: 'ไมโครเวฟ 3F・4F・6F・8F・10F',
@@ -1089,7 +1089,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Đồ uống chào mừng',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Khu hút thuốc (1F)',
     wrappingVending: 'Máy bán hàng tự động (1F, 3F)',
     souvenirVending1: 'Lò vi sóng (3F, 4F, 6F, 8F, 10F)',
@@ -1198,7 +1198,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Minuman selamat datang',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Area merokok (1F)',
     wrappingVending: 'Mesin penjual otomatis (1F, 3F)',
     souvenirVending1: 'Microwave (3F, 4F, 6F, 8F, 10F)',
@@ -1307,7 +1307,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Welcome drink',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Smoking area (1F)',
     wrappingVending: 'Vending machines (1F, 3F)',
     souvenirVending1: 'Microwave (3F, 4F, 6F, 8F, 10F)',
@@ -1416,7 +1416,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Minuman alu-aluan',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Kawasan merokok (1F)',
     wrappingVending: 'Mesin layan diri (1F, 3F)',
     souvenirVending1: 'Ketuhar gelombang mikro (3F, 4F, 6F, 8F, 10F)',
@@ -1525,7 +1525,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: 'Bebida de boas-vindas',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: 'Área de fumadores (1F)',
     wrappingVending: 'Máquinas de venda automática (1F, 3F)',
     souvenirVending1: 'Micro-ondas (3F, 4F, 6F, 8F, 10F)',
@@ -1634,7 +1634,7 @@ const translations = {
     floor2F: '■ 3F',
     freeSpaceNote: '',
     freeSpace: '迎賓飲料服務',
-    freeSpaceHours: '1F',
+    freeSpaceHours: '',
     iwateSachiko: '吸煙區 1F',
     wrappingVending: '自動售貨機 1F・3F',
     souvenirVending1: '微波爐 3F・4F・6F・8F・10F',
@@ -2355,19 +2355,19 @@ return (
                     </li>
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.souvenirVending1}
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
-                      {t.vendingMachine}
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
                       {t.iceMaker}
                     </li>
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
                       {t.vendingMachineNote}
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
+                      {t.souvenirVending1}
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#3E8668] rounded-full mr-3"></span>
+                      {t.vendingMachine}
                     </li>
                   </ul>
                 </div>

@@ -21,16 +21,30 @@ function detectDevice() {
   return "desktop";
 }
 
+const productionAnalyticsEndpoint = "https://small-crow-989.convex.site/api/events";
+
+function getDefaultAnalyticsEndpoint() {
+  const { protocol, hostname } = window.location;
+  const isLocalhost =
+    hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1";
+  const isPrivateNetwork = /^(10\.|172\.(1[6-9]|2\d|3[0-1])\.|192\.168\.)/.test(
+    hostname,
+  );
+
+  if (isLocalhost || isPrivateNetwork) {
+    return `${protocol}//${hostname}:4000/api/events`;
+  }
+
+  return productionAnalyticsEndpoint;
+}
+
 export default function AnalyticsTracker({ siteId }: AnalyticsTrackerProps) {
   const pathname = usePathname();
   const lastTracked = useRef<string | null>(null);
 
   useEffect(() => {
     const endpoint =
-      process.env.NEXT_PUBLIC_ANALYTICS_ENDPOINT ||
-      (window.location.hostname === "localhost"
-        ? "http://localhost:4000/api/events"
-        : undefined);
+      process.env.NEXT_PUBLIC_ANALYTICS_ENDPOINT || getDefaultAnalyticsEndpoint();
     const resolvedSiteId = process.env.NEXT_PUBLIC_ANALYTICS_SITE_ID || siteId;
 
     if (!endpoint || !resolvedSiteId || !pathname) {
