@@ -657,6 +657,24 @@ const otherLanguages: Array<{ code: LanguageCode; flag: string; label: string }>
   { code: "pt", flag: "🇵🇹", label: "Português" },
 ];
 
+const unagiKikukawaSakaeNames: Record<LanguageCode, string> = {
+  ja: "うなぎ四代目菊川 栄店",
+  en: "Unagi Yondaime Kikukawa Sakae",
+  zh: "鳗鱼四代目菊川荣店",
+  "zh-TW": "鰻魚四代目菊川榮店",
+  ko: "우나기 요다이메 키쿠카와 사카에",
+  th: "อูนากิโยไดเมะคิคุคาวะ ซากาเอะ",
+  vi: "Unagi Yondaime Kikukawa Sakae",
+  tl: "Unagi Yondaime Kikukawa Sakae",
+  id: "Unagi Yondaime Kikukawa Sakae",
+  ms: "Unagi Yondaime Kikukawa Sakae",
+  fr: "Unagi Yondaime Kikukawa Sakae",
+  de: "Unagi Yondaime Kikukawa Sakae",
+  es: "Unagi Yondaime Kikukawa Sakae",
+  it: "Unagi Yondaime Kikukawa Sakae",
+  pt: "Unagi Yondaime Kikukawa Sakae",
+};
+
 export default function CouponPage() {
   const { language: selectedLanguage, setLanguage: setSelectedLanguage } = useLanguage();
   const [showOtherLanguages, setShowOtherLanguages] = useState(false);
@@ -664,6 +682,14 @@ export default function CouponPage() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const languageDropdownRef = useRef<HTMLDivElement>(null);
   const t = getCouponT(selectedLanguage);
+  const unagiKikukawaSakaeName = unagiKikukawaSakaeNames[selectedLanguage] ?? unagiKikukawaSakaeNames.en;
+  const getBranchDisplayName = (nameKey: "shop1" | "shop2" | "shop3", branchIndex: number, fallback: string) => {
+    if (nameKey === "shop1") {
+      return branchIndex === 1 ? unagiKikukawaSakaeName : t.shop1Name;
+    }
+
+    return t[`${nameKey}Name`] || fallback;
+  };
 
   const openModal = (index: number) => {
     setCurrentSlideIndex(0);
@@ -848,7 +874,7 @@ export default function CouponPage() {
             const k = shop.nameKey;
             const name = t[`${k}Name`];
             // 3枚目カードはおでん 鈴＋うなぎ四代目菊川栄店の2店舗のため、ヘッダーに両方表示
-            const headerTitle = k === "shop1" ? `${name}　うなぎ四代目菊川　栄店` : name;
+            const headerTitle = k === "shop1" ? `${name}　${unagiKikukawaSakaeName}` : name;
             const hours = t[`${k}Hours`];
             const holiday = t[`${k}Holiday`];
             const address = t[`${k}Address`];
@@ -895,7 +921,7 @@ export default function CouponPage() {
                 <div className="flex min-h-0 flex-1 flex-col bg-white px-4 pt-3 pb-3 text-sm text-gray-900">
                   <div className="min-h-0 flex-1">
                     {shop.branches.map((b, j) => {
-                      const branchName = ("name" in b && typeof b.name === "string" ? b.name : null) ?? name;
+                      const branchName = getBranchDisplayName(k, j, ("name" in b && typeof b.name === "string" ? b.name : "") || name);
                       const branchHours = ("hours" in b && typeof b.hours === "string" ? b.hours : null) ?? hours;
                       const branchHoliday = ("holiday" in b && typeof b.holiday === "string" ? b.holiday : null) ?? holiday;
                       const branchAddress = ("address" in b && typeof b.address === "string" ? b.address : null) ?? address;
@@ -1059,7 +1085,7 @@ export default function CouponPage() {
                   {/* 全店舗分を表示（利久は4店舗・晴れの日2店舗・ぼんてん1店舗） */}
                   {shop.branches.map((branch, branchIndex) => {
                     const branchAddress = branch.address || ("name" in branch && typeof branch.name === "string" ? branch.name : "") || modalName;
-                    const branchName = ("name" in branch && typeof branch.name === "string" ? branch.name : "") || modalName;
+                    const branchName = getBranchDisplayName(k, branchIndex, ("name" in branch && typeof branch.name === "string" ? branch.name : "") || modalName);
                     const branchHours = ("hours" in branch && typeof branch.hours === "string" ? branch.hours : null) ?? modalHours;
                     const branchHoliday = ("holiday" in branch && typeof branch.holiday === "string" ? branch.holiday : null) ?? modalHoliday;
                     const branchAddressDisplay = ("address" in branch && typeof branch.address === "string" ? branch.address : null) ?? modalAddress;
