@@ -10,6 +10,14 @@
 GEMINI_API_KEY=あなたのAPIキー
 ```
 
+通常は、Google が現行の Flash モデルへ自動的に付け替える
+`gemini-flash-latest` を使用します。特定バージョンに固定したい場合だけ、
+次の環境変数を追加してください。
+
+```
+GEMINI_MODEL=利用するモデルID
+```
+
 ※ `.env.local` は git に含めないでください（既に .gitignore に含まれています）。
 
 ### 2. ネット公開（Vercel など）でチャットボットを動かす場合
@@ -35,7 +43,7 @@ GEMINI_API_KEY=あなたのAPIキー
 npm install
 ```
 
-`@google/generative-ai` は package.json に追加済みです。
+現行の Google GenAI SDK（`@google/genai`）は package.json に追加済みです。
 
 ## hotel-info.md の更新について
 

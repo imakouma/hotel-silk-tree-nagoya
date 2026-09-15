@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-const OFFICIAL_SITE_URL = "https://breezbay-group.com/hgt-s-kokubuncho/";
+const OFFICIAL_SITE_URL = "https://www.silk-tree.jp/";
+// Google が現行の Flash モデルへ付け替えるエイリアスを既定にする。
+// 動作を固定したい場合だけ GEMINI_MODEL で具体的なモデルIDを指定する。
+const DEFAULT_MODEL_ID = "gemini-flash-latest";
 const OFFICIAL_SITE_CACHE_TTL_MS = 1000 * 60 * 60; // 1 hour
 const OFFICIAL_SITE_TEXT_MAX_CHARS = 12000;
 const OFFICIAL_SITE_FETCH_TIMEOUT_MS = 8000;
@@ -139,61 +142,50 @@ export async function POST(request: NextRequest) {
     const responseLang = languageNames[language] || languageNames.ja;
     const hotelInfo = loadHotelInfo();
     const officialSiteText = await loadOfficialSiteText();
-    const genAI = new GoogleGenerativeAI(apiKey);
+    const genAI = new GoogleGenAI({ apiKey });
     const languageInstruction = `【重要】回答は必ず「${responseLang}」で行ってください。お客様がその言語で質問している場合は、同じ言語で簡潔に答えてください。`;
     const officialSiteSection = officialSiteText
       ? `\n\n## 公式HP（補足情報・サイト内に情報が無い場合のみ参照）\nURL: ${OFFICIAL_SITE_URL}\n注意: この情報は、上記の「ホテル情報（参照用）」に記載が無い場合のみ使用してください。\n\n${officialSiteText}\n`
       : "";
     const fullPrompt = `${SYSTEM_PROMPT_PREFIX}\n${hotelInfo}${officialSiteSection}\n\n---\n${languageInstruction}\n\n【回答時の注意】\n- まず「ホテル情報（参照用）」セクションを確認してください\n- そこに情報がある場合は、その情報を優先的に使用してください\n- 公式HPの情報は、サイト内に情報が無い場合の補足としてのみ使用してください\n\n上記のルールに従って、以下のお客様の質問に答えてください。\n\n【質問】\n${userMessage.trim()}`;
 
-    const modelIds = ["gemini-1.5-flash", "gemini-1.5-flash-latest", "gemini-2.0-flash"] as const;
+    const modelId = process.env.GEMINI_MODEL?.trim() || DEFAULT_MODEL_ID;
     const maxRetries = 3;
     const quotaExceededMessage = "無料枠の制限に達しました。1分ほど待ってから再度お試しください。";
-    let result: Awaited<ReturnType<ReturnType<GoogleGenerativeAI["getGenerativeModel"]>["generateContent"]>> | null = null;
-    let lastError: unknown = null;
+    let response: Awaited<ReturnType<typeof genAI.models.generateContent>> | null = null;
 
-    for (const modelId of modelIds) {
-      const model = genAI.getGenerativeModel({ model: modelId });
-      for (let attempt = 0; attempt < maxRetries; attempt++) {
-        try {
-          result = await model.generateContent(fullPrompt);
-          break;
-        } catch (e) {
-          lastError = e;
-          const msg = e instanceof Error ? e.message : String(e);
-          const is404 = msg.includes("404") || msg.includes("not found");
-          const is429 =
-            msg.includes("429") ||
-            msg.includes("quota") ||
-            msg.includes("Too Many Requests") ||
-            msg.includes("Quota exceeded");
-          if (is404) {
-            console.warn(`[Chat API] モデル ${modelId} は利用できません。次のモデルを試します。`);
-            break;
-          }
-          if (is429 && attempt < maxRetries - 1) {
-            const delayMs = Math.pow(2, attempt) * 1000;
-            console.warn(
-              `[Chat API] 429 検出。${delayMs / 1000}秒後に再試行します（${attempt + 1}/${maxRetries}）`
-            );
-            await new Promise((r) => setTimeout(r, delayMs));
-            continue;
-          }
-          if (is429 && attempt === maxRetries - 1) {
-            return NextResponse.json({ error: quotaExceededMessage, code: "QUOTA_EXCEEDED" }, { status: 429 });
-          }
-          throw e;
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        response = await genAI.models.generateContent({
+          model: modelId,
+          contents: fullPrompt,
+        });
+        break;
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : String(e);
+        const is429 =
+          msg.includes("429") ||
+          msg.includes("quota") ||
+          msg.includes("Too Many Requests") ||
+          msg.includes("Quota exceeded");
+        if (is429 && attempt < maxRetries - 1) {
+          const delayMs = Math.pow(2, attempt) * 1000;
+          console.warn(
+            `[Chat API] 429 検出。${delayMs / 1000}秒後に再試行します（${attempt + 1}/${maxRetries}）`
+          );
+          await new Promise((r) => setTimeout(r, delayMs));
+          continue;
         }
+        if (is429) {
+          return NextResponse.json({ error: quotaExceededMessage, code: "QUOTA_EXCEEDED" }, { status: 429 });
+        }
+        throw e;
       }
-      if (result) break;
     }
 
-    if (!result) {
-      console.error("[Chat API] 利用可能なモデルがありません:", lastError);
-      throw lastError ?? new Error("モデルで回答を取得できませんでした。");
+    if (!response) {
+      throw new Error("モデルで回答を取得できませんでした。");
     }
-
-    const response = result.response;
 
     if (!response.candidates || response.candidates.length === 0) {
       const blockReason = response.promptFeedback?.blockReason;
@@ -204,7 +196,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const text = response.text();
+    const text = response.text;
     return NextResponse.json({ reply: text || "申し訳ございません。回答を生成できませんでした。" });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
