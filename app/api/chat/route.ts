@@ -1,3 +1,5 @@
+import { selectHotelContext } from "../../../lib/hotel-context";
+import { getHotelFaq } from "../../../lib/hotel-faq";
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 import { readFileSync } from "fs";
@@ -101,15 +103,6 @@ async function loadOfficialSiteText(): Promise<string> {
 }
 
 export async function POST(request: NextRequest) {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey || typeof apiKey !== "string" || !apiKey.trim()) {
-    console.error("[Chat API] GEMINI_API_KEY が設定されていません。.env.local を確認してください。");
-    return NextResponse.json(
-      { error: "APIキーが設定されていません。しばらく経ってからお試しください。" },
-      { status: 500 }
-    );
-  }
-
   const languageNames: Record<string, string> = {
     ja: "日本語",
     en: "English",
@@ -141,13 +134,25 @@ export async function POST(request: NextRequest) {
 
     const responseLang = languageNames[language] || languageNames.ja;
     const hotelInfo = loadHotelInfo();
+    const faqReply = getHotelFaq(userMessage, language, hotelInfo);
+    if (faqReply) return NextResponse.json({ reply: faqReply }, { headers: { "X-Hotel-Answer-Source": "knowledge-base" } });
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey || typeof apiKey !== "string" || !apiKey.trim()) {
+      console.error("[Chat API] GEMINI_API_KEY が設定されていません。.env.local を確認してください。");
+      return NextResponse.json(
+        { error: "APIキーが設定されていません。しばらく経ってからお試しください。" },
+        { status: 500 }
+      );
+    }
+
     const officialSiteText = await loadOfficialSiteText();
     const genAI = new GoogleGenAI({ apiKey });
     const languageInstruction = `【重要】回答は必ず「${responseLang}」で行ってください。お客様がその言語で質問している場合は、同じ言語で簡潔に答えてください。`;
     const officialSiteSection = officialSiteText
       ? `\n\n## 公式HP（補足情報・サイト内に情報が無い場合のみ参照）\nURL: ${OFFICIAL_SITE_URL}\n注意: この情報は、上記の「ホテル情報（参照用）」に記載が無い場合のみ使用してください。\n\n${officialSiteText}\n`
       : "";
-    const fullPrompt = `${SYSTEM_PROMPT_PREFIX}\n${hotelInfo}${officialSiteSection}\n\n---\n${languageInstruction}\n\n【回答時の注意】\n- まず「ホテル情報（参照用）」セクションを確認してください\n- そこに情報がある場合は、その情報を優先的に使用してください\n- 公式HPの情報は、サイト内に情報が無い場合の補足としてのみ使用してください\n\n上記のルールに従って、以下のお客様の質問に答えてください。\n\n【質問】\n${userMessage.trim()}`;
+    const aiHotelInfo = selectHotelContext(hotelInfo, userMessage, language);
+    const fullPrompt = `${SYSTEM_PROMPT_PREFIX}\n${aiHotelInfo}${officialSiteSection}\n\n---\n${languageInstruction}\n\n【回答時の注意】\n- まず「ホテル情報（参照用）」セクションを確認してください\n- そこに情報がある場合は、その情報を優先的に使用してください\n- 公式HPの情報は、サイト内に情報が無い場合の補足としてのみ使用してください\n\n上記のルールに従って、以下のお客様の質問に答えてください。\n\n【質問】\n${userMessage.trim()}`;
 
     const reply = await generateWithFallback(fullPrompt, async () => {
       const response = await genAI.models.generateContent({
