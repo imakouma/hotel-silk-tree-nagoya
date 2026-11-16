@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 import { readFileSync } from "fs";
 import { join } from "path";
+import { ChatUnavailableError, generateWithFallback } from "../../../lib/chat-provider";
+
+export const maxDuration = 60;
 
 const OFFICIAL_SITE_URL = "https://www.silk-tree.jp/";
-// Google が現行の Flash モデルへ付け替えるエイリアスを既定にする。
-// 動作を固定したい場合だけ GEMINI_MODEL で具体的なモデルIDを指定する。
-const DEFAULT_MODEL_ID = "gemini-flash-latest";
 const OFFICIAL_SITE_CACHE_TTL_MS = 1000 * 60 * 60; // 1 hour
 const OFFICIAL_SITE_TEXT_MAX_CHARS = 12000;
 const OFFICIAL_SITE_FETCH_TIMEOUT_MS = 8000;
@@ -129,12 +129,12 @@ export async function POST(request: NextRequest) {
   };
 
   try {
-    const body = await request.json();
-    const userMessage = body.message as string | undefined;
-    const language = (body.language as string) || "ja";
-    if (typeof userMessage !== "string" || !userMessage.trim()) {
+    const body = await request.json().catch(() => null);
+    const userMessage = body?.message as string | undefined;
+    const language = typeof body?.language === "string" ? body.language : "ja";
+    if (typeof userMessage !== "string" || !userMessage.trim() || userMessage.length > 4000) {
       return NextResponse.json(
-        { error: "message を送信してください。" },
+        { error: "message は1〜4000文字で送信してください。" },
         { status: 400 }
       );
     }
@@ -149,62 +149,28 @@ export async function POST(request: NextRequest) {
       : "";
     const fullPrompt = `${SYSTEM_PROMPT_PREFIX}\n${hotelInfo}${officialSiteSection}\n\n---\n${languageInstruction}\n\n【回答時の注意】\n- まず「ホテル情報（参照用）」セクションを確認してください\n- そこに情報がある場合は、その情報を優先的に使用してください\n- 公式HPの情報は、サイト内に情報が無い場合の補足としてのみ使用してください\n\n上記のルールに従って、以下のお客様の質問に答えてください。\n\n【質問】\n${userMessage.trim()}`;
 
-    const modelId = process.env.GEMINI_MODEL?.trim() || DEFAULT_MODEL_ID;
-    const maxRetries = 3;
-    const quotaExceededMessage = "無料枠の制限に達しました。1分ほど待ってから再度お試しください。";
-    let response: Awaited<ReturnType<typeof genAI.models.generateContent>> | null = null;
-
-    for (let attempt = 0; attempt < maxRetries; attempt++) {
-      try {
-        response = await genAI.models.generateContent({
-          model: modelId,
-          contents: fullPrompt,
-        });
-        break;
-      } catch (e) {
-        const msg = e instanceof Error ? e.message : String(e);
-        const is429 =
-          msg.includes("429") ||
-          msg.includes("quota") ||
-          msg.includes("Too Many Requests") ||
-          msg.includes("Quota exceeded");
-        if (is429 && attempt < maxRetries - 1) {
-          const delayMs = Math.pow(2, attempt) * 1000;
-          console.warn(
-            `[Chat API] 429 検出。${delayMs / 1000}秒後に再試行します（${attempt + 1}/${maxRetries}）`
-          );
-          await new Promise((r) => setTimeout(r, delayMs));
-          continue;
-        }
-        if (is429) {
-          return NextResponse.json({ error: quotaExceededMessage, code: "QUOTA_EXCEEDED" }, { status: 429 });
-        }
-        throw e;
+    const reply = await generateWithFallback(fullPrompt, async () => {
+      const response = await genAI.models.generateContent({
+        model: process.env.GEMINI_MODEL?.trim() || "gemini-3.5-flash-lite",
+        contents: fullPrompt,
+        config: { httpOptions: { timeout: 20000, retryOptions: { attempts: 1 } } },
+      });
+      if (!response.candidates?.length) {
+        throw new Error("Gemini returned no answer");
       }
-    }
-
-    if (!response) {
-      throw new Error("モデルで回答を取得できませんでした。");
-    }
-
-    if (!response.candidates || response.candidates.length === 0) {
-      const blockReason = response.promptFeedback?.blockReason;
-      console.error("[Chat API] Gemini が回答を返しませんでした:", blockReason, response.promptFeedback);
-      return NextResponse.json(
-        { error: "回答を生成できませんでした。内容を変えて再度お試しください。" },
-        { status: 500 }
-      );
-    }
-
-    const text = response.text;
-    return NextResponse.json({ reply: text || "申し訳ございません。回答を生成できませんでした。" });
+      return response.text || "申し訳ございません。回答を生成できませんでした。";
+    }, language);
+    return NextResponse.json({ reply });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("[Chat API] エラー:", err);
-    const errorMessage =
-      process.env.NODE_ENV === "development"
-        ? `チャットの処理中にエラーが発生しました。（${message}）`
-        : "チャットの処理中にエラーが発生しました。しばらく経ってからお試しください。";
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    if (err instanceof ChatUnavailableError) {
+      return NextResponse.json({ error: err.message, code: "AI_UNAVAILABLE" }, { status: 503 });
+    }
+    console.error("[Chat API] Chat request failed", {
+      status: err && typeof err === "object" && "status" in err ? err.status : undefined,
+    });
+    return NextResponse.json(
+      { error: "チャットの処理中にエラーが発生しました。しばらく経ってからお試しください。" },
+      { status: 500 }
+    );
   }
 }
