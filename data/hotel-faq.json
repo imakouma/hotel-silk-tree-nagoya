@@ -66,5 +66,51 @@
       "frontExtension",
       "333"
     ]
+  ],
+  "breakfastPrice": [
+    [
+      "adultTax",
+      "1,650"
+    ],
+    [
+      "elementaryTax",
+      "1,100"
+    ],
+    [
+      "preschoolFree",
+      ""
+    ],
+    [
+      "ticketsNote",
+      ""
+    ],
+    [
+      "ticketDeadline",
+      "9:00"
+    ],
+    [
+      "noSlippers",
+      ""
+    ]
+  ],
+  "parking": [
+    [
+      "parkingAskFront",
+      ""
+    ],
+    [
+      "frontExtension",
+      "333"
+    ]
+  ],
+  "bath": [
+    [
+      "bathAskFront",
+      ""
+    ],
+    [
+      "frontExtension",
+      "333"
+    ]
   ]
 }
