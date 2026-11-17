@@ -1,0 +1,53 @@
+{
+  "sourceSha256": "736d9cb625b86f9ae1f735b1555a711c870352fc115117a653643b27e0462800",
+  "check": [
+    [
+      "checkIn",
+      "15:00"
+    ],
+    [
+      "checkOut",
+      "11:00"
+    ],
+    [
+      "silkMember",
+      ""
+    ]
+  ],
+  "breakfast": [
+    [
+      "breakfast",
+      "6:30–9:30"
+    ],
+    [
+      "lastOrder",
+      "9:00"
+    ],
+    [
+      "ticketDeadline",
+      "9:00"
+    ],
+    [
+      "ticketsNote",
+      ""
+    ]
+  ],
+  "wifi": [
+    [
+      "freeWifi",
+      ""
+    ],
+    [
+      "ssid",
+      "silk-tree"
+    ],
+    [
+      "password",
+      "silktree"
+    ],
+    [
+      "noWired",
+      ""
+    ]
+  ]
+}
